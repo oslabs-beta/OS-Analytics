@@ -1,7 +1,3 @@
-# Vite + React + Express Boilerplate
-
-A boilerplate for a Vite (React) frontend and Express backend.
-
 ## Setup
 
 1. **Install dependancies:**
