@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "concurrently \"npm run start\" \"npm run client\"",
-    "start": "nodemon server/server.ts",
+    "start": "cd server && npm start",
     "build": "npm --prefix client run build",
     "client": "npm --prefix client run dev"
   },
@@ -13,5 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^8.2.2"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.7"
   }
 }

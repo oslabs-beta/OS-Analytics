@@ -11,6 +11,7 @@
 2. **Start both server and client:**
    ```bash
    cd .. --> Need to be in root directory
+   npm install
    npm run dev
    ```
 
