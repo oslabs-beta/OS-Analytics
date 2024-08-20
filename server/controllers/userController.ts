@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { pool } from "../models/db";
 const JWT_SECRET = "cantseeme";
+const JWT_SALT_FACTOR = 10;
 const generateToken = (id: string) => {
   return jwt.sign({ id }, JWT_SECRET, { expiresIn: "24h" });
 };
@@ -19,7 +20,7 @@ const userController = {
         return res.status(400).json({ message: "User already exists" });
       }
 
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const hashedPassword = await bcrypt.hash(password, JWT_SALT_FACTOR);
 
       const newUser = await pool.query(
         'INSERT INTO "userTable" (username, password) VALUES ($1, $2) RETURNING *',

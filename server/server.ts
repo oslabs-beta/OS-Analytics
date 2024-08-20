@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import {checkDatabaseConnection } from './models/db';
 import userRoutes from './routes/userRoutes'; 
-const authMiddleware = require('./middleware/auth'); 
+import authMiddleware from'./middleware/auth'; 
 const cors = require('cors');
 
 //check db connection

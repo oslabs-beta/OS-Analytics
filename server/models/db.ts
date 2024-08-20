@@ -4,7 +4,6 @@ const URI = 'postgresql://postgres.ltmylkgzewtbyzppqgzn:ActivityTracker123!@aws-
 const pool = new Pool({
     connectionString: URI,
 });
-
 const checkDatabaseConnection = async () => {
     try {
         await pool.query('SELECT NOW()');
