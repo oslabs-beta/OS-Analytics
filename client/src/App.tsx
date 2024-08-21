@@ -1,4 +1,8 @@
 import './App.css';
+import Footer from './componenets/Footer/Footer';
+import Hero from './componenets/Landing/Hero';
+import Login from './componenets/Login/Login';
+import Navbar from './componenets/Navbar/Navbar';
 
 function App() {
   function handleServer() {
@@ -11,10 +15,12 @@ function App() {
   }
 
   return (
-    <>
-      <h1>Hello Front End</h1>
-      <button onClick={() => handleServer()}>Check Server</button>
-    </>
+    <div className="app">
+      <Navbar />
+      <Hero />
+      <Login />
+      <Footer />
+    </div>
   );
 }
 

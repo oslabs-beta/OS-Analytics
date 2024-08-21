@@ -1,0 +1,49 @@
+.navbar {
+  border-bottom: 1px solid rgb(91, 91, 91);
+  position: fixed;
+  width: 100vw;
+  height: 80px;
+  background: var(--black-green);
+  top: 0;
+  left: 0;
+  display: grid;
+  place-content: center;
+  box-shadow: 0 1px 50px 16px rgba(29, 37, 30, 1);
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  max-width: 1400px;
+}
+
+.navLeft {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navLogo {
+    height: 50px;
+}
+.logoBox {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.navLinks {
+    display: flex;
+    gap: 1rem;
+}
+.navRight {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+}
+.navButton {
+    height: 2.4rem;
+    text-wrap: nowrap;
+    font-size: 1rem;
+}
