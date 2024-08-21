@@ -1,0 +1,39 @@
+.container{
+    background-color:#8b949e;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height:100vh;
+    text-align : center;
+}
+.heading{
+    color : rgba(255, 255, 255, 0.87)
+}
+ p{
+    font-size : 1.5em;
+    margin : 0 ;
+    margin-top: 20px;
+ }
+ .link{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #aff5b4;
+    color: rgba(255, 255, 255, 0.87);
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 1.2em;
+    border-radius: 50px;
+    animation: bounce 1s ease-in-out infinite;
+ }
+ @keyframes bounce{
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40%{
+        transform: translateY*(-10px);
+    }
+    60%{
+        transform: translateY*(-5px);
+    }
+ }
