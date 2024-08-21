@@ -1,0 +1,22 @@
+.hero {
+    width: 800px;
+    max-width: 100vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.titleBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0rem;
+}
+
+.heroButtons {
+    display: flex;
+    gap: .8rem;
+    align-items: center;
+    justify-content: center;
+}

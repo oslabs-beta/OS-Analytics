@@ -1,4 +1,9 @@
 import './App.css';
+import Landing from './components/Landing/Landing';
+import Login from './components/Login/Login';
+import User from './components/User/UserView';
+import PageNotFound from './components/PageNotFound/PageNotFound'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   function handleServer() {
@@ -11,10 +16,14 @@ function App() {
   }
 
   return (
-    <>
-      <h1>Hello Front End</h1>
-      <button onClick={() => handleServer()}>Check Server</button>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/user/eric" element={<User />} />
+        <Route path = "*" element = {<PageNotFound/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

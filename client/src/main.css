@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+
+  --green-primary: #66bb6a;
+  --green-secondary: #43a047;
+
+  --white: rgba(255, 255, 255, 0.87);
+  --gray-border: rgb(91, 91, 91);
+  --black-green: #1d251e;
+  --black-green-secondary: #122913;
+
+  color-scheme: light dark;
+  color: var(--white);
+  /* background-color: var(--black-green); */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    var(--black-green),
+    var(--black-green-secondary)
+  );
+  margin-top: 80px;
+}
+
+h1 {
+  font-size: 4.8em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 3.2rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--green-secondary);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  height: 3.2rem;
+}
+button:hover {
+  border-color: var(--white);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto var(--white);
+}
+
+input {
+  height: 3.2rem;
+  width: 100%;
+  font-size: 1.2rem;
+  padding-left: 4px;
+  border: none;
+  outline: 2px solid var(--black-green);
+  background: #f0fff0;
+  border-radius: 2px;
+}
+
+input:not(:placeholder-shown):invalid {
+  outline-color: rgb(254, 79, 79);
+}
+
+input:not(:placeholder-shown):valid {
+  outline-color: var(--green-primary);
+}
+input:focus:invalid {
+  outline-color: transparent;
+}
+section {
+  padding: 8rem 0;
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  } */
+a:hover {
+  color: var(--green-primary);
+}
+
+.primary {
+  color: var(--green-primary);
+}
+
+.btn-primary {
+  color: var(--white);
+  background: var(var(--green-secondary));
+}
+.btn-secondary {
+  color: var(--green-primary);
+  background: none;
+  border: 1px solid var(--green-primary);
+}
+
+.social-icon {
+  color: var(--white);
+}
