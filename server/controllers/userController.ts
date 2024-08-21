@@ -56,7 +56,6 @@ const userController = {
       });
     }
   },
-//cognito login that stores the token and the 
   async login(req: Request, res: Response, next: NextFunction) {
     const { email, password }: { email: string; password: string } = req.body;
 

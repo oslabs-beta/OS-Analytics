@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-amplify/auth": "^6.3.14",
     "@aws-sdk/client-cognito-identity-provider": "^3.635.0",
+    "aws-amplify": "^6.5.1",
     "aws-sdk": "^2.1679.0",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
