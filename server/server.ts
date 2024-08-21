@@ -1,8 +1,11 @@
+require('dotenv').config();
 import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import {checkDatabaseConnection } from './models/db';
 import userRoutes from './routes/userRoutes'; 
 import authMiddleware from'./middleware/auth'; 
+
+
 const cors = require('cors');
 
 //check db connection

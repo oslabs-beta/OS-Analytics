@@ -1,21 +1,17 @@
 import { Request, Response, NextFunction } from "express";
-const jwt = require("jsonwebtoken");
-const JWT_SECRET = "cantseeme";
+import createCognitoVerifier from "./verifier";
 
-const auth = (req: Request, res: Response, next: NextFunction) => {
-  //grab the cookie from the request
+const verifier = createCognitoVerifier();
+const auth = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.token;
-  console.log(token);
-  //if their is no token, end the response with a message
+
   if (!token) {
     return res.status(401).send("Unauthorized: No token provided");
   }
+//verfies the "id" part of the token and if valid then next()
   try {
-    //decodes the token
-    const decoded = jwt.verify(token, JWT_SECRET);
-    //stores token in a locals variable to be used in next middleware
-    res.locals.userId = decoded.id;
-    //proceed to next middleware
+    const payload = await verifier.verify(token);
+    res.locals.userId = payload.sub;
     next();
   } catch (error) {
     return res.status(401).send("Unauthorized: Invalid token");
