@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Navbar.module.css';
 import logo from '../../assets/map-logo.png';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [activeUser, setActiveUser] = useState(false);
@@ -21,15 +22,21 @@ export default function Navbar() {
           </div>
         </div>
         <div className={styles.navRight}>
-            <span>GitHub</span>
-            {activeUser ? <button className="btn-primary">Dashboard</button> :
+          <span>GitHub</span>
+          {activeUser ? (
+            <button className="btn-primary">Dashboard</button>
+          ) : (
             <>
-              <button className={`btn-secondary ${styles.navButton}`}>Sign in</button>
-              <button className={`btn-primary ${styles.navButton}`}>Get started</button>
+              <Link to="/login">
+                <button className={`btn-secondary ${styles.navButton}`}>
+                  Sign in
+                </button>
+              </Link>
+              <button className={`btn-primary ${styles.navButton}`}>
+                Get started
+              </button>
             </>
-          }
-            
-            
+          )}
         </div>
       </div>
     </div>

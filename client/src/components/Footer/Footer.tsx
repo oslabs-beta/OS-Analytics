@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Footer.module.css'
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -27,9 +28,26 @@ export default function Footer() {
             <path d="M19.615 3.184c-1.231-.81-4.615-.81-4.615-.81s-3.384 0-4.615.81c-1.231.81-1.231 2.384-1.231 2.384s0 1.574 1.231 2.384c1.231.81 4.615.81 4.615.81s3.384 0 4.615-.81c1.231-.81 1.231-2.384 1.231-2.384s0-1.574-1.231-2.384zm-7.615 7.816v-5l4.5 2.5-4.5 2.5z"/>
           </svg>
         </a>
-
-
-
+        
+       <div className = "List" >
+    <ul>
+    <li>
+      <a href = "https://www.opensourcelabs.io/">
+      <div className = 'list link'> OSLabs </div>
+      </a>
+    </li>
+    <li>
+    <Link to = "/Readme.md">
+      <div className = 'list link'> Readme</div>
+      </Link>
+    </li>
+    <li>
+    <a href = "https://www.opensourcelabs.io/">
+      <div className = 'list link'> Demo </div>
+      </a>
+    </li>
+    </ul>
+          </div>
           </div>
         
   )

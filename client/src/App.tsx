@@ -1,8 +1,9 @@
 import './App.css';
-import Footer from './componenets/Footer/Footer';
-import Hero from './componenets/Landing/Hero';
-import Login from './componenets/Login/Login';
-import Navbar from './componenets/Navbar/Navbar';
+import Landing from './components/Landing/Landing';
+import Login from './components/Login/Login';
+import User from './components/User/UserView';
+import PageNotFound from './components/PageNotFound/PageNotFound'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   function handleServer() {
@@ -15,12 +16,14 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Navbar />
-      <Hero />
-      <Login />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/user/eric" element={<User />} />
+        <Route path = "*" element = {<PageNotFound/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
