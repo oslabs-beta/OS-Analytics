@@ -1,24 +1,38 @@
 import React, { useState } from 'react';
 import styles from './Login.module.css';
+import axios from 'axios';
+import { useAtom } from 'jotai';
+import { activeUserAtom} from '../../state/Atoms';
+
 
 export default function Login() {
+  const [, setActiveUser] = useAtom(activeUserAtom)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
-  function handleChange(e:any) {
+  function handleChange(e: any) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   }
 
-  function handleSubmit(e:any) {
+ async function handleSubmit (e: any) {
     e.preventDefault();
     //POST Request for Login Here...
-    const content = formData
-    console.log(content)
+    try{
+    const response = await axios.post ('/api/auth/login', formData)
+    console.log(response.data.email)
+    setActiveUser(response.data.email)
+    }
+
+    catch (err: any){
+      console.log(err.message)
+    }
+    // const content = formData;
+    // console.log(content);
   }
 
   return (
@@ -32,8 +46,9 @@ export default function Login() {
         </button>
       </div>
       <form
-      onSubmit={(e)=> handleSubmit(e)}
-      className={styles.loginCredentials}>
+        onSubmit={(e) => handleSubmit(e)}
+        className={styles.loginCredentials}
+      >
         <input
           type="email"
           placeholder="email"
