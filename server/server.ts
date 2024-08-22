@@ -3,6 +3,8 @@ import express, { Request, Response, NextFunction } from 'express';
 import cookieParser from 'cookie-parser';
 import {checkDatabaseConnection } from './models/db';
 import userRoutes from './routes/userRoutes'; 
+import clickRoutes from './routes/clickRoutes'; 
+import dataRoutes from './routes/dataRoute'; 
 import authMiddleware from'./middleware/auth'; 
 
 
@@ -24,8 +26,9 @@ app.get('/api',authMiddleware, (req: Request, res: Response) => {
    });
 });
 
-app.use('/api/auth',userRoutes )
-
+app.use('/api/auth',userRoutes)
+app.use('/api/click-data',clickRoutes)
+//app.use('/api/data',dataRoutes)
 
 //Error handling
 
