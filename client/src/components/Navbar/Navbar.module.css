@@ -47,3 +47,8 @@
     text-wrap: nowrap;
     font-size: 1rem;
 }
+
+.logOutIcon {
+    height: 1.6rem;
+    padding-top: 3px;
+}

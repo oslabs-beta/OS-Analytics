@@ -1,7 +1,7 @@
 import './App.css';
 import Landing from './components/Landing/Landing';
 import Login from './components/Login/Login';
-import User from './components/User/UserView';
+import User from './components/User/UserView'
 import PageNotFound from './components/PageNotFound/PageNotFound'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
