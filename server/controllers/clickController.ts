@@ -5,7 +5,7 @@ const clickDataController = {
   async storeClickData (req: Request, res: Response){
     console.log("hit")
     //get click data back as a body
-    const { x_coord, y_coord, element, elementName, userAgent, platform, pageUrl} = req.body;
+    const { x_coord, y_coord, element, elementName, activityId, userAgent, platform, pageUrl} = req.body;
     const userId = res.locals.user;
     const email = res.locals.email;
     if (!userId || !email) {
@@ -18,9 +18,9 @@ const clickDataController = {
     try {
       await pool.query(
         `
-          INSERT INTO "clickTable2" (user_id, element, element_name, x_coord, y_coord, user_browser,user_os,page_url)
-          VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
-        [userId, element, elementName, x_coord, y_coord, userAgent, platform, pageUrl]
+          INSERT INTO "clickTable2" (user_id, element, element_name, dataset_id, x_coord, y_coord, user_browser,user_os,page_url)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+        [userId, element, elementName,activityId, x_coord, y_coord, userAgent, platform, pageUrl]
       );
 
       res.status(201).json({ message: "Click data stored successfully" });
