@@ -1,5 +1,5 @@
 .container{
-    background-color:#8b949e;
+    background-color:rgba(255, 255, 255, 0.87);
     position: fixed;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
     text-align : center;
 }
 .heading{
-    color : rgba(255, 255, 255, 0.87)
+    color :  #66bb6a
 }
  p{
     font-size : 1.5em;
@@ -18,7 +18,7 @@
  .link{
     display: inline-block;
     padding: 10px 20px;
-    background-color: #aff5b4;
+    background-color: #1d251e;
     color: rgba(255, 255, 255, 0.87);
     text-decoration: none;
     margin-top: 20px;
