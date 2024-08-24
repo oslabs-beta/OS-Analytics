@@ -28,7 +28,7 @@ app.get('/api',authMiddleware, (req: Request, res: Response) => {
 
 app.use('/api/auth',userRoutes)
 app.use('/api/click-data',clickRoutes)
-//app.use('/api/data',dataRoutes)
+app.use('/api/data',dataRoutes)
 
 //Error handling
 

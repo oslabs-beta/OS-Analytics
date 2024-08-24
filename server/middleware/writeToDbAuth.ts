@@ -11,23 +11,21 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //search for a valid api key inside the usertable
     const result = await pool.query(
-      'SELECT * FROM "userTable2" WHERE cognito_id = $1',
+      'SELECT * FROM "userTable2" WHERE "api_key" = $1',
       [apiKey]
     );
-
+    console.log(result.length)
     if (result.rows.length === 0) {
       return res.status(401).send("Unauthorized: Invalid API key");
     }
 
-    //return the row and pull the email and id out from userTable
     const user = result.rows[0];
     res.locals.user = user.cognito_id;
-    res.locals.email = user.email;
 
-    next();
+    next(); 
   } catch (error) {
     console.error("Error during API key verification:", error);
-    return res.status(500).send("Internal Server Error");
+    return res.status(401).send("Unauthorized: Invalid API key");
   }
 };
 
