@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 const router = express.Router();
 import userController from "../controllers/userController";
 import addUserToDatabase from "../middleware/addToDB";
+import authMiddleware from "../middleware/auth";
 
 router.post(
   "/signup",
@@ -19,8 +20,14 @@ router.post(
   userController.login,
   (req: Request, res: Response) => {}
 );
-
-router.post(
+router.get(
+  "/activeUser",
+  authMiddleware,
+  (req: Request, res: Response) => {
+    res.status(200).send({ message: "good to go!" });
+  }
+);
+router.get(
   "/logout",
   userController.logout,
   (req: Request, res: Response) => {}

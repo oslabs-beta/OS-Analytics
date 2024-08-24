@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <div>Footer
+    <div>
     
     <a href  = "https://x.com/" target  = "_blank" rel = "nooper noreferrer" className = "social-icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="rgba(255, 255, 255, 0.87)" viewBox="0 0 24 24">
