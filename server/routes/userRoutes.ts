@@ -3,7 +3,6 @@ const router = express.Router();
 import userController from "../controllers/userController";
 import addUserToDatabase from "../middleware/addToDB";
 import authMiddleware from "../middleware/auth";
-
 router.post(
   "/signup",
   userController.signup,
@@ -20,14 +19,24 @@ router.post(
   userController.login,
   (req: Request, res: Response) => {}
 );
+
 router.get(
-  "/activeUser",
-  authMiddleware,
-  (req: Request, res: Response) => {
-    res.status(200).send({ message: "good to go!" });
-  }
-);
+    "/activeUser",
+    authMiddleware,
+    (req: Request, res: Response) => {
+      res.status(200).send({ active: true, message: "good to go!" });
+    }
+  );
+
 router.get(
+    "/getApiKey",
+    authMiddleware,
+    userController.getApiKey,
+    (req: Request, res: Response) => {;
+    }
+  );
+
+router.post(
   "/logout",
   userController.logout,
   (req: Request, res: Response) => {}
