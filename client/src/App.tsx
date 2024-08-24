@@ -17,7 +17,7 @@ function App() {
 //frontend then deals and redirects based on the response
 
   function handleServer() {
-    const URL = 'http://localhost:8080/api';
+    const URL: string = 'http://localhost:8080/api';
     fetch(URL)
       .then((res) => res.json())
       .then((data) => {
