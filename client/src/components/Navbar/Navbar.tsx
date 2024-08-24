@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
 import styles from './Navbar.module.css';
 import logo from '../../assets/map-logo.png';
 import logout from '../../assets/logout.png';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
-import { activeUserAtom, authAtom } from '../../state/Atoms';
+import { activeUserAtom } from '../../state/Atoms';
 
 export default function Navbar() {
-  const [user, setUser] = useAtom(activeUserAtom)
-  const [auth, setAuth] = useAtom(authAtom)
+  const [activeUser, setActiveUser] = useAtom(activeUserAtom);
   return (
     <div className={styles.navbar}>
       <div className={styles.navContainer}>
         <div className={styles.navLeft}>
-          <div className={styles.logoBox}>
-            <img className={styles.navLogo} src={logo} alt="at-logo" />
-            <h3>Tracker</h3>
-          </div>
+          <Link to="/">
+            <div className={styles.logoBox}>
+              <img className={styles.navLogo} src={logo} alt="at-logo" />
+              <h3>Tracker</h3>
+            </div>
+          </Link>
 
           <div className={styles.navLinks}>
             <span>Product</span>
@@ -27,15 +27,19 @@ export default function Navbar() {
         </div>
         <div className={styles.navRight}>
           <span>GitHub</span>
-          {user.length>0 && auth === true ? (
+          {activeUser ? (
             <>
-              <Link to="/user/eric">
+              <Link to="/dashboard">
                 <button className={`btn-primary ${styles.navButton}`}>
                   Dashboard
                 </button>
               </Link>
-              <Link to="/" onClick={()=>{setAuth(false); setUser('')}}>
-            
+              <Link
+                to="/"
+                onClick={() => {
+                  setActiveUser('');
+                }}
+              >
                 <img
                   className={styles.logOutIcon}
                   src={logout}
