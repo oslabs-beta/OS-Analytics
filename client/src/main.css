@@ -15,6 +15,7 @@
   --gray-border: rgb(91, 91, 91);
   --black-green: #1d251e;
   --black-green-secondary: #122913;
+  --black: rgba(0, 0, 0, 1);
 
   color-scheme: light dark;
   color: var(--white);
@@ -40,7 +41,6 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  min-width: 320px;
   min-height: 100vh;
   background: linear-gradient(
     to bottom,
@@ -52,26 +52,31 @@ body {
 
 h1 {
   font-size: 4.8em;
+  font-size: clamp(2.4rem, 5vw + 10px, 4.8rem);
   line-height: 1.1;
 }
 
 h2 {
   font-size: 3.2rem;
+  font-size: clamp(1rem, 3vw + 10px, 3.2rem);
 }
 
 h3 {
   font-size: 1.6rem;
+  font-size: clamp(1.2rem, 2vw + 10px, 1.6rem);
 }
 
 h4 {
   font-size: 1.2rem;
+  font-size: clamp(.8rem, .8vw + 10px, 1.2rem);
 }
 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1.2rem;
+  font-size: .4rem;
+  font-size: clamp(.8rem, .8vw + 10px, 1.2rem);
   font-weight: 500;
   font-family: inherit;
   background-color: var(--green-secondary);
@@ -109,6 +114,7 @@ input:focus:invalid {
   outline-color: transparent;
 }
 section {
+  margin: 0 1rem;
   padding: 8rem 0;
 }
 

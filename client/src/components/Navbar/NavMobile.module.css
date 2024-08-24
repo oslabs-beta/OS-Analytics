@@ -1,0 +1,30 @@
+.navMobile {
+    height: calc(100vh - 80px);
+    width: 100vw;
+    z-index: 5;
+    background: var(--black);
+    position: absolute;
+    /* padding-top: 3.2rem; */
+    position: fixed;
+    left: 0;
+    top: 5rem;
+    transition: all .25s ease-in-out;
+}
+
+.offScreenLeft {
+transform: translateX(-100%);
+}
+
+.mobileLinks {
+    width: 100%;
+    list-style: none;
+    height: 100%;
+}
+
+.mobileLink {
+    border-bottom: 1px inset var(--gray-border);
+    padding-left: 3.2rem;
+    display: flex;
+    align-items: center;
+    height: 4.8rem;
+}

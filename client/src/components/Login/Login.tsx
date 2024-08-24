@@ -12,19 +12,19 @@ export default function Login() {
     password: '',
   });
 
-  function handleChange(e: any) {
+  function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   }
 
- async function handleSubmit (e: any) {
+ async function handleSubmit (e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     //POST Request for Login Here...
     try{
     const response = await axios.post ('/api/auth/login', formData)
-    console.log(response.data.email)
+    console.log(response.data)
     setActiveUser(response.data.email)
     }
 
