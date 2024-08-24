@@ -14,7 +14,7 @@ function App() {
 
 
   useEffect(() => {
-    const checkAuth = async () => {
+    const checkAuth = asyncs () => {
       try {
         const response = await axios.get("/api/auth/activeUser");
         console.log(response);
