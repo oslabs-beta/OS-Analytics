@@ -13,6 +13,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
     const payload = await verifier.verify(token);
 
     res.locals.userId = payload.sub;
+    res.locals.email = payload.email;
     next();
   } catch (error) {
     return res.status(401).send("Unauthorized: Invalid token");

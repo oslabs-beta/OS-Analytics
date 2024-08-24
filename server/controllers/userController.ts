@@ -7,6 +7,7 @@ import {
 import * as crypto from "crypto";
 import createCognitoVerifier from "../middleware/verifier";
 const client = new CognitoIdentityProviderClient({ region: "us-east-2" });
+import { pool } from "../models/db";
 const COGNITO_CLIENT_ID = process.env.COGNITO_CLIENT_ID;
 const COGNITO_CLIENT_SECRET = process.env.COGNITO_CLIENT_SECRET;
 //secret hash helper function
@@ -108,6 +109,32 @@ const userController = {
       const error = err as Error;
       return next({
         message: "Error in login: " + error.message,
+        log: err,
+      });
+    }
+  },
+
+
+
+
+  async getApiKey(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user = res.locals.userId;
+      
+      const response = await pool.query(
+        'SELECT * FROM "userTable2" WHERE "cognito_id" = $1',
+        [user]
+      );
+
+      if (response.rows.length > 0) {
+        res.status(200).json(response.rows[0].api_key);
+      } else {
+        res.status(404).json({ message: "No data" });
+      }
+    } catch (err) {
+      const error = err as Error;
+      return next({
+        message: "Error in getApiKey: " + error.message,
         log: err,
       });
     }
