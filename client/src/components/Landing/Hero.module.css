@@ -12,8 +12,12 @@
     flex-direction: column;
     justify-content: center;
     gap: 0rem;
+    padding: 0 2rem;
 }
 
+.hero h4 {
+    padding: 0 2rem;
+}
 .heroButtons {
     display: flex;
     gap: .8rem;

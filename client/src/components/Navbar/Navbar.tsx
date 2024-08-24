@@ -3,10 +3,11 @@ import logo from '../../assets/map-logo.png';
 import logout from '../../assets/logout.png';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
-import { activeUserAtom } from '../../state/Atoms';
+import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
 
 export default function Navbar() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);
+  const [navOpen, setNavOpen]  = useAtom(activeNavAtom);
   return (
     <div className={styles.navbar}>
       <div className={styles.navContainer}>
@@ -59,6 +60,9 @@ export default function Navbar() {
               </button>
             </>
           )}
+        </div>
+        <div className={navOpen ? `${styles.hamburgerBox} ${styles.activeNav}` : `${styles.hamburgerBox}`} onClick={()=>{setNavOpen(navOpen === false ? true : false)}}>
+          <div className={styles.hamburger} />
         </div>
       </div>
     </div>
