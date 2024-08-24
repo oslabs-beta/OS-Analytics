@@ -1,13 +1,22 @@
 import styles from './Navbar.module.css';
 import logo from '../../assets/map-logo.png';
 import logout from '../../assets/logout.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
-
+import { handleLogout } from '../../services/authConfig';
 export default function Navbar() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);
-  const [navOpen, setNavOpen]  = useAtom(activeNavAtom);
+  const [navOpen, setNavOpen] = useAtom(activeNavAtom);
+  const navigate = useNavigate();
+
+  const onLogoutClick = async () => {
+    const success = await handleLogout();
+    if (success) {
+      setActiveUser(''); 
+      navigate('/'); 
+    }
+  }
   return (
     <div className={styles.navbar}>
       <div className={styles.navContainer}>
@@ -38,7 +47,7 @@ export default function Navbar() {
               <Link
                 to="/"
                 onClick={() => {
-                  setActiveUser('');
+                  onLogoutClick();
                 }}
               >
                 <img
