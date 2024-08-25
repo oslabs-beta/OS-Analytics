@@ -5,6 +5,7 @@ import {checkDatabaseConnection } from './models/db';
 import userRoutes from './routes/userRoutes'; 
 import clickRoutes from './routes/clickRoutes'; 
 import dataRoutes from './routes/dataRoute'; 
+import aiRoutes from './routes/bedrockRoutes'; 
 import authMiddleware from'./middleware/auth'; 
 
 
@@ -29,6 +30,7 @@ app.get('/api',authMiddleware, (req: Request, res: Response) => {
 app.use('/api/auth',userRoutes)
 app.use('/api/click-data',clickRoutes)
 app.use('/api/data',dataRoutes)
+app.use('/api/ai',aiRoutes)
 
 //Error handling
 
