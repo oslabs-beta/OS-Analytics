@@ -3,12 +3,12 @@ import LandingView from './components/Landing/LandingView';
 import Login from './components/Login/Login';
 import UserView from './components/User/UserView';
 import PageNotFound from './components/PageNotFound/PageNotFound';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate, } from 'react-router-dom';
 import { activeUserAtom} from './state/Atoms';
 import { useAtom } from 'jotai';
-
+import { useEffect } from 'react';
 function App() {
-  const [activeUser] = useAtom(activeUserAtom);  //email of active user || null
+  const [activeUser, setActiveUser] = useAtom(activeUserAtom);  //email of active user || null
   const navigate = useNavigate();
   useEffect(() => {
     const fetchUser = async () => {
