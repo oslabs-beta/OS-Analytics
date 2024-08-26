@@ -5,7 +5,7 @@ import {checkDatabaseConnection } from './models/db';
 import userRoutes from './routes/userRoutes'; 
 import clickRoutes from './routes/clickRoutes'; 
 import dataRoutes from './routes/dataRoute'; 
-import aiRoutes from './routes/bedrockRoutes'; 
+import aiRoutes from './routes/aiRoutes'; 
 import authMiddleware from'./middleware/auth'; 
 
 
