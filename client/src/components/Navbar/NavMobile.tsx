@@ -20,7 +20,7 @@ export default function NavMobile() {
           <>
             <li className={styles.mobileLink}>
               <Link
-                to="/"
+                to="/dashboard"
                 onClick={() => {
                   setActiveNav(false);
                 }}
@@ -35,7 +35,7 @@ export default function NavMobile() {
                   setActiveNav(false);
                 }}
               >
-                <h3>Websites</h3>
+                <h3>Logout</h3>
               </Link>
             </li>
             <li className={styles.mobileLink}>
@@ -45,7 +45,7 @@ export default function NavMobile() {
                   setActiveNav(false);
                 }}
               >
-                <h3>Settings</h3>
+                <h3>Home</h3>
               </Link>
             </li>
           </>

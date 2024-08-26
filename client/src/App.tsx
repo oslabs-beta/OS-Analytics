@@ -29,7 +29,7 @@ function App() {
         console.log(data);
       });
   }
-// return <Loading />;
+
 
 useEffect(() => {
   setLoading(true);
