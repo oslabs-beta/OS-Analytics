@@ -7,21 +7,22 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate, } from 'react-rout
 import { activeUserAtom} from './state/Atoms';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
+import { handleSession } from "./services/authConfig";
 function App() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);  //email of active user || null
-  const navigate = useNavigate();
-  useEffect(() => {
-    const fetchUser = async () => {
-      const user = await handleSession();
-      if (user) {
-        setActiveUser(user);
-      } else {
-        navigate("/");
-      }
-    };
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     const user = await handleSession();
+  //     if (user) {
+  //       setActiveUser(user);
+  //     } else {
+  //       navigate("/");
+  //     }
+  //   };
 
-    fetchUser();
-  }, []);
+  //   fetchUser();
+  // }, []);
 //useEffect gets called
 //useEffect calls the activeUser endpoint in backend
 //if response.ok send them somewhere (ative user=true)
