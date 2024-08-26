@@ -6,4 +6,6 @@ import authMiddleware from "../middleware/auth";
 
 router.get("/",authMiddleware, dataController.getAllUserData,(req: Request, res: Response) => {});
 
+router.get("/:id",authMiddleware, dataController.getWebsiteData,(req: Request, res: Response) => {}); 
+
 export default router;
