@@ -6,27 +6,28 @@ import PageNotFound from './components/PageNotFound/PageNotFound';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { activeUserAtom} from './state/Atoms';
 import { useAtom } from 'jotai';
-// import Loading from '../src/components/Loading/Loading';
 
 function App() {
   const [activeUser] = useAtom(activeUserAtom);  //email of active user || null
-  // const [loading, setLoading] = useAtom(loadingAtom);  
+  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchUser = async () => {
+      const user = await handleSession();
+      if (user) {
+        setActiveUser(user);
+      } else {
+        navigate("/");
+      }
+    };
 
+    fetchUser();
+  }, []);
 //useEffect gets called
 //useEffect calls the activeUser endpoint in backend
 //if response.ok send them somewhere (ative user=true)
 //if not login
 //activeUser endpoint returns either true or an error
 //frontend then deals and redirects based on the response
-
-  function handleServer() {
-    const URL: string = 'http://localhost:8080/api';
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }
 
   return (
     <BrowserRouter>

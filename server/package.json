@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@aws-amplify/auth": "^6.3.14",
+    "@aws-sdk/client-bedrock": "^3.637.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.637.0",
     "@aws-sdk/client-cognito-identity-provider": "^3.635.0",
     "aws-amplify": "^6.5.1",
     "aws-jwt-verify": "^4.0.1",

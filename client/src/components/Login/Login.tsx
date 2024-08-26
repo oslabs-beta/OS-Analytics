@@ -2,19 +2,21 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { activeUserAtom } from '../../state/Atoms';
+import { activeUserAtom} from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
 import { Link } from 'react-router-dom';
+import {useNavigate } from "react-router-dom";
+
 
 export default function Login() {
-  const [, setActiveUser] = useAtom(activeUserAtom);
+  const [, setActiveUser] = useAtom(activeUserAtom)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const navigate = useNavigate();
+  function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -24,12 +26,16 @@ export default function Login() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     //POST Request for Login Here...
-    try {
-      const response = await axios.post('/api/auth/login', formData);
-      console.log(response.data);
-      setActiveUser(response.data.email);
-    } catch (err: any) {
-      console.log(err.message);
+    try{
+    const response = await axios.post ('/api/auth/login', formData)
+    console.log(response.data);
+    setActiveUser(response.data.email);
+      //Check if necessary
+    navigate('/dashboard');
+    }
+
+    catch (err: any){
+      console.log(err.message)
     }
     // const content = formData;
     // console.log(content);
