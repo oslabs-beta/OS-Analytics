@@ -1,48 +1,50 @@
 import styles from './Navbar.module.css';
 import logo from '../../assets/map-logo.png';
 import logout from '../../assets/logout.png';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
 import { handleLogout } from '../../services/authConfig';
 export default function Navbar() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);
-  //Check if necessary
   const [activeNav, setActiveNav] = useAtom(activeNavAtom);
-  const navigate = useNavigate();
 
   const onLogoutClick = async () => {
     const success = await handleLogout();
     if (success) {
-      setActiveUser(''); 
-      navigate('/'); 
+      setActiveUser('');
     }
-  }
+  };
   return (
     <div className={styles.navbar}>
       <div className={styles.navContainer}>
         <div className={styles.navLeft}>
-          <Link to="/" onClick={()=>{setActiveNav(false)}}>
+          <Link
+            to="/"
+            onClick={() => {
+              setActiveNav(false);
+            }}
+          >
             <div className={styles.logoBox}>
               <img className={styles.navLogo} src={logo} alt="at-logo" />
               <h3>Tracker</h3>
             </div>
           </Link>
           {activeUser ? (
-            <div className ={styles.navLinks}>
+            <div className={styles.navLinks}>
               <span> DashBoard </span>
               <span> Websites</span>
               <span>Link3</span>
-              </div>
-                ):(
-          <div className={styles.navLinks}>
-            <span>Product</span>
-            <span>Documenation</span>
-            <span>Getting Started</span>
-            <span>Team</span>
-          </div>
-        )}
-        </div>            
+            </div>
+          ) : (
+            <div className={styles.navLinks}>
+              <span>Product</span>
+              <span>Documenation</span>
+              <span>Getting Started</span>
+              <span>Team</span>
+            </div>
+          )}
+        </div>
         <div className={styles.navRight}>
           <span>GitHub</span>
           {activeUser ? (
@@ -72,13 +74,24 @@ export default function Navbar() {
                   Sign in
                 </button>
               </Link>
-              <button className={`btn-primary ${styles.navButton}`}>
-                Get started
-              </button>
+              <Link to="/signup">
+                <button className={`btn-primary ${styles.navButton}`}>
+                  Get started
+                </button>
+              </Link>
             </>
           )}
         </div>
-        <div className={activeNav ? `${styles.hamburgerBox} ${styles.activeNav}` : `${styles.hamburgerBox}`} onClick={()=>{setActiveNav(activeNav === false ? true : false)}}>
+        <div
+          className={
+            activeNav
+              ? `${styles.hamburgerBox} ${styles.activeNav}`
+              : `${styles.hamburgerBox}`
+          }
+          onClick={() => {
+            setActiveNav(activeNav === false ? true : false);
+          }}
+        >
           <div className={styles.hamburger} />
         </div>
       </div>

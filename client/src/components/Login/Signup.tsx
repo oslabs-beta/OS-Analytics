@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { activeUserAtom} from '../../state/Atoms';
+import { activeUserAtom } from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
 import { Link } from 'react-router-dom';
 
-
-export default function Login() {
-  const [, setActiveUser] = useAtom(activeUserAtom)
+export default function Signup() {
+  const [, setActiveUser] = useAtom(activeUserAtom);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-  function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -23,17 +22,13 @@ export default function Login() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    try{
-    const response = await axios.post ('/api/auth/login', formData)
-    console.log(response.data);
-    setActiveUser(response.data.email);
+    try {
+      const response = await axios.post('/api/auth/signup', formData);
+      console.log(response.data);
+      setActiveUser(response.data.email);
+    } catch (err: any) {
+      console.log(err.message);
     }
-
-    catch (err: any){
-      console.log(err.message)
-    }
-    // const content = formData;
-    // console.log(content);
   }
 
   return (
@@ -41,7 +36,7 @@ export default function Login() {
       <Navbar />
       <NavMobile />
       <div className={styles.login}>
-        <h2>Welcome back</h2>
+        <h2>Welcome to Activity Tracker</h2>
         <div className={styles.oathButtons}>
           <button className={`${styles.loginBtn} ${styles.google}`}>
             Continue with Google
@@ -81,9 +76,9 @@ export default function Login() {
         </form>
         <div className={styles.createAccountQuery}>
           <p className="white-secondary">Don't have an account?</p>
-          <p><Link to="/signup">
-            Sign up now
-          </Link></p>
+          <p>
+            <Link to="create">Sign up now</Link>
+          </p>
         </div>
       </div>
     </>

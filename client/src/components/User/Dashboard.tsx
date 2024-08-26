@@ -24,7 +24,6 @@ function Dashboard() {
       
       <h1>{`Welcome back, ${user}`}</h1>
       <h3>{`${websites}`}</h3>
-      <Loading />
     </div>
   );
 }
