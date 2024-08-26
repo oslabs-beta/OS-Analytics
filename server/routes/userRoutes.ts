@@ -24,7 +24,7 @@ router.get(
     "/activeUser",
     authMiddleware,
     (req: Request, res: Response) => {
-      res.status(200).send({ active: true, message: "good to go!" });
+      res.status(200).send({ email: res.locals.email, message: "good to go!" });
     }
   );
 

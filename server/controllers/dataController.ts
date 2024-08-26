@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import { pool } from "../models/db";
 
 const dataController = {
-
   //get everything from all website, URL looks like http://yourdomain.com/api/data
   async getAllUserData(req: Request, res: Response, next: NextFunction) {
     try {
@@ -28,7 +27,5 @@ const dataController = {
       });
     }
   },
-
-
 };
 export default dataController;

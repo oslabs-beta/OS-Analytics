@@ -3,15 +3,16 @@ import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
 import { activeUserAtom} from '../../state/Atoms';
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 
 export default function Login() {
-  const [, setActiveUser] = useAtom(activeUserAtom)
+  const [activeUser, setActiveUser] = useAtom(activeUserAtom)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
+  const navigate = useNavigate();
   function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
@@ -26,6 +27,7 @@ export default function Login() {
     const response = await axios.post ('/api/auth/login', formData)
     console.log(response.data)
     setActiveUser(response.data.email)
+    navigate('/dashboard')
     }
 
     catch (err: any){
