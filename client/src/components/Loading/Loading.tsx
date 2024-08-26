@@ -3,10 +3,9 @@ import styles from './Loading.module.css'
 import { Link } from 'react-router-dom';
 
 export default function Loading(){
-return (
-    <div className = "cup">
-    <div className = "handle"></div>
-    </div>
-    
-)
+    return (
+        <div className={styles.cup}>
+          <div className={styles.handle}></div>
+        </div>
+      );
 }

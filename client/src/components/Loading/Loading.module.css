@@ -1,23 +1,22 @@
-    body{
-        backgroundcolor: rgba(255, 255, 255, 0.87);
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .cup{
-        height: 140px;
-        width : 180px;
-        border:6px solid black;
-        position:absolute;
-        top: 40%;
-        left: 40%;
-        border-radius: 0px 0px 70px 70px;
-        background:url();
-        box-shadow: 0px 0px 0px 6px black;
-        background-repeat: repeat-x;
-        background-position: 0px 140px;
-        animation: fill 2.5s infinite;
-    }
+html, body {
+    background-color: rgba(255, 255, 255, 0.87);
+    margin: 0;
+    padding: 0;
+}
+.cup {
+    height: 140px;
+    width: 180px;
+    border: 6px solid black;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    border-radius: 0px 0px 70px 70px;
+    box-shadow: 0px 0px 0px 6px black;
+    background-image: url('./coffee.png'); 
+    background-repeat: repeat-x;
+    background-position: 0px 140px;
+    animation: fill 2.5s infinite;
+}
     @keyframes fill{
         0%{
             background-position: 0px 140px;
@@ -32,7 +31,7 @@
             background-position: -1350px -40px;
         }
         100%{
-            background-position: 0px 140px;
+            background-position: 0px -140px;
         }
     }
     .handle{

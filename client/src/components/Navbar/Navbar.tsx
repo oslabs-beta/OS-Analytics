@@ -18,14 +18,22 @@ export default function Navbar() {
               <h3>Tracker</h3>
             </div>
           </Link>
+          {activeUser ? (
+            <div className ={styles.navLinks}>
+              <span> DashBoard </span>
+              <span> Websites</span>
+              <span>Link3</span>
+              </div>
+                ):(
 
           <div className={styles.navLinks}>
             <span>Product</span>
-            <span>Docs</span>
-            <span>Product</span>
+            <span>Documenation</span>
+            <span>Getting Started</span>
             <span>Team</span>
           </div>
-        </div>
+        )}
+        </div>            
         <div className={styles.navRight}>
           <span>GitHub</span>
           {activeUser ? (
