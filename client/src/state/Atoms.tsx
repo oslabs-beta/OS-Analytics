@@ -4,4 +4,6 @@ import {atom} from 'jotai';
 
 export const activeUserAtom = atom<string>('');
 export const activeNavAtom = atom<boolean>(false);
+export const userDataAtom = atom<[]>([])
+export const loadingAtom = atom<boolean>(false);
 // export const authAtom = atom<boolean>(true);

@@ -101,10 +101,6 @@
     /* background: red; */
   }
 
-.lower {
-  transform: translateY(.7rem);
-}
-
 @media only screen and (max-width: 850px) {
   .navLinks {
     display: none;

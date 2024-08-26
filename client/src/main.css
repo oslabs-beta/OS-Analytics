@@ -12,6 +12,7 @@
   --green-secondary: #43a047;
 
   --white: rgba(255, 255, 255, 0.87);
+  --white-secondary: rgba(255, 255, 255, 0.6);
   --gray-border: rgb(91, 91, 91);
   --black-green: #1d251e;
   --black-green-secondary: #122913;
@@ -26,7 +27,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a, a:visited {
+a,
+a:visited {
   font-weight: 500;
   color: var(--white);
   text-decoration: inherit;
@@ -58,31 +60,37 @@ h1 {
 
 h2 {
   font-size: 3.2rem;
-  font-size: clamp(1rem, 3vw + 10px, 3.2rem);
+  font-size: clamp(2.4rem, 3.6vw + 10px, 3.2rem);
 }
 
 h3 {
   font-size: 1.6rem;
   font-size: clamp(1.2rem, 2vw + 10px, 1.6rem);
+  font-weight: 600;
 }
 
 h4 {
   font-size: 1.2rem;
-  font-size: clamp(.8rem, .8vw + 10px, 1.2rem);
+  font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);
+}
+
+.white-secondary {
+  color: var(--white-secondary);
 }
 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: .4rem;
-  font-size: clamp(.8rem, .8vw + 10px, 1.2rem);
+  font-size: 0.4rem;
+  font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);
   font-weight: 500;
   font-family: inherit;
   background-color: var(--green-secondary);
   cursor: pointer;
   transition: border-color 0.25s;
   height: 3.2rem;
+  border: 2px solid transparent;
 }
 button:hover {
   border-color: var(--white);
@@ -124,7 +132,6 @@ section {
     background-color: #ffffff;
   } */
 
-
 .primary {
   color: var(--green-primary);
 }
@@ -133,10 +140,19 @@ section {
   color: var(--white);
   background: var(var(--green-secondary));
 }
+
+.btn-primary:hover {
+  border: 2px solid var(--white);
+}
+
 .btn-secondary {
   color: var(--green-primary);
   background: none;
-  border: 1px solid var(--green-primary);
+  border: 2px solid var(--green-primary);
+}
+
+.btn-secondary:hover {
+  border: 2px solid var(--green-secondary);
 }
 
 .social-icon {

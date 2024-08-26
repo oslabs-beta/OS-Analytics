@@ -30,4 +30,6 @@ const clickDataController = {
   },
 };
 
+
+
 export default clickDataController;

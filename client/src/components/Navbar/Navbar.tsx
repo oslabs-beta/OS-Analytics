@@ -7,25 +7,32 @@ import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
 
 export default function Navbar() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);
-  const [navOpen, setNavOpen]  = useAtom(activeNavAtom);
+  const [activeNav, setActiveNav]  = useAtom(activeNavAtom);
   return (
     <div className={styles.navbar}>
       <div className={styles.navContainer}>
         <div className={styles.navLeft}>
-          <Link to="/">
+          <Link to="/" onClick={()=>{setActiveNav(false)}}>
             <div className={styles.logoBox}>
               <img className={styles.navLogo} src={logo} alt="at-logo" />
               <h3>Tracker</h3>
             </div>
           </Link>
-
+          {activeUser ? (
+            <div className ={styles.navLinks}>
+              <span> DashBoard </span>
+              <span> Websites</span>
+              <span>Link3</span>
+              </div>
+                ):(
           <div className={styles.navLinks}>
             <span>Product</span>
-            <span>Docs</span>
-            <span>Product</span>
+            <span>Documenation</span>
+            <span>Getting Started</span>
             <span>Team</span>
           </div>
-        </div>
+        )}
+        </div>            
         <div className={styles.navRight}>
           <span>GitHub</span>
           {activeUser ? (
@@ -61,7 +68,7 @@ export default function Navbar() {
             </>
           )}
         </div>
-        <div className={navOpen ? `${styles.hamburgerBox} ${styles.activeNav}` : `${styles.hamburgerBox}`} onClick={()=>{setNavOpen(navOpen === false ? true : false)}}>
+        <div className={activeNav ? `${styles.hamburgerBox} ${styles.activeNav}` : `${styles.hamburgerBox}`} onClick={()=>{setActiveNav(activeNav === false ? true : false)}}>
           <div className={styles.hamburger} />
         </div>
       </div>
