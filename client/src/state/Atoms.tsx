@@ -1,4 +1,4 @@
-import {atom} from 'jotai';
+import { atom } from 'jotai';
 
 // const userStore = createStore();
 
@@ -9,4 +9,11 @@ export const loadingAtom = atom<boolean>(false);
 // export const authAtom = atom<boolean>(true);
 
 // User's Click Data
-export const userDataAtom = atom<[]>([])
+export const userDataAtom = atom<[]>([]);
+export const websitesAtom = atom<string[]>([])
+export const activeWebsiteAtom = atom<string>('Select website');
+export const websiteDataAtom = atom((get) => {
+  const activeWebsite = get(activeWebsiteAtom);
+  return get(userDataAtom).filter((el:any) => el.website_name === activeWebsite);
+});
+export const timeFrameAtom = atom<string>('24hours');
