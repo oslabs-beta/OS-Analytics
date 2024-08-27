@@ -15,7 +15,7 @@ function Dashboard() {
     });
   }, []);
 
-  const [user] = useAtom(activeUserAtom);
+  const [activeUser] = useAtom(activeUserAtom);
   const [userData, setUserData] = useAtom(userDataAtom);
   const [websites, setWebsites] = useAtom(websitesAtom)
   const [activeWebsite, setActiveWebsite] = useAtom(activeWebsiteAtom)
@@ -27,7 +27,7 @@ function Dashboard() {
 
   return (
     <div className={styles.dashboard}>
-      <h2>{`Welcome back, ${user}`}</h2>
+      <h2>{`Welcome back, ${activeUser}`}</h2>
       <select
         onChange={(e) => {
           handleWebsiteSelect(e);
