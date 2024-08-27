@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '../Landing/Hero.module.css';
 
 export default function Hero() {
