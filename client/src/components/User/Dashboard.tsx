@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import axios from 'axios';
 import { useEffect } from 'react';
 import ClickDataVisualization from '../ChartPages/AllUserData';
+import ClickDataVisualizationWebsite from '../ChartPages/WebsiteData';
 function Dashboard() {
   //retrieve user data
   useEffect(() => {
@@ -16,11 +17,10 @@ function Dashboard() {
 
   const [user] = useAtom(activeUserAtom);
   const [userData, setUserData] = useAtom(userDataAtom);
-  const [websites, setWebsites] = useAtom<string[]>(websitesAtom)
-  const [, setActiveWebsite] = useAtom(activeWebsiteAtom)
-  // const [websiteData, setWebsiteData] = useAtom(websiteDataAtom);
+  const [websites, setWebsites] = useAtom(websitesAtom)
+  const [activeWebsite, setActiveWebsite] = useAtom(activeWebsiteAtom)
 
-  function handleWebsiteSelect(e:React.ChangeEvent<HTMLSelectElement>) {
+  function handleWebsiteSelect(e:any) {
     setActiveWebsite(e.target.value);
   }
 
@@ -31,6 +31,7 @@ function Dashboard() {
         onChange={(e) => {
           handleWebsiteSelect(e);
         }}
+        
       >
         <option value={undefined}>Select website</option>
         {websites.map((el) => (
@@ -53,12 +54,13 @@ function Dashboard() {
         })}
       </ul>
       <div>
-      <ClickDataVisualization />
-        {/* {if (activeWebsite) websiteData.map(el => (<p>{el.dataset_id}</p>))} */}
+      {activeWebsite === 'Select website' ? (
+          <ClickDataVisualization />
+        ) : (
+          <ClickDataVisualizationWebsite />
+        )}
       </div>
-      
     </div>
   );
 }
-
 export default Dashboard;

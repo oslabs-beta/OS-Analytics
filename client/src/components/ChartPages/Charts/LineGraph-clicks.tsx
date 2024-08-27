@@ -1,7 +1,7 @@
 import { Line } from 'react-chartjs-2';
 import { Typography } from '@mui/material';
 import { useAtom } from 'jotai';
-import { timeFrameAtom } from '../../../state/Atoms'; // Adjust the import to your store location
+import { timeFrameAtom } from '../../../state/Atoms';
 import {
   Chart as ChartJS,
   CategoryScale,
