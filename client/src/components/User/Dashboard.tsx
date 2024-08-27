@@ -1,9 +1,8 @@
 import styles from './Dashboard.module.css';
-import { activeUserAtom, activeWebsiteAtom, userDataAtom, websiteDataAtom, websitesAtom } from '../../state/Atoms';
+import { activeUserAtom, activeWebsiteAtom, userDataAtom, websitesAtom } from '../../state/Atoms';
 import { useAtom } from 'jotai';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import Loading from '../Loading/Loading';
+import { useEffect } from 'react';
 import ClickDataVisualization from '../ChartPages/AllUserData';
 import ClickDataVisualizationWebsite from '../ChartPages/WebsiteData';
 function Dashboard() {
@@ -11,8 +10,8 @@ function Dashboard() {
   useEffect(() => {
     axios.get('/api/data').then((res) => {
       setUserData(res.data);
-      const websiteList = new Set(res.data.map((el:any) => el.website_name));
-      setWebsites([...websiteList]);
+      const websiteList:Set<string> = new Set(res.data.map((el:{ website_name: string }) => el.website_name));
+      setWebsites(Array.from(websiteList));
     });
   }, []);
 
@@ -20,9 +19,8 @@ function Dashboard() {
   const [userData, setUserData] = useAtom(userDataAtom);
   const [websites, setWebsites] = useAtom(websitesAtom)
   const [activeWebsite, setActiveWebsite] = useAtom(activeWebsiteAtom)
-  const [websiteData, setWebsiteData] = useAtom(websiteDataAtom);
 
-  function handleWebsiteSelect(e) {
+  function handleWebsiteSelect(e:any) {
     setActiveWebsite(e.target.value);
   }
 

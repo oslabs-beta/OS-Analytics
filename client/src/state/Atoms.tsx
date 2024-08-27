@@ -10,7 +10,7 @@ export const loadingAtom = atom<boolean>(false);
 
 // User's Click Data
 export const userDataAtom = atom<[]>([]);
-export const websitesAtom = atom<[]>([])
+export const websitesAtom = atom<string[]>([])
 export const activeWebsiteAtom = atom<string>('Select website');
 export const websiteDataAtom = atom((get) => {
   const activeWebsite = get(activeWebsiteAtom);

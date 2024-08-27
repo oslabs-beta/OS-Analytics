@@ -7,7 +7,7 @@ import { userDataAtom } from '../../state/Atoms';
 import { useAtom } from 'jotai';
 
 const ClickDataVisualization = () => {
-  const [userData, setUserData] = useAtom(userDataAtom);
+  const [userData] = useAtom(userDataAtom);
 
 
   const extractBrowserAndOS = (userAgent: any) => {
