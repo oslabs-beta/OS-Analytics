@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, TextField, CircularProgress, Box } from '@mui/material';
-import axios from 'axios';
 
 const AiResponseComponent = () => {
   const [loading, setLoading] = useState(false);
@@ -11,7 +10,7 @@ const AiResponseComponent = () => {
     try {
         //not working
       //const result = await axios.get('/api/ai/bedrock');
-      setResponse(result.data);
+      // setResponse(result.data);
     } catch (error) {
       setResponse('Error fetching AI response');
     }

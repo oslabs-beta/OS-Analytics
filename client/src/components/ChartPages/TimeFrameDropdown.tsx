@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAtom } from 'jotai';
 import { Select, MenuItem, FormControl } from '@mui/material';
 import { timeFrameAtom } from '../../state/Atoms';
