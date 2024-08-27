@@ -4,13 +4,14 @@ import { useAtom } from 'jotai';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Loading from '../Loading/Loading';
-
+import ClickDataVisualization from '../ChartPages/AllUserData';
+import ClickDataVisualizationWebsite from '../ChartPages/WebsiteData';
 function Dashboard() {
   //retrieve user data
   useEffect(() => {
     axios.get('/api/data').then((res) => {
       setUserData(res.data);
-      const websiteList = new Set(res.data.map((el) => el.website_name));
+      const websiteList = new Set(res.data.map((el:any) => el.website_name));
       setWebsites([...websiteList]);
     });
   }, []);
@@ -32,6 +33,7 @@ function Dashboard() {
         onChange={(e) => {
           handleWebsiteSelect(e);
         }}
+        
       >
         <option value={undefined}>Select website</option>
         {websites.map((el) => (
@@ -43,7 +45,7 @@ function Dashboard() {
       <ul>
         {websites.map((site) => {
           const totalClicks = userData.filter(
-            (el) => el.website_name === site
+            (el:any) => el.website_name === site
           ).length;
 
           return (
@@ -54,11 +56,13 @@ function Dashboard() {
         })}
       </ul>
       <div>
-        {/* {if (activeWebsite) websiteData.map(el => (<p>{el.dataset_id}</p>))} */}
+      {activeWebsite === 'Select website' ? (
+          <ClickDataVisualization />
+        ) : (
+          <ClickDataVisualizationWebsite />
+        )}
       </div>
-      
     </div>
   );
 }
-
 export default Dashboard;
