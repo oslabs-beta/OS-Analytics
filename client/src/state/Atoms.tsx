@@ -10,9 +10,8 @@ export const loadingAtom = atom<boolean>(false);
 
 // User's Click Data
 export const userDataAtom = atom<[]>([]);
-export const websitesAtom = atom<[]>([])
-//manipulated by the dropdown choice in Dashboard.tsx
-export const activeWebsiteAtom = atom<string>('');
+export const websitesAtom = atom<string[]>([])
+export const activeWebsiteAtom = atom<string>('Select website');
 export const websiteDataAtom = atom((get) => {
   //references the active website atom
   const activeWebsite = get(activeWebsiteAtom);

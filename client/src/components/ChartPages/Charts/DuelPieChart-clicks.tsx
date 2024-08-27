@@ -1,4 +1,3 @@
-import React from "react";
 import { Pie, Doughnut } from "react-chartjs-2";
 import { useAtom } from "jotai";
 import { timeFrameAtom } from '../../../state/Atoms';
