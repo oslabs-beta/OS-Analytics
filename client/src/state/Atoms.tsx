@@ -14,5 +14,6 @@ export const websitesAtom = atom<[]>([])
 export const activeWebsiteAtom = atom<string>('');
 export const websiteDataAtom = atom((get) => {
   const activeWebsite = get(activeWebsiteAtom);
-  return get(userDataAtom).filter((el) => el.website_name === activeWebsite);
+  return get(userDataAtom).filter((el:any) => el.website_name === activeWebsite);
 });
+export const timeFrameAtom = atom<string>('24hours');
