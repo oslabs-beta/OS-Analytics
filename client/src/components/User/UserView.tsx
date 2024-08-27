@@ -2,6 +2,7 @@ import Navbar from "../Navbar/Navbar"
 import NavMobile from "../Navbar/NavMobile"
 import Dashboard from "./Dashboard"
 import Sidebar from "./Sidebar"
+import WebsiteData from "../ChartPages/WebsiteData"
 
 function UserView(){
     return (

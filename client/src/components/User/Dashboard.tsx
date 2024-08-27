@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Loading from '../Loading/Loading';
 import ClickDataVisualization from '../ChartPages/AllUserData';
+import ClickDataVisualizationWebsite from '../ChartPages/WebsiteData';
 function Dashboard() {
   //retrieve user data
   useEffect(() => {
@@ -32,6 +33,7 @@ function Dashboard() {
         onChange={(e) => {
           handleWebsiteSelect(e);
         }}
+        
       >
         <option value={undefined}>Select website</option>
         {websites.map((el) => (
@@ -54,12 +56,13 @@ function Dashboard() {
         })}
       </ul>
       <div>
-      <ClickDataVisualization />
-        {/* {if (activeWebsite) websiteData.map(el => (<p>{el.dataset_id}</p>))} */}
+      {activeWebsite === 'Select website' ? (
+          <ClickDataVisualization />
+        ) : (
+          <ClickDataVisualizationWebsite />
+        )}
       </div>
-      
     </div>
   );
 }
-
 export default Dashboard;

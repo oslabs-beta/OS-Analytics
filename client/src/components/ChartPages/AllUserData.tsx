@@ -1,29 +1,14 @@
-import React, { useState, useEffect } from "react";
-import axios, { all } from "axios";
 import ClickGraph from "./Charts/LineGraph-clicks";
 import DuelPieGraphs from "./Charts/DuelPieChart-clicks";
 import BarGraph from "./Charts/BarGraph-clicks";
 import TimeFrameDropdown from "./TimeFrameDropdown";
 import AiResponseComponent from "./Charts/aiResponse";
+import { userDataAtom } from '../../state/Atoms';
+import { useAtom } from 'jotai';
+
 const ClickDataVisualization = () => {
-  const [data, setData] = useState<string[]>([]);
+  const [userData, setUserData] = useAtom(userDataAtom);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get("/api/data");
-        setData(res.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-
-    const interval = setInterval(fetchData, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const extractBrowserAndOS = (userAgent: any) => {
     let browser = "Unknown Browser";
@@ -52,7 +37,7 @@ const ClickDataVisualization = () => {
     return { browser, os };
   };
 
-  const allDataResponse = data.map((query: any) => {
+  const allDataResponse = userData.map((query: any) => {
     const { browser, os } = extractBrowserAndOS(query.user_browser);
 
     return {
@@ -68,7 +53,7 @@ const ClickDataVisualization = () => {
     };
   });
 
-  console.log(allDataResponse);
+  //console.log(allDataResponse);
   return (
     <div>
       <TimeFrameDropdown />
