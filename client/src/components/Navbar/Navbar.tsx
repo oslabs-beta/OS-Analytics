@@ -32,16 +32,30 @@ export default function Navbar() {
           </Link>
           {activeUser ? (
             <div className={styles.navLinks}>
-              <span> DashBoard </span>
+              <Link to  = "/dashboard">
+              <span> Dashboard</span>
+              </Link>
+              <Link to = "/websites">
               <span> Websites</span>
-              <span>Link3</span>
+              </Link>
+              <Link to = "/documenation">
+              <span>Documentation</span>
+              </Link>
+              <Link to = "/settings">
+              <span>Settings</span>
+              </Link>
             </div>
           ) : (
             <div className={styles.navLinks}>
-              <span>Product</span>
+              <Link to = "/documenation">
               <span>Documentation</span>
+              </Link>
+              <Link to = "/signup">
               <span>Getting Started</span>
+              </Link>
+              <Link to = "/team">
               <span>Team</span>
+              </Link>
             </div>
           )}
         </div>

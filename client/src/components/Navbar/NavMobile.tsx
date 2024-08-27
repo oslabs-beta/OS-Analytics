@@ -19,40 +19,7 @@ export default function NavMobile() {
         {activeUser ? (
           <>
            
-              <Link
-                to="/"
-                onClick={() => {
-                  setActiveNav(false);
-                }}
-              >
-                 <li className={styles.mobileLink}>
-                <h3>Product</h3>
-                </li>
-              </Link>
-         
-              <Link
-                to="/"
-                onClick={() => {
-                  setActiveNav(false);
-                }}
-              >   <li className={styles.mobileLink}>
-                <h3>Websites</h3>
-                </li>
-              </Link>
-           
-         
-              <Link
-                to="/"
-                onClick={() => {
-                  setActiveNav(false);
-                }}
-              >
-                   <li className={styles.mobileLink}>
-                <h3>Settings</h3>
-                </li>
-              </Link>
-            
-              <Link
+           <Link
                 to="/dashboard"
                 onClick={() => {
                   setActiveNav(false);
@@ -62,8 +29,38 @@ export default function NavMobile() {
                 <h3>Dashboard</h3>
                 </li>
               </Link>
-            
-          
+         
+              <Link
+                to="/websites"
+                onClick={() => {
+                  setActiveNav(false);
+                }}
+              >   <li className={styles.mobileLink}>
+                <h3>Websites</h3>
+                </li>
+              </Link>
+               <Link
+                to="/documenation"
+                onClick={() => {
+                  setActiveNav(false);
+                }}
+              >
+                   <li className={styles.mobileLink}>
+                <h3>Documentation</h3>
+                </li>
+              </Link>
+         
+              <Link
+                to="/settings"
+                onClick={() => {
+                  setActiveNav(false);
+                }}
+              >
+                   <li className={styles.mobileLink}>
+                <h3>Settings</h3>
+                </li>
+              </Link>
+             
               <Link
                 to="/"
                 onClick={() => {
@@ -74,11 +71,9 @@ export default function NavMobile() {
                 <h3>Sign out</h3>
                 </li>
               </Link>
-            
           </>
         ) : (
           <>
-           
               <Link
                 to="/"
                 onClick={() => {
@@ -91,7 +86,7 @@ export default function NavMobile() {
          
            
               <Link
-                to="/documentation"
+                to="/documenation"
                 onClick={() => {
                   setActiveNav(false);
                 }}
@@ -102,7 +97,7 @@ export default function NavMobile() {
            
          
               <Link
-                to="/about"
+                to="/signup"
                 onClick={() => {
                   setActiveNav(false);
                 }}
@@ -110,25 +105,27 @@ export default function NavMobile() {
                 <h3>Getting Started</h3>
                 </li>
               </Link>
-           
-            
               <Link
-                to="/contact"
+                to="/team"
                 onClick={() => {
                   setActiveNav(false);
                 }}
-              ><li className={styles.mobileLink}>
-                <h3>Contact</h3>
+              > <li className={styles.mobileLink}>
+                <h3>Team</h3>
                 </li>
               </Link>
-            
-            
+
               <Link
                 to="/login"
                 onClick={() => {
                   setActiveNav(false);
                 }}
-              ><li className={styles.mobileLink}>
+                >   <li className={styles.mobileLink}>
+                <h3>Login</h3>
+                </li>
+              </Link>
+              <Link to = "/signin">
+                <li className={styles.mobileLink}>
                 <h3>Sign in</h3>
                 </li>
               </Link>

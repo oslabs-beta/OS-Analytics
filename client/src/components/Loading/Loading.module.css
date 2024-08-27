@@ -69,7 +69,7 @@
     transform: translateX(-50%) rotate(360deg);
    }
 }
-/* .handle {
+.handle {
     height: 70px;
     width: 40px;
     background-color: transparent;
@@ -79,4 +79,4 @@
     top: 42%; 
     border-radius: 0px 25px 80px 0px;
     z-index: 2; 
-} */
+}
