@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios, { all } from "axios";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import ClickGraph from "./Charts/LineGraph-clicks";
 import DuelPieGraphs from "./Charts/DuelPieChart-clicks";
 import BarGraph from "./Charts/BarGraph-clicks";
