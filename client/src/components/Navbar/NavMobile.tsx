@@ -18,110 +18,121 @@ export default function NavMobile() {
       <ul className={styles.mobileLinks}>
         {activeUser ? (
           <>
-            <li className={styles.mobileLink}>
+           
               <Link
                 to="/"
                 onClick={() => {
                   setActiveNav(false);
                 }}
               >
+                 <li className={styles.mobileLink}>
                 <h3>Product</h3>
+                </li>
               </Link>
-            </li>
-            <li className={styles.mobileLink}>
+         
               <Link
                 to="/"
                 onClick={() => {
                   setActiveNav(false);
                 }}
-              >
+              >   <li className={styles.mobileLink}>
                 <h3>Websites</h3>
+                </li>
               </Link>
-            </li>
-            <li className={styles.mobileLink}>
+           
+         
               <Link
                 to="/"
                 onClick={() => {
                   setActiveNav(false);
                 }}
               >
+                   <li className={styles.mobileLink}>
                 <h3>Settings</h3>
+                </li>
               </Link>
-            </li>
-            <li className={`${styles.mobileLink} ${styles.dashboardLink}`}>
+            
               <Link
                 to="/dashboard"
                 onClick={() => {
                   setActiveNav(false);
                 }}
               >
+                <li className={`${styles.mobileLink} ${styles.dashboardLink}`}>
                 <h3>Dashboard</h3>
+                </li>
               </Link>
-            </li>
-            <li className={`${styles.mobileLink} ${styles.dashboardLink}`}>
+            
+          
               <Link
                 to="/"
                 onClick={() => {
                   setActiveNav(false)
                   setActiveUser('');
                 }}
-              >
+              >  <li className={`${styles.mobileLink} ${styles.dashboardLink}`}>
                 <h3>Sign out</h3>
+                </li>
               </Link>
-            </li>
+            
           </>
         ) : (
           <>
-            <li className={styles.mobileLink}>
+           
               <Link
                 to="/"
                 onClick={() => {
                   setActiveNav(false);
                 }}
-              >
+              > <li className={styles.mobileLink}>
                 <h3>Home</h3>
+                </li>
               </Link>
-            </li>
-            <li className={styles.mobileLink}>
+         
+           
               <Link
                 to="/documentation"
                 onClick={() => {
                   setActiveNav(false);
                 }}
-              >
+              > <li className={styles.mobileLink}>
                 <h3>Documentation</h3>
+                </li>
               </Link>
-            </li>
-            <li className={styles.mobileLink}>
+           
+         
               <Link
                 to="/about"
                 onClick={() => {
                   setActiveNav(false);
                 }}
-              >
-                <h3>About</h3>
+              >   <li className={styles.mobileLink}>
+                <h3>Getting Started</h3>
+                </li>
               </Link>
-            </li>
-            <li className={styles.mobileLink}>
+           
+            
               <Link
                 to="/contact"
                 onClick={() => {
                   setActiveNav(false);
                 }}
-              >
+              ><li className={styles.mobileLink}>
                 <h3>Contact</h3>
+                </li>
               </Link>
-            </li>
-            <li className={styles.mobileLink}>
+            
+            
               <Link
                 to="/login"
                 onClick={() => {
                   setActiveNav(false);
                 }}
-              >
+              ><li className={styles.mobileLink}>
                 <h3>Sign in</h3>
+                </li>
               </Link>
-            </li>
+          
           </>
         )}
       </ul>

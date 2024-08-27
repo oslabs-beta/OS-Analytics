@@ -4,46 +4,79 @@
     padding: 0px;
 } */
 
-.cup{
+/* .cup{
     height: 140px;
     width : 180px;
-    border:6px solid black;
+    border:6px solid rgba(255, 255, 255, 0.87);
     position:absolute;
     top: 40%;
     left: 40%;
     border-radius: 0px 0px 70px 70px;
-    background:url('../../assets/coffee.png'); ;
-    box-shadow: 0px 0px 0px 6px black;
+    /* background:url('../../assets/coffee.png'); ; */
+    /* background : url;
+    
+    box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.87);
     background-repeat: repeat-x;
     background-position: 0px 140px;
-    animation: fill 2.5s infinite;
+    animation: fill 2.5s infinite; */
+/* }
+.liquid-ctr{
+ top: -10px;
+ width : 250px;
+ height : 400px;
+ overflow: hidden;
+ back */
+/* } */ 
+.cup{
+    height: 250px;
+    width : 180px;
+    border:6px solid rgba(255, 255, 255, 0.87);
+    position:absolute;
+    border-top: 5px solid; 
+    top: 50%;
+    left: 50%;
+    border-radius: 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-transform: uppercase;
+    position: relative;
+    overflow:hidden;
+    z-index : 1;
 }
+.cup:before{
+    content: "";
+    position: absolute;
+    width : 400px;
+    height : 400px;
+    background : #43a047;
+    left : 50%;
+    transform: translateX(-50%);
+    border-radius: 40%;
+    animation: fill 7s ease-in-out infinite;
+    z-index: -1;
+
+}
+
+
+
 @keyframes fill{
-    0%{
-        background-position: 0px 140px;
-    }
-    20%{
-        background-position: -450px 100px;
-    }
-    40%{
-        background-position: -900px 60px;
-    }
-    80%{
-        background-position: -1350px -40px;
-    }
-    100%{
-        background-position: 0px -140px;
-    }
+   from{
+    top: 245px;
+    transform: translateX(-50%) rotate(0deg);
+   }
+   to{
+    top: -50px;
+    transform: translateX(-50%) rotate(360deg);
+   }
 }
-.handle{
+/* .handle {
     height: 70px;
     width: 40px;
-    background-color : transparent;
-    border:6px solid black;
-    position:relative;
-    left:186px;
-    top: 2px;
+    background-color: transparent;
+    border: 6px solid rgba(255, 255, 255, 0.87);
+    position: absolute;
+    left: 226px; 
+    top: 42%; 
     border-radius: 0px 25px 80px 0px;
-
-
-}
+    z-index: 2; 
+} */

@@ -39,7 +39,7 @@ export default function Navbar() {
           ) : (
             <div className={styles.navLinks}>
               <span>Product</span>
-              <span>Documenation</span>
+              <span>Documentation</span>
               <span>Getting Started</span>
               <span>Team</span>
             </div>
@@ -76,7 +76,7 @@ export default function Navbar() {
               </Link>
               <Link to="/signup">
                 <button className={`btn-primary ${styles.navButton}`}>
-                  Get started
+                  Getting Started
                 </button>
               </Link>
             </>

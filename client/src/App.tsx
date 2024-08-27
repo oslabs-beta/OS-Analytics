@@ -9,6 +9,8 @@ import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { handleSession } from "./services/authConfig";
 import Signup from './components/Login/Signup';
+import loading from './components/Loading/Loading';
+import Loading from './components/Loading/Loading';
 function App() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);  //email of active user || null
   useEffect(() => {
@@ -25,7 +27,7 @@ function App() {
 //useEffect gets called
 //useEffect calls the activeUser endpoint in backend
 //if response.ok send them somewhere (ative user=true)
-//if not login
+//if not logincd
 //activeUser endpoint returns either true or an error
 //frontend then deals and redirects based on the response
 
@@ -38,6 +40,7 @@ function App() {
         <Route path="/dashboard" element={activeUser ?<UserView /> : <Navigate to={'/login'} />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <Loading></Loading>
     </BrowserRouter>
   );
 }
