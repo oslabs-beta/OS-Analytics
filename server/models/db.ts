@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-//This should be put in an .env, right? - Eric 08/23/24
+
 const URI = process.env.DB_URI_STRING
 
 const pool = new Pool({
