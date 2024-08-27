@@ -91,6 +91,7 @@ button {
   transition: border-color 0.25s;
   height: 3.2rem;
   border: 2px solid transparent;
+  line-height: 100%;
 }
 button:hover {
   border-color: var(--white);
@@ -152,7 +153,7 @@ section {
 }
 
 .btn-secondary:hover {
-  border: 2px solid var(--green-secondary);
+  border: 2px solid var(--white-secondary);
 }
 
 .social-icon {

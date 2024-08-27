@@ -12,7 +12,6 @@ export default function Landing() {
         <NavMobile />
         <Hero />
         <Footer />
-        <Loading />
         </div>
   )
 }
