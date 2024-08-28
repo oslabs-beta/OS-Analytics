@@ -8,7 +8,7 @@ import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { handleSession } from "./services/authConfig";
 import Signup from './components/Login/Signup';
-import Loading from './components/Loading/Loading';
+// import Loading from './components/Loading/Loading';
 import Websites from './components/Websites/Websites';
 import Documentation from './components/Documentation/Documentation'; 
 import Settings from './components/Settings/Settings'; 
