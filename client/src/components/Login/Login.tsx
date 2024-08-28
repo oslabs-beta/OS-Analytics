@@ -24,7 +24,7 @@ export default function Login() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try{
-    const response = await axios.post ('/api/auth/login', formData)
+    const response = await axios.post ('https://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080/api/auth/login', formData)
     console.log(response.data);
     setActiveUser(response.data.email);
     }

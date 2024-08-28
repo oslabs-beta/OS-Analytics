@@ -1,7 +1,7 @@
 import axios from "axios";
 export const handleLogout = async () => {
   try {
-    const response = await fetch("/api/auth/logout", {
+    const response = await fetch("http://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080/api/auth/logout", {
       method: "POST",
       credentials: "include",
     });
@@ -20,7 +20,7 @@ export const handleLogout = async () => {
 
 export const handleSession = async () => {
   try {
-    const response = await axios.get("/api/auth/activeUser");
+    const response = await axios.get("http://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080/api/auth/activeUser");
     console.log(response);
     if (response.status === 200) {
       return (response.data.email);
