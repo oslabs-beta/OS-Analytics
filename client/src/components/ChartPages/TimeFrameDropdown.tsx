@@ -6,7 +6,7 @@ const TimeFrameDropdown = () => {
     const [timeFrame, setTimeFrame] = useAtom(timeFrameAtom);
   
     return (
-      <div style={{ position: 'sticky', top: '90px', zIndex: 1000 }}>
+      <div style={{ position: 'sticky', top: '90px' }}>
         <FormControl variant="outlined" style={{ minWidth: 120, marginBottom: '20px', height: '30px' }}>
           <Select
             value={timeFrame}

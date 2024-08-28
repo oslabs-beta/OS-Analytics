@@ -2,14 +2,14 @@
     display: none;
     height: calc(100vh - 80px);
     width: 100vw;
-    z-index: 5;
+    z-index: 100;
     background: var(--black);
     position: absolute;
     /* padding-top: 3.2rem; */
     position: fixed;
     left: 0;
     top: 5rem;
-    transition: all .25s ease-in-out;
+    transition: all .25s ease;
 }
 
 .mobileLinks a:hover {

@@ -32,7 +32,7 @@ export default function Signup() {
   }
 
   return (
-    <>
+    <div className="viewNoSide">
       <Navbar />
       <NavMobile />
       <div className={styles.login}>
@@ -81,6 +81,6 @@ export default function Signup() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

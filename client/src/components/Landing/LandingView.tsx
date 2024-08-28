@@ -7,7 +7,7 @@ import Loading from '../Loading/Loading'
 
 export default function Landing() {
   return (
-    <div>
+    <div className="viewNoSide">
         <Navbar />
         <NavMobile />
         <Hero />

@@ -37,7 +37,7 @@ export default function Login() {
   }
 
   return (
-    <>
+    <div className="viewNoSide">
       <Navbar />
       <NavMobile />
       <div className={styles.login}>
@@ -86,6 +86,6 @@ export default function Login() {
           </Link></p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

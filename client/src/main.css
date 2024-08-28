@@ -7,15 +7,15 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
-
+  font-size: 16px;
   --green-primary: #66bb6a;
   --green-secondary: #43a047;
 
   --white: rgba(255, 255, 255, 0.87);
   --white-secondary: rgba(255, 255, 255, 0.6);
-  --gray-border: rgb(91, 91, 91);
+  --gray-border: #FFFFFF26;
   --black-green: #1d251e;
-  --black-green-secondary: #122913;
+  --black-green-secondary: #0e200f;
   --black: rgba(0, 0, 0, 1);
 
   color-scheme: light dark;
@@ -38,18 +38,23 @@ a:hover {
   color: var(--green-primary);
 }
 
+/* Notice that this is the class 'active', not the pseudo-class a:active. This is accounting for NavLinks which add an 'active' class but does not natively integrate with modular css */
+a.active {
+  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 body {
   margin: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
   background: linear-gradient(
     to bottom,
     var(--black-green),
     var(--black-green-secondary)
   );
-  margin-top: 80px;
+  overflow: hidden;
 }
 
 h1 {
@@ -122,10 +127,8 @@ input:not(:placeholder-shown):valid {
 input:focus:invalid {
   outline-color: transparent;
 }
-section {
-  margin: 0 1rem;
-  padding: 8rem 0;
-}
+
+
 
 /* @media (prefers-color-scheme: light) {
   :root {
@@ -158,4 +161,54 @@ section {
 
 .social-icon {
   color: var(--white);
+}
+
+.viewNoSide {
+  height: calc(100vh - 5rem);
+  width: 100vw;
+  margin-top: 5rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.viewWithSide {
+  height: calc(100vh - 5rem);
+  width: calc(100vw - 5rem);
+  margin-top: 5rem;
+  margin-left: 5rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Need to check if this works on firefox */
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #334135;
+  /* border-left: 1px solid var(--gray-border); */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray-border);
+    border-radius: 10px;
+    border: 4px solid #334135;
+}
+
+@media only screen and (max-width: 850px) {
+  .viewWithSide {
+    height: calc(100vh - 5rem);
+    width: 100vw;
+    margin-top: 5rem;
+    margin-left: 0;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

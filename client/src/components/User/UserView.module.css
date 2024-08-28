@@ -1,0 +1,88 @@
+.dashboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  /* background: blue; */
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: transparent;
+  min-width: 5rem;
+  width: 5rem;
+  background: linear-gradient(
+    to bottom,
+    var(--black-green),
+    var(--black-green-secondary)
+  );
+  border-right: 1px solid var(--gray-border);
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  transition: width 0.25s ease;
+}
+
+.sideLogo {
+  width: 4rem;
+}
+
+.sideIcon {
+  width: 3rem;
+}
+.logoBox {
+  height: 5rem;
+  display: grid;
+  place-content: center;
+  margin-left: 0.5rem;
+}
+
+.sidebarLinks {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  margin: 1rem 0.5rem;
+}
+
+.sidebarLink {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+  border-radius: 6px;
+  padding: 0 0.5rem;
+  width: 4rem;
+  overflow: hidden;
+  transition: width 0.25s ease;
+}
+
+.sidebarSpan {
+  /* display: none; */
+  padding-right: 2rem;
+}
+
+.sidebar:hover {
+  width: 16rem;
+}
+
+.sidebar:hover .sidebarLink {
+  width: 15rem;
+}
+
+a.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media only screen and (max-width: 850px) {
+  .sidebar {
+    display: none;
+  }
+}
