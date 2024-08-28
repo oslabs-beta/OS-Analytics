@@ -44,6 +44,10 @@ a.active {
   background: rgba(255, 255, 255, 0.1);
 }
 
+code {
+  font-family: monospace;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -56,6 +60,7 @@ body {
   );
   overflow: hidden;
 }
+
 
 h1 {
   font-size: 4.8em;
