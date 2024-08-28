@@ -8,7 +8,7 @@ import ClickDataVisualizationWebsite from '../ChartPages/WebsiteData';
 function Dashboard() {
   //retrieve user data
   useEffect(() => {
-    axios.get('http://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080/api/data').then((res) => {
+    axios.get('/api/data').then((res) => {
       setUserData(res.data);
       const websiteList:Set<string> = new Set(res.data.map((el:{ website_name: string }) => el.website_name));
       setWebsites(Array.from(websiteList));
