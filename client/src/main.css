@@ -44,10 +44,6 @@ a.active {
   background: rgba(255, 255, 255, 0.1);
 }
 
-code {
-  font-family: monospace;
-}
-
 body {
   margin: 0;
   display: flex;
@@ -61,6 +57,9 @@ body {
   overflow: hidden;
 }
 
+code {
+  font-family: monospace;
+}
 
 h1 {
   font-size: 4.8em;
@@ -71,6 +70,7 @@ h1 {
 h2 {
   font-size: 3.2rem;
   font-size: clamp(2.4rem, 3.6vw + 10px, 3.2rem);
+  font-weight: 400;
 }
 
 h3 {
@@ -84,6 +84,8 @@ h4 {
   font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);
 }
 
+p {  font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);}
+
 .white-secondary {
   color: var(--white-secondary);
 }
@@ -91,7 +93,7 @@ h4 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.5rem 1rem;
   font-size: 0.4rem;
   font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);
   font-weight: 500;

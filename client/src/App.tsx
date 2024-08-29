@@ -54,7 +54,7 @@ function App() {
         <Route path="/signup" element={activeUser ? <Navigate to={'/dashboard'} /> : <Signup />} />
         <Route path="/dashboard" element={activeUser ?<UserView /> : <Navigate to={'/login'} />} />
         <Route path="/websites" element={activeUser ? <Websites /> : <Navigate to={'/login'} />}/>
-        <Route path="/documenation" element={<Documentation/>} /> 
+        <Route path="/docs" element={<Documentation/>} /> 
         <Route path="/settings" element={activeUser ? <Settings/> : <Navigate to={'/login'} />}/>
         <Route path="/team" element={<Team />} /> 
         <Route path="*" element={<PageNotFound />} />

@@ -1,0 +1,16 @@
+.docs {
+    width: 100%;
+    max-width: 1380px;
+    padding: 5rem 2rem;
+}
+
+.codeBlock {
+    width: 100%;
+    background: var(--gray-border);
+    border-radius: 8px;
+    min-height: 5rem;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+
+}

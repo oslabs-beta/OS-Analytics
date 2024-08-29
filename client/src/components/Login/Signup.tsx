@@ -12,6 +12,7 @@ export default function Signup() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
   });
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({
@@ -70,15 +71,22 @@ export default function Signup() {
             }}
             required
           ></input>
+           <input
+            type="password"
+            minLength={6}
+            placeholder="confirm password"
+            value={formData.confirmPassword}
+            name="confirmPassword"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            required
+          ></input>
           <button type="submit" className={`btn-primary`}>
-            Sign in
+            Create account
           </button>
         </form>
         <div className={styles.createAccountQuery}>
-          <p className="white-secondary">Don't have an account?</p>
-          <p>
-            <Link to="create">Sign up now</Link>
-          </p>
         </div>
       </div>
     </div>
