@@ -13,54 +13,57 @@ const client = new BedrockRuntimeClient({
   },
 });
 const aiController = {
-  //connect and grab data from bedrock ai
-  async getDataBedrock(req: Request, res: Response, next:NextFunction) {
+  async getDataBedrock(req: Request, res: Response, next: NextFunction) {
     const id = res.locals.userId;
 
-    const response = await pool.query(
-      `SELECT user_id, element, element_name, dataset_id, x_coord, y_coord, user_browser, user_os, page_url
+    try {
+      const response = await pool.query(
+        `SELECT 
+          COUNT(*) as total_clicks,
+          COUNT(DISTINCT element) as unique_elements,
+          COUNT(DISTINCT page_url) as unique_pages,
+          user_browser,
+          user_os
         FROM "clickTable2"
-        WHERE user_id = $1`,
-      [id]
-    );
-  const allDataResponse = response.rows.map((row: any) => ({
-        element: row.element,
-        dataset_id: row.dataset_id,
-        x_coord: row.x_coord,
-        y_coord: row.y_coord,
+        WHERE user_id = $1
+        GROUP BY user_browser, user_os`,
+        [id]
+      );
+
+      const allDataResponse = response.rows.map((row: any) => ({
+        total_clicks: row.total_clicks,
+        unique_elements: row.unique_elements,
+        unique_pages: row.unique_pages,
         user_browser: row.user_browser,
         user_os: row.user_os,
-        page_url: row.page_url
       }));
 
-    const requestBody = JSON.stringify({
-        inputText: JSON.stringify(allDataResponse) + "this data is the result of users interating with the website, give a overall report and summary of the data keep it short and sweet",
+      const requestBody = JSON.stringify({
+        inputText: JSON.stringify(allDataResponse) + " this is the summarized data of user interactions with the website. Provide an overall report and summary of the data. Keep it short and sweet.",
         textGenerationConfig: {
           maxTokenCount: 2000,
-        }
+        },
       });
-    try {
+
       const params = {
         modelId: "amazon.titan-text-premier-v1:0",
         contentType: "application/json",
         accept: "application/json",
         body: requestBody,
-       }
-     
+      };
 
       const command = new InvokeModelCommand(params);
-      const response = await client.send(command);
-      const result = JSON.parse(Buffer.from(response.body).toString('utf-8'));
-      res.json(result.results[0].outputText);
+      const summarized = await client.send(command);
+      const result = JSON.parse(Buffer.from(summarized.body).toString('utf-8'));
+      res.json(result);
     } catch (err) {
       const error = err as Error;
       return next({
-        message: "Error in getAiData: " + error.message,
+        message: "Error in getDataBedrock: " + error.message,
         log: error,
       });
     }
   },
-
   async getDataOpenai  (req: Request, res: Response, next:NextFunction) {
     //connect and grab data from open ai
     const id = res.locals.userId;

@@ -8,11 +8,11 @@ import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { handleSession } from "./services/authConfig";
 import Signup from './components/Login/Signup';
-// import Loading from './components/Loading/Loading';
 import Websites from './components/Websites/Websites';
 import Documentation from './components/Documentation/Documentation'; 
 import Settings from './components/Settings/Settings'; 
 import Team from './components/Team/Team'
+import FlowPlayground from './components/Playground/FlowPlayground';
 function App() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);  //email of active user || null
   useEffect(() => {
@@ -57,6 +57,7 @@ function App() {
         <Route path="/docs" element={<Documentation/>} /> 
         <Route path="/settings" element={activeUser ? <Settings/> : <Navigate to={'/login'} />}/>
         <Route path="/team" element={<Team />} /> 
+        <Route path="/teams" element={<FlowPlayground />} /> 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       {/* <Loading></Loading> */}
