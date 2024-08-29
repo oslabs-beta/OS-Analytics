@@ -38,7 +38,9 @@ export default function Signup() {
       <div className={styles.login}>
         <h2>Welcome to Activity Tracker</h2>
         <div className={styles.oathButtons}>
-          <button className={`${styles.loginBtn} ${styles.google}`}>
+          <button className={`${styles.loginBtn} ${styles.google}`}
+        onClick = {(() => window.location.href = 'http://loclahost:8080/api/google/oauth')}
+          >
             Continue with Google
           </button>
           <button className={`${styles.loginBtn} ${styles.github}`}>

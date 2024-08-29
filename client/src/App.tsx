@@ -15,8 +15,26 @@ import Websites from './components/Websites/Websites';
 import Documentation from './components/Documentation/Documentation'; 
 import Settings from './components/Settings/Settings'; 
 import Team from './components/Team/Team'
+import { loadingAtom } from './state/Atoms';
 function App() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);  //email of active user || null
+//   const [isLoading, setIsLoading] = useAtom(loadingAtom);
+
+
+  
+
+// //   useEffect(() => {
+
+// //     const timer = setTimeout(() => {
+// //         setIsLoading(false);
+// //     }, 3000); 
+
+// //     return () => clearTimeout(timer);
+// // }, [setIsLoading]);
+
+
+
+
   useEffect(() => {
     const fetchUser = async () => {
       const user = await handleSession();
@@ -49,6 +67,7 @@ function App() {
 </Link> */}
 
   return (
+   
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingView />} />
@@ -61,7 +80,7 @@ function App() {
         <Route path="/team" element={<Team />} /> 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      {/* <Loading></Loading> */}
+      
     </BrowserRouter>
   );
 }

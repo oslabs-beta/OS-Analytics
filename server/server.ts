@@ -7,9 +7,14 @@ import clickRoutes from './routes/clickRoutes';
 import dataRoutes from './routes/dataRoute'; 
 import aiRoutes from './routes/aiRoutes'; 
 import authMiddleware from'./middleware/auth'; 
+import authRoutes from './routes/authRoute' 
+// import oauthRequestRoute from './controllers/oauthRequestRoutes';
+// import oauthRoute from './controllers/oauthRoutes'
+
 
 
 const cors = require('cors');
+
 
 //check db connection
 checkDatabaseConnection();
@@ -26,11 +31,15 @@ app.get('/api',authMiddleware, (req: Request, res: Response) => {
     user: res.locals.userId,
    });
 });
-
+app.use('/api',authRoutes)
 app.use('/api/auth',userRoutes)
 app.use('/api/click-data',clickRoutes)
 app.use('/api/data',dataRoutes)
+
 app.use('/api/ai',aiRoutes)
+
+// app.use('/api/oauth',oauthRoute)
+// app.use('/api/oauthrequest',oauthRequestRoute)
 
 //Error handling
 
