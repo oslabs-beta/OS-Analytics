@@ -86,7 +86,7 @@ export default function NavMobile() {
          
            
               <Link
-                to="/documenation"
+                to="/docs"
                 onClick={() => {
                   setActiveNav(false);
                 }}
@@ -102,7 +102,7 @@ export default function NavMobile() {
                   setActiveNav(false);
                 }}
               >   <li className={styles.mobileLink}>
-                <h3>Getting Started</h3>
+                <h3>Create account</h3>
                 </li>
               </Link>
               <Link

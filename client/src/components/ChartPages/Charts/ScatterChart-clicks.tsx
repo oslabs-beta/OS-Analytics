@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-
+import styles from '../Charts.module.css';
 ChartJS.register(CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
 interface ScatterChartProps {
@@ -80,7 +80,7 @@ const ScatterChart = ({ data }: ScatterChartProps) => {
   };
 
   return (
-    <div style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
+    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
       <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
         Click Scatter Plot
       </Typography>
