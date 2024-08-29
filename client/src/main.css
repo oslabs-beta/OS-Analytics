@@ -7,15 +7,15 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
-
+  font-size: 16px;
   --green-primary: #66bb6a;
   --green-secondary: #43a047;
 
   --white: rgba(255, 255, 255, 0.87);
   --white-secondary: rgba(255, 255, 255, 0.6);
-  --gray-border: rgb(91, 91, 91);
+  --gray-border: #FFFFFF26;
   --black-green: #1d251e;
-  --black-green-secondary: #122913;
+  --black-green-secondary: #0e200f;
   --black: rgba(0, 0, 0, 1);
 
   color-scheme: light dark;
@@ -38,18 +38,27 @@ a:hover {
   color: var(--green-primary);
 }
 
+/* Notice that this is the class 'active', not the pseudo-class a:active. This is accounting for NavLinks which add an 'active' class but does not natively integrate with modular css */
+a.active {
+  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 body {
   margin: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
   background: linear-gradient(
     to bottom,
     var(--black-green),
     var(--black-green-secondary)
   );
-  margin-top: 80px;
+  overflow: hidden;
+}
+
+code {
+  font-family: monospace;
 }
 
 h1 {
@@ -61,6 +70,7 @@ h1 {
 h2 {
   font-size: 3.2rem;
   font-size: clamp(2.4rem, 3.6vw + 10px, 3.2rem);
+  font-weight: 400;
 }
 
 h3 {
@@ -74,6 +84,8 @@ h4 {
   font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);
 }
 
+p {  font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);}
+
 .white-secondary {
   color: var(--white-secondary);
 }
@@ -81,7 +93,7 @@ h4 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.5rem 1rem;
   font-size: 0.4rem;
   font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);
   font-weight: 500;
@@ -91,6 +103,7 @@ button {
   transition: border-color 0.25s;
   height: 3.2rem;
   border: 2px solid transparent;
+  line-height: 100%;
 }
 button:hover {
   border-color: var(--white);
@@ -121,10 +134,8 @@ input:not(:placeholder-shown):valid {
 input:focus:invalid {
   outline-color: transparent;
 }
-section {
-  margin: 0 1rem;
-  padding: 8rem 0;
-}
+
+
 
 /* @media (prefers-color-scheme: light) {
   :root {
@@ -138,7 +149,7 @@ section {
 
 .btn-primary {
   color: var(--white);
-  background: var(var(--green-secondary));
+  background: var(var(--green-primary));
 }
 
 .btn-primary:hover {
@@ -152,9 +163,59 @@ section {
 }
 
 .btn-secondary:hover {
-  border: 2px solid var(--green-secondary);
+  border: 2px solid var(--white-secondary);
 }
 
 .social-icon {
   color: var(--white);
+}
+
+.viewNoSide {
+  height: calc(100vh - 4rem);
+  width: 100vw;
+  margin-top: 4rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.viewWithSide {
+  height: calc(100vh - 4rem);
+  width: calc(100vw - 4rem);
+  margin-top: 4rem;
+  margin-left: 4rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Need to check if this works on firefox */
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #334135;
+  /* border-left: 1px solid var(--gray-border); */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--gray-border);
+    border-radius: 10px;
+    border: 4px solid #334135;
+}
+
+@media only screen and (max-width: 850px) {
+  .viewWithSide {
+    height: calc(100vh - 5rem);
+    width: 100vw;
+    margin-top: 5rem;
+    margin-left: 0;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

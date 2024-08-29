@@ -5,6 +5,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
+      margin-top: 5rem;
+      padding: 8rem 0;
 }
 
 .titleBox {
@@ -17,6 +19,7 @@
 
 .hero h4 {
     padding: 0 2rem;
+    max-width: 70ch;
 }
 .heroButtons {
     display: flex;

@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar"
 
 function UserView(){
     return (
-        <div>
+        <div className="viewWithSide">
             <Navbar />
             <NavMobile />
             <Sidebar/>

@@ -5,6 +5,7 @@ import TimeFrameDropdown from "./TimeFrameDropdown";
 import AiResponseComponent from "./Charts/aiResponse";
 import { userDataAtom } from '../../state/Atoms';
 import { useAtom } from 'jotai';
+import styles from './Charts.module.css'
 
 const ClickDataVisualization = () => {
   const [userData] = useAtom(userDataAtom);
@@ -55,8 +56,7 @@ const ClickDataVisualization = () => {
 
   //console.log(allDataResponse);
   return (
-    <div>
-      <TimeFrameDropdown />
+    <div className={styles.chartDisplay}>
       <ClickGraph data={allDataResponse} />
       <DuelPieGraphs
         data={allDataResponse}

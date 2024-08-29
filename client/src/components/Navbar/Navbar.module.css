@@ -2,7 +2,7 @@
   border-bottom: 1px solid var(--gray-border);
   position: fixed;
   width: 100vw;
-  height: 5rem;
+  height: 4rem;
   background: var(--black-green);
   top: 0;
   left: 0;
@@ -80,7 +80,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  transition: all 0.25s ease-out;
+  transition: all 0.25s ease;
 }
 
 .hamburger::before {
