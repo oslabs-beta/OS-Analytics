@@ -6,9 +6,13 @@ import { useEffect } from 'react';
 import ClickDataVisualization from '../ChartPages/AllUserData';
 import ClickDataVisualizationWebsite from '../ChartPages/WebsiteData';
 function Dashboard() {
-  //retrieve user data
+  const token = localStorage.getItem('token');
   useEffect(() => {
-    axios.get('/api/data').then((res) => {
+    axios.get('/api/data', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((res) => {
       setUserData(res.data);
       const websiteList:Set<string> = new Set(res.data.map((el:{ website_name: string }) => el.website_name));
       setWebsites(Array.from(websiteList));
@@ -59,6 +63,8 @@ function Dashboard() {
         ) : (
           <ClickDataVisualizationWebsite />
         )}
+
+
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 
 export default function Login() {
+
   const [, setActiveUser] = useAtom(activeUserAtom)
   const [formData, setFormData] = useState({
     email: '',
@@ -27,6 +28,7 @@ export default function Login() {
     const response = await axios.post ('/api/auth/login', formData)
     console.log(response.data);
     setActiveUser(response.data.email);
+    localStorage.setItem('token', response.data.token)
     }
 
     catch (err: any){

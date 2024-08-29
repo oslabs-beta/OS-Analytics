@@ -41,7 +41,7 @@ export default function Navbar() {
               <Link to = "/documenation">
               <span>Documentation</span>
               </Link>
-              <Link to = "/settings">
+              <Link to = "/teams">
               <span>Settings</span>
               </Link>
             </div>
