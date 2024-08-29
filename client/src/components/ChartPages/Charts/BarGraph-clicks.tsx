@@ -10,7 +10,7 @@ import {
 } from "chart.js";
 import { useAtom } from "jotai";
 import { timeFrameAtom } from '../../../state/Atoms';
-
+import styles from '../Charts.module.css'
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const BarChart = ({ data, keyword }: any) => {
@@ -96,7 +96,7 @@ const BarChart = ({ data, keyword }: any) => {
   };
 
   return (
-    <div style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
+    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
       <Bar data={chartData} options={options} />
     </div>
   );

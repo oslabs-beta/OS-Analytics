@@ -1,7 +1,7 @@
 import styles from './Navbar.module.css';
 import logo from '../../assets/map-logo.png';
 import logout from '../../assets/logout.png';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
 import { handleLogout } from '../../services/authConfig';
@@ -27,7 +27,7 @@ export default function Navbar() {
           >
             <div className={styles.logoBox}>
               <img className={styles.navLogo} src={logo} alt="at-logo" />
-              <h3>Tracker</h3>
+              <h3>OS Analytics</h3>
             </div>
           </Link>
           {activeUser ? (
@@ -38,7 +38,7 @@ export default function Navbar() {
               <Link to = "/websites">
               <span> Websites</span>
               </Link>
-              <Link to = "/documenation">
+              <Link to = "/docs">
               <span>Documentation</span>
               </Link>
               <Link to = "/teams">
@@ -47,9 +47,9 @@ export default function Navbar() {
             </div>
           ) : (
             <div className={styles.navLinks}>
-              <Link to = "/documenation">
+              <NavLink to = "/docs">
               <span>Documentation</span>
-              </Link>
+              </NavLink>
               <Link to = "/signup">
               <span>Getting Started</span>
               </Link>
@@ -90,7 +90,7 @@ export default function Navbar() {
               </Link>
               <Link to="/signup">
                 <button className={`btn-primary ${styles.navButton}`}>
-                  Getting Started
+                  Create account
                 </button>
               </Link>
             </>

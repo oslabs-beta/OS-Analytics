@@ -4,4 +4,6 @@
   align-items: center;
   width: 100vw;
   max-width: 1200px;
+  height: 100vh;
+  overflow-y: hidden;
 }
