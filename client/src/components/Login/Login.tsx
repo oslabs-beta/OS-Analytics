@@ -1,21 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
 import { loadingAtom, activeUserAtom} from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 export default function Login() {
+
   const [, setActiveUser] = useAtom(activeUserAtom)
   // const [loadingAtom,setloadingAtom] = useAtom(loadingAtom);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+
+  const navigate = useNavigate();
+
+  // This effect handles the Google OAuth response
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const email = urlParams.get('email');
+    
+    if (token && email) {
+      localStorage.setItem('token', token);
+      setActiveUser(email);
+      navigate('/dashboard'); // Redirect to dashboard
+    }
+  }, []);
+
   function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
@@ -30,6 +48,7 @@ export default function Login() {
     const response = await axios.post ('/api/auth/login', formData)
     console.log(response.data);
     setActiveUser(response.data.email);
+    localStorage.setItem('token', response.data.token)
     }
 
     catch (err: any){
@@ -49,7 +68,7 @@ export default function Login() {
         <h2>Welcome back</h2>
         <div className={styles.oathButtons}>
           <button className={`${styles.loginBtn} ${styles.google}`}
-            onClick = {(() => window.location.href = 'http://loclahost:8080/api/google/oauth')}>
+            onClick = {(() => window.location.href = 'http://localhost:8080/api/google')}>
             Continue with Google
           </button>
           <button className={`${styles.loginBtn} ${styles.github}`}>

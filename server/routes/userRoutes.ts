@@ -10,7 +10,7 @@ router.post(
   (req: Request, res: Response) => {
     res
       .status(200)
-      .send({ email: res.locals.email, userUUID: res.locals.cognito_Id });
+      .send({ email: res.locals.email, userUUID: res.locals.cognito_Id , token :res.locals.token});
   }
 );
 

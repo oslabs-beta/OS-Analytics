@@ -8,6 +8,7 @@ import dataRoutes from './routes/dataRoute';
 import aiRoutes from './routes/aiRoutes'; 
 import authMiddleware from'./middleware/auth'; 
 import authRoutes from './routes/authRoute' 
+import passport from './middleware/passportUserMiddleware';
 // import oauthRequestRoute from './controllers/oauthRequestRoutes';
 // import oauthRoute from './controllers/oauthRoutes'
 
@@ -24,14 +25,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser()); 
+app.use(passport.initialize());
 const port = 8080;
-
-app.get('/api',authMiddleware, (req: Request, res: Response) => {
-  res.json({ message: 'Hello from server!',
-    user: res.locals.userId,
-   });
-});
-app.use('/api',authRoutes)
+// app.get('/api',authMiddleware, (req: Request, res: Response) => {
+//   res.json({ message: 'Hello from server!',
+//     user: res.locals.userId,
+//    });
+// });
+app.use('/api/google',authRoutes)
 app.use('/api/auth',userRoutes)
 app.use('/api/click-data',clickRoutes)
 app.use('/api/data',dataRoutes)

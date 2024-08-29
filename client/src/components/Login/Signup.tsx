@@ -26,6 +26,7 @@ export default function Signup() {
       const response = await axios.post('/api/auth/signup', formData);
       console.log(response.data);
       setActiveUser(response.data.email);
+      localStorage.setItem('token', response.data.token)
     } catch (err: any) {
       console.log(err.message);
     }
@@ -39,7 +40,7 @@ export default function Signup() {
         <h2>Welcome to Activity Tracker</h2>
         <div className={styles.oathButtons}>
           <button className={`${styles.loginBtn} ${styles.google}`}
-        onClick = {(() => window.location.href = 'http://loclahost:8080/api/google/oauth')}
+        onClick = {(() => window.location.href = 'http://localhost:8080/api/google')}
           >
             Continue with Google
           </button>
