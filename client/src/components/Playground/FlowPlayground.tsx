@@ -2,17 +2,9 @@ import { useCallback, useEffect } from "react";
 import {
   ReactFlow,
   addEdge,
-  Node,
   useNodesState,
   useEdgesState,
-  OnConnect,
-  Edge,
-  MiniMap,
   Background,
-  Controls,
-  Panel,
-  ColorMode,
-  Position,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { userDataAtom } from "../../state/Atoms";
@@ -42,7 +34,7 @@ const NestedFlow = () => {
       page_url: query.page_url,
     };
   });
-  const initialNodes = [
+  const initialNodes:any = [
     {
       id: "1",
       type: "input",
@@ -114,10 +106,10 @@ const NestedFlow = () => {
     },
   ];
 
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  const onConnect = useCallback((connection) => {
+  const onConnect = useCallback((connection:any) => {
     setEdges((eds) => addEdge(connection, eds));
   }, []);
 
@@ -135,7 +127,7 @@ const NestedFlow = () => {
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        onNodesChange={onNodesChange}
+        //onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         className="react-flow-subflows-example"

@@ -5,7 +5,6 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import ClickDataVisualization from '../ChartPages/AllUserData';
 import ClickDataVisualizationWebsite from '../ChartPages/WebsiteData';
-import FlowPlayground from '../Playground/FlowPlayground';
 function Dashboard() {
   const token = localStorage.getItem('token');
   useEffect(() => {

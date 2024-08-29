@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useAtom } from "jotai";
  
 export const handleLogout = async () => {
       localStorage.removeItem('token');
