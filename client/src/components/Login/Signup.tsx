@@ -26,6 +26,7 @@ export default function Signup() {
       const response = await axios.post('/api/auth/signup', formData);
       console.log(response.data);
       setActiveUser(response.data.email);
+      localStorage.setItem('token', response.data.token)
     } catch (err: any) {
       console.log(err.message);
     }

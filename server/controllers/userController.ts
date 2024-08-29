@@ -63,11 +63,12 @@ const userController = {
       const payload = await verifier.verify(token!);
       res.locals.cognito_Id = payload.sub;
       //store token in cookie lasting for 1 day
-      res.cookie("token", token, {
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000,
-      });
+      // res.cookie("token", token, {
+      //   httpOnly: true,
+      //   maxAge: 24 * 60 * 60 * 1000,
+      // });
       res.locals.email = payload.email;
+      res.locals.token = token;
       return next();
     } catch (err) {
       const error = err as Error;
@@ -98,13 +99,14 @@ const userController = {
       const authResult = await client.send(command);
       const token = authResult.AuthenticationResult?.IdToken;
       //store token in cookie lasting for 1 day
-      res.cookie("token", token, {
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000,
-      });
+      // res.cookie("token", token, {
+      //   httpOnly: true,
+      //   maxAge: 24 * 60 * 60 * 1000,
+        
+      // });
       res.locals.token = token;
       //send token back
-      res.status(200).send({ email: email });
+      res.status(200).send({ email: email, token:token });
     } catch (err) {
       const error = err as Error;
       return next({
@@ -141,7 +143,6 @@ const userController = {
   },
   //logout destroys the cookie
   async logout(req: Request, res: Response, next: NextFunction) {
-    res.clearCookie("token");
     res.status(200).send("Logged out successfully");
   },
 };

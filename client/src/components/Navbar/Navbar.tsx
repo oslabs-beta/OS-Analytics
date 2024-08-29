@@ -32,16 +32,30 @@ export default function Navbar() {
           </Link>
           {activeUser ? (
             <div className={styles.navLinks}>
-              <span> DashBoard </span>
+              <Link to  = "/dashboard">
+              <span> Dashboard</span>
+              </Link>
+              <Link to = "/websites">
               <span> Websites</span>
-              <span>Link3</span>
+              </Link>
+              <Link to = "/documenation">
+              <span>Documentation</span>
+              </Link>
+              <Link to = "/teams">
+              <span>Settings</span>
+              </Link>
             </div>
           ) : (
             <div className={styles.navLinks}>
-              <span>Product</span>
-              <span>Documenation</span>
+              <Link to = "/documenation">
+              <span>Documentation</span>
+              </Link>
+              <Link to = "/signup">
               <span>Getting Started</span>
+              </Link>
+              <Link to = "/team">
               <span>Team</span>
+              </Link>
             </div>
           )}
         </div>
@@ -76,7 +90,7 @@ export default function Navbar() {
               </Link>
               <Link to="/signup">
                 <button className={`btn-primary ${styles.navButton}`}>
-                  Get started
+                  Getting Started
                 </button>
               </Link>
             </>
