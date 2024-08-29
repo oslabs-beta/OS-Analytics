@@ -1,33 +1,27 @@
 import axios from "axios";
+import { useAtom } from "jotai";
+ 
 export const handleLogout = async () => {
-  try {
-    const response = await fetch("/api/auth/logout", {
-      method: "POST",
-      credentials: "include",
-    });
-
-    if (response.ok) {
+      localStorage.removeItem('token');
       return true;
-    } else {
-      console.error("Failed to log out");
-      return false;
-    }
-  } catch (error) {
-    console.error("Logout error:", error);
-    return false;
-  }
 };
 
 export const handleSession = async () => {
+  const token = localStorage.getItem('token');
   try {
-    const response = await axios.get("/api/auth/activeUser");
+    const response = await axios.get("/api/auth/activeUser", {
+      headers: {
+         Authorization: `Bearer ${token}`
+      }
+    });
     console.log(response);
     if (response.status === 200) {
-      return (response.data.email);
+      return response.data.email;
     } else {
-     return("");
+      return "";
     }
   } catch (err) {
     console.log("hit");
+    return "";
   }
 };

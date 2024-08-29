@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import createCognitoVerifier from "./verifier";
 const verifier = createCognitoVerifier();
 const auth = async (req: Request, res: Response, next: NextFunction) => {
-  const token = req.cookies.token;
+  const token = req.header("Authorization")!.replace("Bearer ", "");
   //console.log(token)
 
   if (!token) {
