@@ -27,7 +27,7 @@ export default function Navbar() {
           >
             <div className={styles.logoBox}>
               <img className={styles.navLogo} src={logo} alt="at-logo" />
-              <h3>Tracker</h3>
+              <h3>OS Analytics</h3>
             </div>
           </Link>
           {activeUser ? (

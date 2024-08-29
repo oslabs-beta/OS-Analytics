@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import ClickDataVisualization from '../ChartPages/AllUserData';
 import ClickDataVisualizationWebsite from '../ChartPages/WebsiteData';
+import TimeFrameDropdown from '../ChartPages/TimeFrameDropdown';
 function Dashboard() {
   const token = localStorage.getItem('token');
   useEffect(() => {
@@ -65,7 +66,7 @@ function Dashboard() {
           })}
         </ul> */}
       </div>
-
+      <TimeFrameDropdown />
       <div>
 
           {activeWebsite === 'Select website' ? (

@@ -13,8 +13,7 @@
   left: 0;
   height: 100vh;
   background: transparent;
-  min-width: 5rem;
-  width: 5rem;
+  width: 4rem;
   background: linear-gradient(
     to bottom,
     var(--black-green),
@@ -27,20 +26,26 @@
   justify-content: flex-start;
   align-items: start;
   transition: width 0.25s ease;
+  overflow: hidden;
 }
 
 .sideLogo {
-  width: 4rem;
+  width: 3rem;
 }
 
 .sideIcon {
-  width: 3rem;
+  width: 2rem;
 }
 .logoBox {
-  height: 5rem;
-  display: grid;
-  place-content: center;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
   margin-left: 0.5rem;
+  overflow: hidden;
+  transition: width 0.25s ease;
+  text-wrap: nowrap;
 }
 
 .sidebarLinks {
@@ -48,33 +53,32 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: start;
-  margin: 1rem 0.5rem;
+  margin: 1.5rem 0.5rem;
 }
 
 .sidebarLink {
-  height: 4rem;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: start;
   gap: 1rem;
   border-radius: 6px;
   padding: 0 0.5rem;
-  width: 4rem;
+  width: 3rem;
   overflow: hidden;
   transition: width 0.25s ease;
 }
 
 .sidebarSpan {
-  /* display: none; */
   padding-right: 2rem;
 }
 
 .sidebar:hover {
-  width: 16rem;
+  width: 14.5rem;
 }
 
 .sidebar:hover .sidebarLink {
-  width: 15rem;
+  width: 13.5rem;
 }
 
 a.active {

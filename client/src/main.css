@@ -149,7 +149,7 @@ input:focus:invalid {
 
 .btn-primary {
   color: var(--white);
-  background: var(var(--green-secondary));
+  background: var(var(--green-primary));
 }
 
 .btn-primary:hover {
@@ -171,9 +171,9 @@ input:focus:invalid {
 }
 
 .viewNoSide {
-  height: calc(100vh - 5rem);
+  height: calc(100vh - 4rem);
   width: 100vw;
-  margin-top: 5rem;
+  margin-top: 4rem;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -181,10 +181,10 @@ input:focus:invalid {
 }
 
 .viewWithSide {
-  height: calc(100vh - 5rem);
-  width: calc(100vw - 5rem);
-  margin-top: 5rem;
-  margin-left: 5rem;
+  height: calc(100vh - 4rem);
+  width: calc(100vw - 4rem);
+  margin-top: 4rem;
+  margin-left: 4rem;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;

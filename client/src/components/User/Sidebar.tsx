@@ -8,6 +8,7 @@ function Sidebar(){
         <div className={styles.sidebar}>
             <div className={styles.logoBox}>
                 <img className={styles.sideLogo} src={logo} alt="AT.io" />
+                <h3>OS Analytics</h3>
             </div>
             <div className={styles.sidebarLinks}>
             <NavLink to="/dashboard" className={styles.sidebarLink}>

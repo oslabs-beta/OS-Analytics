@@ -5,6 +5,7 @@ import TimeFrameDropdown from "./TimeFrameDropdown";
 import AiResponseComponent from "./Charts/aiResponse";
 import {websiteDataAtom } from '../../state/Atoms';
 import ScatterChart from "./Charts/ScatterChart-clicks";
+import styles from './Charts.module.css'
 import { useAtom } from 'jotai';
 
 const ClickDataVisualization = () => {
@@ -56,7 +57,7 @@ const ClickDataVisualization = () => {
 
   //console.log(allDataResponse);
   return (
-    <div>
+    <div className={styles.chartDisplay}>
         <TimeFrameDropdown />
         <BarGraph data={allDataResponse} keyword={"page_url"} />
         <ScatterChart data={allDataResponse} />

@@ -1,6 +1,6 @@
 .navMobile {
     display: none;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 4rem);
     width: 100vw;
     z-index: 100;
     background: var(--black);
@@ -8,7 +8,7 @@
     /* padding-top: 3.2rem; */
     position: fixed;
     left: 0;
-    top: 5rem;
+    top: 4rem;
     transition: all .25s ease;
 }
 
@@ -35,7 +35,7 @@ transform: translateX(-100%);
     cursor: pointer;
 }
 .mobileLink:hover {
-    background: var(--green-secondary)
+    background: var(--gray-border)
 }
 
 .dashboardLink {

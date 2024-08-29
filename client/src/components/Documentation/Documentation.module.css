@@ -2,6 +2,9 @@
     width: 100%;
     max-width: 1380px;
     padding: 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
 }
 
 .codeBlock {

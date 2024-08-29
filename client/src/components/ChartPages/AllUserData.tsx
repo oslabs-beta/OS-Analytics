@@ -57,7 +57,6 @@ const ClickDataVisualization = () => {
   //console.log(allDataResponse);
   return (
     <div className={styles.chartDisplay}>
-      <TimeFrameDropdown />
       <ClickGraph data={allDataResponse} />
       <DuelPieGraphs
         data={allDataResponse}
