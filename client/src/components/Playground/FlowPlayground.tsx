@@ -5,6 +5,8 @@ import {
   useNodesState,
   useEdgesState,
   Background,
+  Position,
+  Connection 
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { userDataAtom } from "../../state/Atoms";
@@ -13,6 +15,7 @@ const labelStyle = { color: "black", fontSize: "14px" };
 import { useAtom } from "jotai";
 import Navbar from "../Navbar/Navbar";
 import TimeFrameDropdown from "../ChartPages/TimeFrameDropdown";
+import { QueryData } from "../../../types";
 const NestedFlow = () => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -20,8 +23,9 @@ const NestedFlow = () => {
       document.body.style.overflow = "scroll";
     };
   }, []);
+
   const [userData] = useAtom(userDataAtom);
-  const allDataResponse = userData.map((query: any) => {
+  const allDataResponse = userData.map((query: QueryData) => {
     return {
       element: query.element,
       dataset_id: query.dataset_id,
@@ -34,14 +38,14 @@ const NestedFlow = () => {
       page_url: query.page_url,
     };
   });
-  const initialNodes:any = [
+  const initialNodes = [
     {
       id: "1",
       type: "input",
       data: { label: <span style={labelStyle}>Bargraph</span> },
       position: { x: 100, y: 100 },
       className: "light",
-      sourcePosition: "right",
+      sourcePosition: "right" as Position,
     },
     {
       id: "2",
@@ -49,8 +53,8 @@ const NestedFlow = () => {
       data: { label: <span style={labelStyle}>"Specific website name"</span> },
       position: { x: 300, y: 100 },
       className: "light",
-      sourcePosition: "right",
-      targetPosition: "left",
+      sourcePosition: "right" as Position,
+      targetPosition: "left" as Position, 
     },
     {
       id: "3",
@@ -58,26 +62,23 @@ const NestedFlow = () => {
       data: { label: <span style={labelStyle}>Page url</span> },
       position: { x: 500, y: 100 },
       className: "light",
-      sourcePosition: "right",
-      targetPosition: "left",
+      sourcePosition: "right" as Position, 
+      targetPosition: "left" as Position,
     },
     {
       id: "4",
       type: "output",
       data: {
         label: (
-          
           <span style={labelStyle}>
-          <div> 
-          </div>
+            <div></div>
             <BarGraph data={allDataResponse} keyword={"website"} />
-            
           </span>
         ),
       },
       position: { x: 700, y: 100 },
       className: "light",
-      targetPosition: "left",
+      targetPosition: "left" as Position,
       style: { width: 600, height: 400 },
     },
   ];
@@ -106,10 +107,10 @@ const NestedFlow = () => {
     },
   ];
 
-  const [nodes] = useNodesState(initialNodes);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  const onConnect = useCallback((connection:any) => {
+  const onConnect = useCallback((connection:Connection) => {
     setEdges((eds) => addEdge(connection, eds));
   }, []);
 
@@ -127,13 +128,13 @@ const NestedFlow = () => {
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        //onNodesChange={onNodesChange}
+        onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         className="react-flow-subflows-example"
         fitView
-      >  
-      <Background />  
+      >
+        <Background />
       </ReactFlow>
     </div>
   );

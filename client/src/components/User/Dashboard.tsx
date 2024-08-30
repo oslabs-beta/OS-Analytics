@@ -32,7 +32,7 @@ function Dashboard() {
   const [websites, setWebsites] = useAtom(websitesAtom);
   const [activeWebsite, setActiveWebsite] = useAtom(activeWebsiteAtom);
 
-  function handleWebsiteSelect(e: any) {
+  function handleWebsiteSelect(e: React.ChangeEvent<HTMLSelectElement>) {
     setActiveWebsite(e.target.value);
   }
 

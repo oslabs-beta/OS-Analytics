@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const AiResponseComponent = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<string[]>([]);
-  const [displayedText, setDisplayedText] = useState([]);
+  const [displayedText, setDisplayedText] = useState<string[]>([]);
   const [timeFrame] = useAtom(timeFrameAtom);
   const [website] = useAtom(activeWebsiteAtom);
   const token = localStorage.getItem('token');
@@ -26,7 +26,7 @@ const AiResponseComponent = () => {
       const typewriter = () => {
         if (lineIndex < response.length && charIndex <= response[lineIndex].length) {
           setDisplayedText((prev) => {
-            const updatedText : any = [...prev];
+            const updatedText = [...prev];
             if (!updatedText[lineIndex]) {
               updatedText[lineIndex] = "";
             }

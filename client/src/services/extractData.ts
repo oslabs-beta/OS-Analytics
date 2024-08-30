@@ -1,3 +1,5 @@
+import { QueryData } from "../../types";
+
 export const extractBrowserAndOS = (userAgent: string) => {
     let browser = "Unknown Browser";
     let os = "Unknown OS";
@@ -25,7 +27,7 @@ export const extractBrowserAndOS = (userAgent: string) => {
     return { browser, os };
   };
   
-  export const mapUserData = (userData: any[]) => {
+  export const mapUserData = (userData: QueryData[]) => {
     return userData.map((query) => {
       const { browser, os } = extractBrowserAndOS(query.user_browser);
   
