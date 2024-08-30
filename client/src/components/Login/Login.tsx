@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 
 
 export default function Login() {
+
   const [, setActiveUser] = useAtom(activeUserAtom)
   // const [loadingAtom,setloadingAtom] = useAtom(loadingAtom);
   const [formData, setFormData] = useState({
@@ -30,6 +31,7 @@ export default function Login() {
     const response = await axios.post ('/api/auth/login', formData)
     console.log(response.data);
     setActiveUser(response.data.email);
+    localStorage.setItem('token', response.data.token)
     }
 
     catch (err: any){
@@ -42,7 +44,7 @@ export default function Login() {
   }
 
   return (
-    <>
+    <div className="viewNoSide">
       <Navbar />
       <NavMobile />
       <div className={styles.login}>
@@ -92,6 +94,6 @@ export default function Login() {
           </Link></p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

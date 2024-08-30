@@ -7,7 +7,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-
+import styles from '../Charts.module.css';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
@@ -105,7 +105,7 @@ const PieCharts = ({ data, keyword, keywordTwo }: any) => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px' }}>
+    <div className={styles.chartBox} style={{ display: 'flex', justifyContent: 'space-around', padding: '20px' }}>
       <div style={{ width: '45%' }}>
         <h3 style={{ color: 'white', textAlign: 'center', marginBottom: '20px' }}>User Browsers</h3>
         <Pie data={browserChartData} />

@@ -1,4 +1,3 @@
-import './App.css';
 import LandingView from './components/Landing/LandingView';
 import Login from './components/Login/Login';
 import UserView from './components/User/UserView';
@@ -9,13 +8,11 @@ import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { handleSession } from "./services/authConfig";
 import Signup from './components/Login/Signup';
-import loading from './components/Loading/Loading';
-import Loading from './components/Loading/Loading';
 import Websites from './components/Websites/Websites';
 import Documentation from './components/Documentation/Documentation'; 
 import Settings from './components/Settings/Settings'; 
 import Team from './components/Team/Team'
-import { loadingAtom } from './state/Atoms';
+import FlowPlayground from './components/Playground/FlowPlayground';
 function App() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);  //email of active user || null
 //   const [isLoading, setIsLoading] = useAtom(loadingAtom);
@@ -75,9 +72,10 @@ function App() {
         <Route path="/signup" element={activeUser ? <Navigate to={'/dashboard'} /> : <Signup />} />
         <Route path="/dashboard" element={activeUser ?<UserView /> : <Navigate to={'/login'} />} />
         <Route path="/websites" element={activeUser ? <Websites /> : <Navigate to={'/login'} />}/>
-        <Route path="/documenation" element={<Documentation/>} /> 
+        <Route path="/docs" element={<Documentation/>} /> 
         <Route path="/settings" element={activeUser ? <Settings/> : <Navigate to={'/login'} />}/>
         <Route path="/team" element={<Team />} /> 
+        <Route path="/teams" element={<FlowPlayground />} /> 
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       

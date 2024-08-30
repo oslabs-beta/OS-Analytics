@@ -8,7 +8,7 @@ export default function Hero() {
     </div>
     <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo fugiat voluptatum assumenda odio blanditiis reprehenderit aperiam porro laborum vitae ratione voluptatem, accusantium totam optio quaerat quam a modi? Provident, perferendis!</h4>
     <div className={styles.heroButtons}>
-        <button className="btn-primary">Get started</button>
+        <button className="btn-primary">Create account</button>
         <button className="btn-secondary">Documentation</button>
     </div>
   </section>;
