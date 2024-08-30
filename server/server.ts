@@ -6,11 +6,8 @@ import userRoutes from './routes/userRoutes';
 import clickRoutes from './routes/clickRoutes'; 
 import dataRoutes from './routes/dataRoute'; 
 import aiRoutes from './routes/aiRoutes'; 
-import authMiddleware from'./middleware/auth'; 
 import authRoutes from './routes/authRoute' 
 import passport from './middleware/passportUserMiddleware';
-// import oauthRequestRoute from './controllers/oauthRequestRoutes';
-// import oauthRoute from './controllers/oauthRoutes'
 
 
 

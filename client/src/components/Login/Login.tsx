@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { loadingAtom, activeUserAtom} from '../../state/Atoms';
+import { activeUserAtom} from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
 import { Link, useNavigate } from 'react-router-dom';
@@ -21,7 +21,6 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  // This effect handles the Google OAuth response
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
@@ -30,7 +29,7 @@ export default function Login() {
     if (token && email) {
       localStorage.setItem('token', token);
       setActiveUser(email);
-      navigate('/dashboard'); // Redirect to dashboard
+      navigate('/dashboard');
     }
   }, []);
 
@@ -40,7 +39,6 @@ export default function Login() {
       [e.target.name]: e.target.value,
     });
   }
-
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // setloadingAtom(true)

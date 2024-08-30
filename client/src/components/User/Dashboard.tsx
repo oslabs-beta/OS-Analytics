@@ -19,7 +19,7 @@ function Dashboard() {
         Authorization: `Bearer ${token}`
       }
     }).then((res) => {
-      setUserData(res.data);
+      setUserData(res.data); 
       const websiteList: Set<string> = new Set(
         res.data.map((el: { website_name: string }) => el.website_name)
       );
@@ -37,9 +37,11 @@ function Dashboard() {
   }
 
   return (
+    
     <section className={styles.dashboard}>
+      
       <div className={styles.chartBox}>
-        <h2>{`Welcome back, ${activeUser}`}</h2>
+        <h2>{`Welcome back, ${activeUser} ` }</h2>
         <select
           onChange={(e) => {
             handleWebsiteSelect(e);

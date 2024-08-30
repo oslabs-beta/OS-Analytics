@@ -15,6 +15,8 @@ import {
   Filler,
 } from 'chart.js';
 
+import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -33,29 +35,7 @@ interface ClickGraphProps {
 const ClickGraph = ({ data }: ClickGraphProps) => {
   const [timeFrame] = useAtom(timeFrameAtom);
 
-  const filteredData = [];
-
-  const now = new Date();
-
-  for (let i = 0; i < data.length; i++) {
-    const item = data[i];
-    const clickTime = new Date(item.time);
-
-    if (timeFrame === '24hours') {
-      if (now.getTime() - clickTime.getTime() <= 24 * 60 * 60 * 1000) {
-        filteredData.push(item);
-      }
-    } else if (timeFrame === 'month') {
-      if (
-        now.getMonth() === clickTime.getMonth() &&
-        now.getFullYear() === clickTime.getFullYear()
-      ) {
-        filteredData.push(item);
-      }
-    } else {
-      filteredData.push(item);
-    }
-  }
+  const filteredData = filterDataByTimeFrame(data, timeFrame);
 
   const aggregatedData: { [array: string]: number } = {};
 

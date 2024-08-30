@@ -28,8 +28,11 @@ const TimeFrameDropdown = () => {
               },
             }}
           >
-            <MenuItem value="24hours">Last 24 Hours</MenuItem>
-            <MenuItem value="month">This Month</MenuItem>
+            <MenuItem value="1 day">Last 24 Hours</MenuItem>
+            <MenuItem value="1 month">This Month</MenuItem>
+            <MenuItem value="1 year">1 year</MenuItem>
+            <MenuItem value="5 years">5 years</MenuItem>
+            <MenuItem value="allTime">All time</MenuItem>
           </Select>
         </FormControl>
       </div>

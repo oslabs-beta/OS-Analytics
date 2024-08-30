@@ -5,7 +5,6 @@ import { useAtom } from 'jotai';
 import { activeUserAtom } from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
-import { Link } from 'react-router-dom';
 
 export default function Signup() {
   const [, setActiveUser] = useAtom(activeUserAtom);

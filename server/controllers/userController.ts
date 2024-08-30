@@ -129,7 +129,7 @@ const userController = {
       );
 
       if (response.rows.length > 0) {
-        res.status(200).json(response.rows[0].api_key);
+        res.status(200).json({apiKey:response.rows[0].api_key});
       } else {
         res.status(404).json({ message: "No data" });
       }
