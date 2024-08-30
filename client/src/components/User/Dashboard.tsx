@@ -14,7 +14,7 @@ import TimeFrameDropdown from '../ChartPages/TimeFrameDropdown';
 function Dashboard() {
   const token = localStorage.getItem('token');
   useEffect(() => {
-    axios.get('/api/data', {
+    axios.get('http://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080/api/data', {
       headers: {
         Authorization: `Bearer ${token}`
       }

@@ -36,6 +36,9 @@ export default function Navbar() {
               <Link to  = "/dashboard">
               <span> Dashboard</span>
               </Link>
+              <Link to = "/heatmap">
+              <span> Websites</span>
+              </Link>
               <Link to = "/websites">
               <span> Websites</span>
               </Link>
