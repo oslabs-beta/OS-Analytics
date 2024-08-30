@@ -5,7 +5,6 @@ import { useAtom } from 'jotai';
 import { activeUserAtom } from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
-import { Link } from 'react-router-dom';
 
 export default function Signup() {
   const [, setActiveUser] = useAtom(activeUserAtom);
@@ -40,7 +39,9 @@ export default function Signup() {
       <div className={styles.login}>
         <h2>Welcome to Activity Tracker</h2>
         <div className={styles.oathButtons}>
-          <button className={`${styles.loginBtn} ${styles.google}`}>
+          <button className={`${styles.loginBtn} ${styles.google}`}
+        onClick = {(() => window.location.href = 'http://localhost:8080/api/google')}
+          >
             Continue with Google
           </button>
           <button className={`${styles.loginBtn} ${styles.github}`}>
