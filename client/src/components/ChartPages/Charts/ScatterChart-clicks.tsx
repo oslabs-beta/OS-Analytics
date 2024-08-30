@@ -10,7 +10,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import styles from '../Charts.module.css';
+import styles from '../Charts.module.css';  
+import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
 ChartJS.register(CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
 interface ScatterChartProps {
@@ -20,26 +21,8 @@ interface ScatterChartProps {
 const ScatterChart = ({ data }: ScatterChartProps) => {
   const [timeFrame] = useAtom(timeFrameAtom);
 
-  const filteredData = [];
 
-  const now = new Date();
-
-  for (let i = 0; i < data.length; i++) {
-    const item = data[i];
-    const clickTime = new Date(item.time);
-
-    if (timeFrame === '24hours') {
-      if (now.getTime() - clickTime.getTime() <= 24 * 60 * 60 * 1000) {
-        filteredData.push(item);
-      }
-    } else if (timeFrame === 'month') {
-      if (now.getMonth() === clickTime.getMonth() && now.getFullYear() === clickTime.getFullYear()) {
-        filteredData.push(item);
-      }
-    } else {
-      filteredData.push(item);
-    }
-  }
+  const filteredData = filterDataByTimeFrame(data, timeFrame);
 
   const scatterData = {
     datasets: [

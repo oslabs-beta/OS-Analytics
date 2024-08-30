@@ -17,6 +17,8 @@
     "cors": "^2.8.5"
   },
   "devDependencies": {
-    "@types/cookie-parser": "^1.4.7"
+    "@types/cookie-parser": "^1.4.7",
+    "@types/passport": "^1.0.16",
+    "@types/passport-google-oauth20": "^2.0.16"
   }
 }

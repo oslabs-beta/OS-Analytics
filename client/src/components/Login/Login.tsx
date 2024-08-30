@@ -1,29 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
 import { activeUserAtom} from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 
 export default function Login() {
 
   const [, setActiveUser] = useAtom(activeUserAtom)
+  // const [loadingAtom,setloadingAtom] = useAtom(loadingAtom);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const email = urlParams.get('email');
+    
+    if (token && email) {
+      localStorage.setItem('token', token);
+      setActiveUser(email);
+      navigate('/dashboard');
+    }
+  }, []);
+
   function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   }
-
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    // setloadingAtom(true)
     try{
     const response = await axios.post ('http://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080/api/auth/login', formData)
     console.log(response.data);
@@ -33,6 +51,8 @@ export default function Login() {
 
     catch (err: any){
       console.log(err.message)
+    }finally {
+      // setloadingAtom(false)
     }
     // const content = formData;
     // console.log(content);
@@ -45,7 +65,8 @@ export default function Login() {
       <div className={styles.login}>
         <h2>Welcome back</h2>
         <div className={styles.oathButtons}>
-          <button className={`${styles.loginBtn} ${styles.google}`}>
+          <button className={`${styles.loginBtn} ${styles.google}`}
+            onClick = {(() => window.location.href = 'http://localhost:8080/api/google')}>
             Continue with Google
           </button>
           <button className={`${styles.loginBtn} ${styles.github}`}>
