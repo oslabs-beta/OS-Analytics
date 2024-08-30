@@ -4,6 +4,7 @@ const {
   BedrockRuntimeClient,
   InvokeModelCommand,
 } = require("@aws-sdk/client-bedrock-runtime");
+import { ClickData,OpenAIResponse } from "../types";
 
 const client = new BedrockRuntimeClient({
   region: "us-east-1",
@@ -71,7 +72,7 @@ const aiController = {
     try {
       const response = await pool.query(query, queryParams);
 
-      const relevantData = response.rows.map((row: any) => {
+      const relevantData = response.rows.map((row: ClickData) => {
         if (website) {
           return {
             page_url: row.page_url,
@@ -193,7 +194,7 @@ const aiController = {
 
     const response = await pool.query(query, queryParams);
 
-    const relevantData = response.rows.map((row: any) => {
+    const relevantData = response.rows.map((row: ClickData) => {
       if (website) {
         return {
           page_url: row.page_url,
@@ -235,7 +236,7 @@ const aiController = {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
 
-      const data: any = await response.json();
+      const data = await response.json() as OpenAIResponse;
       console.log("OpenAI API response:", data);
 
       if (data.choices && data.choices.length > 0) {
