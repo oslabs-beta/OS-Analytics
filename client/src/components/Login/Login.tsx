@@ -1,13 +1,11 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { loadingAtom, activeUserAtom} from '../../state/Atoms';
+import { activeUserAtom} from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
 import { Link } from 'react-router-dom';
-import Loading from '../Loading/Loading';
-
 
 
 
@@ -18,12 +16,6 @@ export default function Login() {
     email: '',
     password: '',
   });
-
-  const [pageLoading, setPageLoading] = useState(true);
-
-
-  
-
   function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
@@ -32,7 +24,6 @@ export default function Login() {
   }
 
   
-
 
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -44,8 +35,9 @@ export default function Login() {
     setActiveUser(response.data.email);
     }
 
-    catch (err: any){
-      console.log(err.message)
+    catch (err: unknown){
+      const error = err as Error;
+      console.log(error.message)
     }finally {
       setLoading(false)
     }
@@ -65,7 +57,7 @@ export default function Login() {
         <h2>Welcome back</h2>
         <div className={styles.oathButtons}>
           <button className={`${styles.loginBtn} ${styles.google}`}
-            onClick = {(() => window.location.href = 'http://loclahost:8080/api/google/oauth')}>
+            onClick = {(() => window.location.href = 'http://localhost:8080/api/google')}>
             Continue with Google
           </button>
           <button className={`${styles.loginBtn} ${styles.github}`}>

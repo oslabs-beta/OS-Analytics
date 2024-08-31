@@ -1,19 +1,30 @@
 import { Request, Response, NextFunction } from "express";
 import createCognitoVerifier from "./verifier";
-const verifier = createCognitoVerifier();
-const auth = async (req: Request, res: Response, next: NextFunction) => {
-  const token = req.header("Authorization")!.replace("Bearer ", "");
-  //console.log(token)
+import jwt from "jsonwebtoken";
+import { JwtPayload } from "../types";
 
+const verifier = createCognitoVerifier();
+
+const auth = async (req: Request, res: Response, next: NextFunction) => {
+  const token = req.header("Authorization")?.replace("Bearer ", "");
+console.log(token)
   if (!token) {
     return res.status(401).send("Unauthorized: No token provided");
   }
-  //verfies the "id" part of the token and if valid then next()
-  try {
-    const payload = await verifier.verify(token);
 
-    res.locals.userId = payload.sub;
-    res.locals.email = payload.email;
+  try {
+    let payload: JwtPayload | null = null;
+  const decoded = jwt.decode(token, { complete: true }) as { payload: JwtPayload } | null;
+    
+    console.log(decoded)
+    if (decoded && decoded.payload && decoded.payload.iss && decoded.payload.iss.includes("cognito")) {
+      payload = await verifier.verify(token);
+    } else {
+      payload = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
+    }
+console.log(payload)
+    res.locals.userId = payload!.sub || payload!.user_id;
+    res.locals.email = payload!.email;
     next();
   } catch (error) {
     return res.status(401).send("Unauthorized: Invalid token");

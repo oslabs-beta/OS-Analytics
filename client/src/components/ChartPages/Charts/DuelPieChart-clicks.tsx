@@ -8,34 +8,17 @@ import {
   Legend,
 } from "chart.js";
 import styles from '../Charts.module.css';
+import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
+import { PieChartsProps} from "../../../../types"
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 
-const PieCharts = ({ data, keyword, keywordTwo }: any) => {
+const PieCharts = ({ data, keyword, keywordTwo }: PieChartsProps) => {
   const [timeFrame] = useAtom(timeFrameAtom);
 
-  const filteredData = [];
-
-  const now = new Date();
-  
-  for (let i = 0; i < data.length; i++) {
-    const item = data[i];
-    const clickTime = new Date(item.time);
-  
-    if (timeFrame === "24hours") {
-      if (now.getTime() - clickTime.getTime() <= 24 * 60 * 60 * 1000) {
-        filteredData.push(item);
-      }
-    } else if (timeFrame === "month") {
-      if (now.getMonth() === clickTime.getMonth() && now.getFullYear() === clickTime.getFullYear()) {
-        filteredData.push(item);
-      }
-    } else {
-      filteredData.push(item);
-    }
-  }
-
+ 
+  const filteredData = filterDataByTimeFrame(data, timeFrame);
   const browserCounts: { [key: string]: number } = {};
   const osCounts: { [key: string]: number } = {};
 

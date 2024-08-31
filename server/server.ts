@@ -6,10 +6,8 @@ import userRoutes from './routes/userRoutes';
 import clickRoutes from './routes/clickRoutes'; 
 import dataRoutes from './routes/dataRoute'; 
 import aiRoutes from './routes/aiRoutes'; 
-import authMiddleware from'./middleware/auth'; 
-// import authRoutes from './routes/authRoute' 
-// import oauthRequestRoute from './controllers/oauthRequestRoutes';
-// import oauthRoute from './controllers/oauthRoutes'
+import authRoutes from './routes/authRoute' 
+import passport from './middleware/passportUserMiddleware';
 
 
 
@@ -24,14 +22,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser()); 
+app.use(passport.initialize());
 const port = 8080;
-
-app.get('/api',authMiddleware, (req: Request, res: Response) => {
-  res.json({ message: 'Hello from server!',
-    user: res.locals.userId,
-   });
-});
-// app.use('/api',authRoutes)
+// app.get('/api',authMiddleware, (req: Request, res: Response) => {
+//   res.json({ message: 'Hello from server!',
+//     user: res.locals.userId,
+//    });
+// });
+app.use('/api/google',authRoutes)
 app.use('/api/auth',userRoutes)
 app.use('/api/click-data',clickRoutes)
 app.use('/api/data',dataRoutes)
@@ -48,7 +46,7 @@ app.use((req: Request, res: Response) => {
 });
 
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 500,
