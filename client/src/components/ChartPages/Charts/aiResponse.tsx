@@ -57,7 +57,7 @@ const AiResponseComponent = () => {
     setLoading(true);
     try {
       const result = await axios.post(
-        '/api/ai/bedrock',
+        'http://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080/api/ai/bedrock',
         { timeFrame, website },
         {
           headers: {
