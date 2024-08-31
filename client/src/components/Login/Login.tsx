@@ -49,8 +49,9 @@ export default function Login() {
     localStorage.setItem('token', response.data.token)
     }
 
-    catch (err: any){
-      console.log(err.message)
+    catch (err: unknown){
+      const error = err as Error;
+      console.log(error.message)
     }finally {
       // setloadingAtom(false)
     }

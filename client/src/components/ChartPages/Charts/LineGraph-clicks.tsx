@@ -16,7 +16,7 @@ import {
 } from 'chart.js';
 
 import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
-
+import { NoKeywordChart } from "../../../../types"
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,12 +27,9 @@ ChartJS.register(
   Legend,
   Filler
 );
+ 
 
-interface ClickGraphProps {
-  data: any[];
-}
-
-const ClickGraph = ({ data }: ClickGraphProps) => {
+const ClickGraph = ({ data }: NoKeywordChart) => {
   const [timeFrame] = useAtom(timeFrameAtom);
 
   const filteredData = filterDataByTimeFrame(data, timeFrame);
@@ -41,7 +38,7 @@ const ClickGraph = ({ data }: ClickGraphProps) => {
 
   for (let i = 0; i < filteredData.length; i++) {
     const curr = filteredData[i];
-    const clickTime = new Date(curr.time);
+    const clickTime = new Date(curr.time || 0); 
 
     let timeKey;
     if (timeFrame === '24hours') {

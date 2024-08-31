@@ -9,9 +9,9 @@ import NavMobile from '../Navbar/NavMobile';
 export default function Signup() {
   const [, setActiveUser] = useAtom(activeUserAtom);
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({
@@ -26,9 +26,10 @@ export default function Signup() {
       const response = await axios.post(`${backendUrl}/api/auth/signup`, formData);
       console.log(response.data);
       setActiveUser(response.data.email);
-      localStorage.setItem('token', response.data.token)
-    } catch (err: any) {
-      console.log(err.message);
+      localStorage.setItem("token", response.data.token);
+    } catch (err: unknown) {
+      const error = err as Error;
+      console.log(error.message);
     }
   }
 
@@ -73,7 +74,7 @@ export default function Signup() {
             }}
             required
           ></input>
-           <input
+          <input
             type="password"
             minLength={6}
             placeholder="confirm password"
@@ -88,8 +89,7 @@ export default function Signup() {
             Create account
           </button>
         </form>
-        <div className={styles.createAccountQuery}>
-        </div>
+        <div className={styles.createAccountQuery}></div>
       </div>
     </div>
   );
