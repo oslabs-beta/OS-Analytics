@@ -5,7 +5,7 @@ import { atom } from 'jotai';
 export const activeUserAtom = atom<string>('');
 export const activeNavAtom = atom<boolean>(false);
 
-export const loadingAtom = atom<boolean>(false);
+export const loadingAtom = atom<boolean>(true);
 // export const authAtom = atom<boolean>(true);
 
 // User's Click Data

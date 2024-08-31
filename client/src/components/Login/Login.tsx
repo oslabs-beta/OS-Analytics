@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
@@ -6,17 +6,24 @@ import { loadingAtom, activeUserAtom} from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading/Loading';
+
 
 
 
 export default function Login() {
-
   const [, setActiveUser] = useAtom(activeUserAtom)
-  // const [loadingAtom,setloadingAtom] = useAtom(loadingAtom);
+  const [isLoading, setLoading] = useAtom(loadingAtom)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  const [pageLoading, setPageLoading] = useState(true);
+
+
+  
+
   function handleChange(e:React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
@@ -24,29 +31,36 @@ export default function Login() {
     });
   }
 
+  
+
+
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // setloadingAtom(true)
+    setLoading(true)
     try{
     const response = await axios.post ('/api/auth/login', formData)
     console.log(response.data);
     setActiveUser(response.data.email);
-    localStorage.setItem('token', response.data.token)
     }
 
     catch (err: any){
       console.log(err.message)
     }finally {
-      // setloadingAtom(false)
+      setLoading(false)
     }
     // const content = formData;
     // console.log(content);
   }
+  // if (isLoading || pageLoading) {
+  //   return <Loading />;
+  // }
 
   return (
-    <div className="viewNoSide">
+    <>
       <Navbar />
       <NavMobile />
+      {/* {isLoading && <Loading />} */}
       <div className={styles.login}>
         <h2>Welcome back</h2>
         <div className={styles.oathButtons}>
@@ -94,6 +108,6 @@ export default function Login() {
           </Link></p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
