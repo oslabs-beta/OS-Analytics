@@ -12,9 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^8.2.2",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5"
+    "concurrently": "^8.2.2"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",
