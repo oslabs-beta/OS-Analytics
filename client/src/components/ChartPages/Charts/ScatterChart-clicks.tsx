@@ -12,13 +12,12 @@ import {
 } from 'chart.js';
 import styles from '../Charts.module.css';  
 import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
+import { NoKeywordChart } from "../../../../types"
 ChartJS.register(CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
-interface ScatterChartProps {
-  data: any[];
-}
 
-const ScatterChart = ({ data }: ScatterChartProps) => {
+
+const ScatterChart = ({ data }: NoKeywordChart) => {
   const [timeFrame] = useAtom(timeFrameAtom);
 
 

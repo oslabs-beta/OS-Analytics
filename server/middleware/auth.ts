@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import createCognitoVerifier from "./verifier";
 import jwt from "jsonwebtoken";
+import { JwtPayload } from "../types";
 
 const verifier = createCognitoVerifier();
 
@@ -12,18 +13,18 @@ console.log(token)
   }
 
   try {
-    let payload:any;
-    const decoded = jwt.decode(token, { complete: true }) as any;
+    let payload: JwtPayload | null = null;
+  const decoded = jwt.decode(token, { complete: true }) as { payload: JwtPayload } | null;
     
     console.log(decoded)
     if (decoded && decoded.payload && decoded.payload.iss && decoded.payload.iss.includes("cognito")) {
       payload = await verifier.verify(token);
     } else {
-      payload = jwt.verify(token, process.env.JWT_SECRET!);
+      payload = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
     }
 console.log(payload)
-    res.locals.userId = payload.sub || payload.user_id;
-    res.locals.email = payload.email;
+    res.locals.userId = payload!.sub || payload!.user_id;
+    res.locals.email = payload!.email;
     next();
   } catch (error) {
     return res.status(401).send("Unauthorized: Invalid token");

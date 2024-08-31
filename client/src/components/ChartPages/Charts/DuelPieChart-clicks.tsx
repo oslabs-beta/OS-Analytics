@@ -9,11 +9,12 @@ import {
 } from "chart.js";
 import styles from '../Charts.module.css';
 import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
+import { PieChartsProps} from "../../../../types"
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 
-const PieCharts = ({ data, keyword, keywordTwo }: any) => {
+const PieCharts = ({ data, keyword, keywordTwo }: PieChartsProps) => {
   const [timeFrame] = useAtom(timeFrameAtom);
 
  

@@ -4,6 +4,7 @@ import {
   activeWebsiteAtom,
   userDataAtom,
   websitesAtom,
+  backendUrl
 } from '../../state/Atoms';
 import { useAtom } from 'jotai';
 import axios from 'axios';
@@ -14,7 +15,7 @@ import TimeFrameDropdown from '../ChartPages/TimeFrameDropdown';
 function Dashboard() {
   const token = localStorage.getItem('token');
   useEffect(() => {
-    axios.get('http://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080/api/data', {
+    axios.get(`${backendUrl}/api/data`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -32,7 +33,7 @@ function Dashboard() {
   const [websites, setWebsites] = useAtom(websitesAtom);
   const [activeWebsite, setActiveWebsite] = useAtom(activeWebsiteAtom);
 
-  function handleWebsiteSelect(e: any) {
+  function handleWebsiteSelect(e: React.ChangeEvent<HTMLSelectElement>) {
     setActiveWebsite(e.target.value);
   }
 

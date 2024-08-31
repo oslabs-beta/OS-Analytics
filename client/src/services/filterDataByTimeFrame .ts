@@ -1,10 +1,11 @@
-export const filterDataByTimeFrame = (data: any[], timeFrame: string) => {
+import { QueryData } from "../../types";
+export const filterDataByTimeFrame = (data: QueryData[], timeFrame: string) => {
     const filteredData = [];
     const now = new Date();
   
     for (let i = 0; i < data.length; i++) {
       const item = data[i];
-      const clickTime = new Date(item.time);
+      const clickTime = new Date(item.time || 0);
   
       switch (timeFrame) {
         case "1 day":

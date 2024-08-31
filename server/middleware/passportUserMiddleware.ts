@@ -2,6 +2,7 @@ import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import { Strategy as GoogleStrategy, Profile } from 'passport-google-oauth20';
 import { pool } from "../models/db";
+import { User } from '../types';
 // import db from '../models/db';
 passport.use(
     new GoogleStrategy(
@@ -16,7 +17,7 @@ passport.use(
         try {
        
           const userQuery = await pool.query('SELECT * FROM "userTable2" WHERE email = $1', [email]);
-          let user:any;
+          let user:User;
           if (userQuery.rows.length === 0) {
          
             const newUser = await pool.query(

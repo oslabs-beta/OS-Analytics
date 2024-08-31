@@ -12,16 +12,18 @@ import { useAtom } from "jotai";
 import { timeFrameAtom } from '../../../state/Atoms';
 import styles from '../Charts.module.css'
 import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
+import { BarChartProps } from "../../../../types"
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const BarChart = ({ data, keyword }: any) => {
+const BarChart = ({ data, keyword }: BarChartProps) => {
   const [timeFrame] = useAtom(timeFrameAtom);
 
   const filteredData = filterDataByTimeFrame(data, timeFrame);
 
   const websiteCounts: { [key: string]: number } = {};
 
-  filteredData.forEach((item: any) => {
+  filteredData.forEach(item => {
     if (websiteCounts[item[keyword]]) {
       websiteCounts[item[keyword]] += 1;
     } else {
