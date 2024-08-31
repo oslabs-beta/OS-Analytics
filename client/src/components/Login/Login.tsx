@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { activeUserAtom} from '../../state/Atoms';
+import { activeUserAtom, backendUrl} from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
 import { Link, useNavigate } from 'react-router-dom';
@@ -43,7 +43,7 @@ export default function Login() {
     e.preventDefault();
     // setloadingAtom(true)
     try{
-    const response = await axios.post ('http://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080/api/auth/login', formData)
+    const response = await axios.post (`${backendUrl}/api/auth/login`, formData)
     console.log(response.data);
     setActiveUser(response.data.email);
     localStorage.setItem('token', response.data.token)
@@ -66,7 +66,7 @@ export default function Login() {
         <h2>Welcome back</h2>
         <div className={styles.oathButtons}>
           <button className={`${styles.loginBtn} ${styles.google}`}
-            onClick = {(() => window.location.href = 'http://localhost:8080/api/google')}>
+            onClick = {(() => window.location.href = `${backendUrl}/api/google`)}>
             Continue with Google
           </button>
           <button className={`${styles.loginBtn} ${styles.github}`}>

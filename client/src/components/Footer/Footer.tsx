@@ -1,7 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
-import mapLogo from '../../assets/map-logo.png'; // Import the map logo
 import styles from './Footer.module.css'; // Import the CSS module
 
 const Footer = () => {

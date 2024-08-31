@@ -4,6 +4,7 @@ import {
   activeWebsiteAtom,
   userDataAtom,
   websitesAtom,
+  backendUrl
 } from '../../state/Atoms';
 import { useAtom } from 'jotai';
 import axios from 'axios';
@@ -14,7 +15,7 @@ import TimeFrameDropdown from '../ChartPages/TimeFrameDropdown';
 function Dashboard() {
   const token = localStorage.getItem('token');
   useEffect(() => {
-    axios.get('/api/data', {
+    axios.get(`${backendUrl}/api/data`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
