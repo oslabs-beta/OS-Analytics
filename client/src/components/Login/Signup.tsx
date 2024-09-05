@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import styles from "./Login.module.css";
-import axios from "axios";
-import { useAtom } from "jotai";
-import { activeUserAtom } from "../../state/Atoms";
-import Navbar from "../Navbar/Navbar";
-import NavMobile from "../Navbar/NavMobile";
+import React, { useState } from 'react';
+import styles from './Login.module.css';
+import axios from 'axios';
+import { useAtom } from 'jotai';
+import { activeUserAtom, backendUrl } from '../../state/Atoms';
+import Navbar from '../Navbar/Navbar';
+import NavMobile from '../Navbar/NavMobile';
 
 export default function Signup() {
   const [, setActiveUser] = useAtom(activeUserAtom);
@@ -23,7 +23,7 @@ export default function Signup() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/auth/signup", formData);
+      const response = await axios.post(`${backendUrl}/api/auth/signup`, formData);
       console.log(response.data);
       setActiveUser(response.data.email);
       localStorage.setItem("token", response.data.token);
@@ -40,11 +40,8 @@ export default function Signup() {
       <div className={styles.login}>
         <h2>Welcome to Activity Tracker</h2>
         <div className={styles.oathButtons}>
-          <button
-            className={`${styles.loginBtn} ${styles.google}`}
-            onClick={() =>
-              (window.location.href = "http://localhost:8080/api/google")
-            }
+          <button className={`${styles.loginBtn} ${styles.google}`}
+        onClick = {(() => window.location.href = `${backendUrl}/api/google`)}
           >
             Continue with Google
           </button>

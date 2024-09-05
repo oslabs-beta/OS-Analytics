@@ -12,7 +12,8 @@ import Websites from './components/Websites/Websites';
 import Documentation from './components/Documentation/Documentation'; 
 import Settings from './components/Settings/Settings'; 
 import Team from './components/Team/Team'
-import FlowPlayground from './components/Playground/FlowPlayground';
+import ForgotPassword from './components/User/ForgotPassword';
+import PlaygroundDisplay from './components/Playground/playgroundDisplay'
 function App() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);  //email of active user || null
 //   const [isLoading, setIsLoading] = useAtom(loadingAtom);
@@ -37,6 +38,7 @@ function App() {
       const user = await handleSession();
       if (user) {
         setActiveUser(user);
+        console.log("hit")
       } else {
       }
     };
@@ -75,7 +77,8 @@ function App() {
         <Route path="/docs" element={<Documentation/>} /> 
         <Route path="/settings" element={activeUser ? <Settings/> : <Navigate to={'/login'} />}/>
         <Route path="/team" element={<Team />} /> 
-        <Route path="/teams" element={<FlowPlayground />} /> 
+        <Route path="/teams" element={activeUser ? <PlaygroundDisplay /> : <Navigate to={'/login'} />} /> 
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       

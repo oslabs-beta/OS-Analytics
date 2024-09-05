@@ -6,7 +6,7 @@ import { useAtom } from 'jotai';
 import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
 import { handleLogout } from '../../services/authConfig';
 import ApiKeyDisplay from '../User/ApiKeyDisplay';
-export default function Navbar() {
+export default function NavbarDashboard() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);
   const [activeNav, setActiveNav] = useAtom(activeNavAtom);
 
@@ -19,18 +19,7 @@ export default function Navbar() {
   return (
     <div className={styles.navbar}>
       <div className={styles.navContainer}>
-        <div className={styles.navLeft}>
-          <Link
-            to="/"
-            onClick={() => {
-              setActiveNav(false);
-            }}
-          >
-            <div className={styles.logoBox}>
-              <img className={styles.navLogo} src={logo} alt="at-logo" />
-              <h3>OS Analytics</h3>
-            </div>
-          </Link>
+        <div className={styles.navLeftDash}>
           {activeUser ? (
             <div className={styles.navLinks}>
               <Link to  = "/dashboard">
@@ -64,12 +53,7 @@ export default function Navbar() {
           {activeUser ? (
             <>
                <ApiKeyDisplay />
-               <span>GitHub</span>
-              <Link to="/dashboard">
-                <button className={`btn-primary btn-animated ${styles.navButton}`}>
-                  Dashboard
-                </button>
-              </Link>
+               <span>{activeUser.split('@')[0].toLowerCase()}</span>
               <Link
                 to="/"
                 onClick={() => {

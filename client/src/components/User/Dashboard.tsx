@@ -1,84 +1,30 @@
-import styles from './UserView.module.css'
-import {
-  activeUserAtom,
-  activeWebsiteAtom,
-  userDataAtom,
-  websitesAtom,
-} from '../../state/Atoms';
-import { useAtom } from 'jotai';
-import axios from 'axios';
-import { useEffect } from 'react';
-import ClickDataVisualization from '../ChartPages/AllUserData';
-import ClickDataVisualizationWebsite from '../ChartPages/WebsiteData';
-import TimeFrameDropdown from '../ChartPages/TimeFrameDropdown';
+import styles from "./UserView.module.css";
+import { activeUserAtom, activeWebsiteAtom } from "../../state/Atoms";
+import { useAtom } from "jotai";
+import ClickDataVisualization from "../ChartPages/AllUserData";
+import ClickDataVisualizationWebsite from "../ChartPages/WebsiteData";
+import TimeFrameDropdown from "../ChartPages/TimeFrameDropdown";
+import SelectWebsiteDropDown from "../ChartPages/SelectWebsiteDropdown";
+import populateAtoms from "../../services/populateAtoms";
 function Dashboard() {
-  const token = localStorage.getItem('token');
-  useEffect(() => {
-    axios.get('/api/data', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then((res) => {
-      setUserData(res.data); 
-      const websiteList: Set<string> = new Set(
-        res.data.map((el: { website_name: string }) => el.website_name)
-      );
-      setWebsites(Array.from(websiteList));
-    });
-  }, []);
-
+  populateAtoms();
   const [activeUser] = useAtom(activeUserAtom);
-  const [, setUserData] = useAtom(userDataAtom);
-  const [websites, setWebsites] = useAtom(websitesAtom);
-  const [activeWebsite, setActiveWebsite] = useAtom(activeWebsiteAtom);
-
-  function handleWebsiteSelect(e: React.ChangeEvent<HTMLSelectElement>) {
-    setActiveWebsite(e.target.value);
-  }
+  const [activeWebsite] = useAtom(activeWebsiteAtom);
 
   return (
-    
     <section className={styles.dashboard}>
-      
       <div className={styles.chartBox}>
-        <h2>{`Welcome back, ${activeUser} ` }</h2>
-        <select
-          onChange={(e) => {
-            handleWebsiteSelect(e);
-          }}
-        >
-          <option value={undefined}>Select website</option>
-          {websites.map((el) => (
-            <option key={el} value={el}>
-              {el}
-            </option>
-          ))}
-        </select>
-        {/* <ul>
-          {websites.map((site) => {
-            const totalClicks = userData.filter(
-              (el: any) => el.website_name === site
-            ).length;
-
-            return (
-              <li>
-                <h4>{`${site}: ${totalClicks}`}</h4>
-              </li>
-            );
-          })}
-        </ul> */}
+        <h2>{`Welcome back, ${activeUser} `}</h2>
+        <SelectWebsiteDropDown />
       </div>
-      <TimeFrameDropdown />
-      <div>
 
-          {activeWebsite === 'Select website' ? (
+      <div>
+        {activeWebsite === "All Websites" ? (
           <ClickDataVisualization />
         ) : (
           <ClickDataVisualizationWebsite />
         )}
-        </div>
-        
-
+      </div>
     </section>
   );
 }

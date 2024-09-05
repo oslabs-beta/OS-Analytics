@@ -3,6 +3,8 @@ import {
   CognitoIdentityProviderClient,
   SignUpCommand,
   InitiateAuthCommand,
+  ForgotPasswordCommand,
+  ConfirmForgotPasswordCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 import * as crypto from "crypto";
 import createCognitoVerifier from "../middleware/verifier";
@@ -23,6 +25,60 @@ const computeSecretHash = (
 };
 
 const userController = {
+  async forgotPassword(req: Request, res: Response, next: NextFunction) {
+    const { email }: { email: string } = req.body;
+    try {
+      const secretHash = computeSecretHash(
+        COGNITO_CLIENT_ID!,
+        COGNITO_CLIENT_SECRET!,
+        email
+      );
+
+      const command = new ForgotPasswordCommand({
+        ClientId: COGNITO_CLIENT_ID!,
+        Username: email,
+        SecretHash: secretHash,
+      });
+
+      await client.send(command);
+      res.status(200).json({ message: "Password reset code sent to your email." });
+    } catch (err) {
+      const error = err as Error;
+      return next({
+        message: "Error in forgotPassword: " + error.message,
+        log: err,
+      });
+    }
+  },
+
+  // Confirm forgot password functionality
+  async confirmPassword(req: Request, res: Response, next: NextFunction) {
+    const { email, code, newPassword }: { email: string; code: string; newPassword: string } = req.body;
+    try {
+      const secretHash = computeSecretHash(
+        COGNITO_CLIENT_ID!,
+        COGNITO_CLIENT_SECRET!,
+        email
+      );
+
+      const command = new ConfirmForgotPasswordCommand({
+        ClientId: COGNITO_CLIENT_ID!,
+        Username: email,
+        ConfirmationCode: code,
+        Password: newPassword,
+        SecretHash: secretHash,
+      });
+
+      await client.send(command);
+      res.status(200).json({ message: "Password reset successful." });
+    } catch (err) {
+      const error = err as Error;
+      return next({
+        message: "Error in confirmPassword: " + error.message,
+        log: err,
+      });
+    }
+  },
   async signup(req: Request, res: Response, next: NextFunction) {
     const { email, password }: { email: string; password: string } = req.body;
     //command to signup and login right after

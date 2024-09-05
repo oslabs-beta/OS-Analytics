@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { activeUserAtom} from '../../state/Atoms';
+import { activeUserAtom, backendUrl} from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
 import { Link } from 'react-router-dom';
-
 
 
 export default function Login() {
@@ -30,7 +29,7 @@ export default function Login() {
     e.preventDefault();
     setLoading(true)
     try{
-    const response = await axios.post ('/api/auth/login', formData)
+    const response = await axios.post (`${backendUrl}/api/auth/login`, formData)
     console.log(response.data);
     setActiveUser(response.data.email);
     }
@@ -57,7 +56,7 @@ export default function Login() {
         <h2>Welcome back</h2>
         <div className={styles.oathButtons}>
           <button className={`${styles.loginBtn} ${styles.google}`}
-            onClick = {(() => window.location.href = 'http://localhost:8080/api/google')}>
+            onClick = {(() => window.location.href = `${backendUrl}/api/google`)}>
             Continue with Google
           </button>
           <button className={`${styles.loginBtn} ${styles.github}`}>
@@ -99,6 +98,7 @@ export default function Login() {
             Sign up now
           </Link></p>
         </div>
+        <Link to="/forgot-password">Forgot Password?</Link>
       </div>
     </>
   );

@@ -1,4 +1,5 @@
 import axios from "axios";
+import {backendUrl} from '../state/Atoms';
  
 export const handleLogout = async () => {
       localStorage.removeItem('token');
@@ -8,7 +9,7 @@ export const handleLogout = async () => {
 export const handleSession = async () => {
   const token = localStorage.getItem('token');
   try {
-    const response = await axios.get("/api/auth/activeUser", {
+    const response = await axios.get(`${backendUrl}/api/auth/activeUser`, {
       headers: {
          Authorization: `Bearer ${token}`
       }
@@ -20,6 +21,7 @@ export const handleSession = async () => {
       return "";
     }
   } catch (err) {
+    localStorage.removeItem('token');
     console.log("hit");
     return "";
   }
