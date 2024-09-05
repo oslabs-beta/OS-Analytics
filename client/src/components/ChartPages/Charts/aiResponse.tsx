@@ -1,13 +1,21 @@
-import { useState, useEffect } from "react";
-import { Button, CircularProgress, Box, List, ListItem, ListItemText } from "@mui/material";
-import { timeFrameAtom, activeWebsiteAtom } from "../../../state/Atoms";
-import { useAtom } from "jotai";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import {
+  Button,
+  CircularProgress,
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+} from '@mui/material';
+import { timeFrameAtom, activeWebsiteAtom } from '../../../state/Atoms';
+import { useAtom } from 'jotai';
+import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { backendUrl } from "../../../state/Atoms";
 
 const AiResponseComponent = () => {
   const [loading, setLoading] = useState(false);
+  const [aiResponse, setAiResponse] = useState<boolean>(false)
   const [response, setResponse] = useState<string[]>([]);
   const [displayedText, setDisplayedText] = useState<string[]>([]);
   const [timeFrame] = useAtom(timeFrameAtom);
@@ -25,13 +33,16 @@ const AiResponseComponent = () => {
       setDisplayedText([]);
 
       const typewriter = () => {
-        if (lineIndex < response.length && charIndex <= response[lineIndex].length) {
+        if (
+          lineIndex < response.length &&
+          charIndex <= response[lineIndex].length
+        ) {
           setDisplayedText((prev) => {
             const updatedText = [...prev];
             if (!updatedText[lineIndex]) {
-              updatedText[lineIndex] = "";
+              updatedText[lineIndex] = '';
             }
-            updatedText[lineIndex] += response[lineIndex]?.[charIndex] || "";
+            updatedText[lineIndex] += response[lineIndex]?.[charIndex] || '';
             return updatedText;
           });
 
@@ -53,7 +64,7 @@ const AiResponseComponent = () => {
   }, [response]);
 
   const handleButtonClick = async () => {
-    console.log(timeFrame, website);
+    // console.log(timeFrame, website);
     setDisplayedText([]);
     setLoading(true);
     try {
@@ -66,71 +77,80 @@ const AiResponseComponent = () => {
           },
         }
       );
-      console.log(result)
-      setResponse(result.data.results[0].outputText.split("\n"));
+      setResponse(result.data.results[0].outputText.split('\n'));
     } catch (error) {
       setResponse(["Please have visable chart data then try again"]);
     }
     setLoading(false);
+    setAiResponse(true);
   };
 
   return (
     <ThemeProvider theme={theme}>
-    <Box
-      sx={{
-        backgroundColor: "rgba(255, 255, 255, 0.044)",
-        color: "#bfbfbf", 
-        padding: "20px",
-        borderRadius: "8px",
-        width: "900px",
-        height: "600px", 
-        overflowY: "auto",
-        marginBottom: "100px", 
-      }}
-    >
-      <Button
-        variant="contained"
-        onClick={handleButtonClick}
-        disabled={loading}
+      <Box
         sx={{
-          textTransform: "none",
-          fontSize: "16px",
-          padding: "10px 20px",
-          width: "200px", 
-          height: "50px",
-          display: "flex",
-          borderRadius: "8px",
-          backgroundColor: "#E0E0E0", 
-          color: "#333333", 
-          '&:hover': {
-            backgroundColor: "#D5D5D5", 
-          },
-          fontFamily: "'Roboto Mono', monospace",
+          backgroundColor: 'rgba(255, 255, 255, 0.044)',
+          color: '#bfbfbf',
+          padding: '20px',
+          width: '700px',
+          aspectRatio: '7/5',
+          overflowY: 'auto',
+          maxWidth: '92vw',
+          border: '1px solid var(--gray-border)',
+          borderRadius: '8px',
         }}
       >
-        {loading ? (
-          <CircularProgress size={24} color="inherit" />
-        ) : (
-          "Get AI Response"
-        )}
-      </Button>
+        <Button
+          id="ai"
+          variant="contained"
+          onClick={handleButtonClick}
+          disabled={loading}
+          style={
+            loading
+              ? { backgroundColor: 'var(--green-secondary' }
+              : { backgroundColor: `${aiResponse ? 'var(--orange-primary' : 'var(--green-secondary)'}` }
+          }
+          sx={{
+            textTransform: 'none',
+            fontSize: '16px',
+            padding: '1rem 2rem',
+            width: '100%',
+            height: '3.2rem',
+            display: 'flex',
+            borderRadius: '8px',
+            // backgroundColor: "#E0E0E0",
+            // color: "#333333",
+            color: 'var(--white)',
+            '&:hover': {
+              // backgroundColor: "#D5D5D5",
+              backgroundColor: 'var(--orange-primary)',
+            },
+            fontFamily: "'Roboto Mono', monospace",
+          }}
+        >
+          {loading ? (
+            <CircularProgress size={24} color="inherit" />
+          ) : (
+            `${aiResponse? 'AI Response' : 'Get AI Response'}`
+          )}
+        </Button>
 
-      <List sx={{ mt: 3 }}>
-        {displayedText.map((item, index) => (
-          <ListItem key={index} sx={{ padding: 0 }}>
-            <ListItemText
-              primary={item}
-              sx={{
-                padding: "5px 0",
-                margin: 0,
-                fontFamily: "'Roboto Mono', monospace !important", 
-                color: "#bfbfbf", 
-              }}
-            />
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+        <List sx={{ mt: 3 }}>
+          {displayedText.map((item, index) => (
+            <ListItem key={index} sx={{ padding: 0 }}>
+              <ListItemText
+                primary={item}
+                sx={{
+                  padding: '5px 0',
+                  margin: 0,
+                  fontFamily: "'Roboto Mono', monospace !important",
+                  color: '#bfbfbf',
+                }}
+              />
+            </ListItem>
+          ))}
+        </List>
+      </Box>
     </ThemeProvider>
   );
 };

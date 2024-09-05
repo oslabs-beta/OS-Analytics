@@ -17,7 +17,7 @@ function Dashboard() {
         <h2>{`Welcome back, ${activeUser} `}</h2>
         <SelectWebsiteDropDown />
       </div>
-      <TimeFrameDropdown />
+
       <div>
         {activeWebsite === "All Websites" ? (
           <ClickDataVisualization />
