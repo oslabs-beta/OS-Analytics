@@ -1,32 +1,58 @@
 export type BarChartProps = {
-    data: QueryData[];
-    keyword: string;
-  };
-  
-  export type NoKeywordChart = {
-    data: QueryData[];
-  };
-  
-  export type WebsiteCounts = {
-    data: QueryData[];
-  };
-  
-  export type PieChartsProps = {
-    data: QueryData[];
-    keyword: string;
-    keywordTwo: string;
-  };
-  
-  export type QueryData = {
-    element: string;
+  data: QueryData[];
+  keyword: string;
+};
+
+export type NoKeywordChart = {
+  data: QueryData[];
+};
+
+export type WebsiteCounts = {
+  data: QueryData[];
+};
+
+export type PieChartsProps = {
+  data: QueryData[];
+  keyword: string;
+  keywordTwo: string;
+};
+
+export type QueryData = {
+  element: string;
+  dataset_id: string;
+  time?: string;
+  x_coord: number;
+  y_coord: number;
+  user_browser: string;
+  page_url: string;
+  created_at?: string;
+  website_name?: string;
+  [key: string]: any; //this could be anything its a keyword that the userdefines
+};
+export type DrawerFrequencyProps = {
+  onSelectView: (view: string) => void;
+  onSelectWebsite: (website: string) => void;
+  onSelectPage: (page: string) => void;
+};
+
+export type FrequencyProps = {
+  selectedWebsite: string;
+  selectedPage: string;
+};
+
+export type AggregatedData = {
+    [key: string]: {
+        dataset_id: string;
+        x_coord: number ;
+        y_coord: number;
+        count: number;
+      };
+  }
+
+  export type InteractionData = {
     dataset_id: string;
-    time?: string;
-    x_coord: number;
-    y_coord: number;
-    user_browser: string;
+    website_name: string;
     page_url: string;
-    created_at?: string;
-    website_name?: string; 
-    [key: string]: any; //this could be anything its a keyword that the userdefines
-  };
-  
+    x_coord: string;
+    y_coord: string;
+  }

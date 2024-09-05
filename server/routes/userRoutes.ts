@@ -42,4 +42,6 @@ router.post(
   (req: Request, res: Response) => {}
 );
 
+router.post('/forgot-password', userController.forgotPassword);
+router.post('/confirm-password', userController.confirmPassword);
 export default router;
