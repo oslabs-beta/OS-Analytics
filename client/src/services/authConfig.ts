@@ -21,6 +21,7 @@ export const handleSession = async () => {
       return "";
     }
   } catch (err) {
+    localStorage.removeItem('token');
     console.log("hit");
     return "";
   }

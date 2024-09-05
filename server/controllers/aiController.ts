@@ -4,7 +4,7 @@ const {
   BedrockRuntimeClient,
   InvokeModelCommand,
 } = require("@aws-sdk/client-bedrock-runtime");
-import { ClickData,OpenAIResponse } from "../types";
+import { ClickData, OpenAIResponse } from "../types";
 
 const client = new BedrockRuntimeClient({
   region: "us-east-1",
@@ -13,40 +13,39 @@ const client = new BedrockRuntimeClient({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
   },
 });
+
 const aiController = {
   async getDataBedrock(req: Request, res: Response, next: NextFunction) {
     const id = res.locals.userId;
     let { website, timeFrame } = req.body;
-    if (website == "Select website") {
+    if (website == "All Websites") {
       website = "";
     }
-    console.log(website);
-    console.log(timeFrame);
     let query: string,
       queryParams: Array<string | number> = [id];
-
+  
     if (website) {
       query = `
-         SELECT 
-      "page_url",
-      COUNT(*) AS total_clicks,
-      AVG(CAST("x_coord" AS INTEGER)) AS avg_x_coord,
-      AVG(CAST("y_coord" AS INTEGER)) AS avg_y_coord
-    FROM 
-      "clickTable2"
-    WHERE
-      "user_id" = $1
-      AND "website_name" = $2
-      ${
-        timeFrame !== "allTime"
-          ? `AND "created_at" >= NOW() - INTERVAL '${timeFrame}'`
-          : ""
-      }
-    GROUP BY 
-      "page_url"
-    ORDER BY 
-      "page_url";
-  `;
+        SELECT 
+          "page_url",
+          COUNT(*) AS total_clicks,
+          AVG(CAST("x_coord" AS INTEGER)) AS avg_x_coord,
+          AVG(CAST("y_coord" AS INTEGER)) AS avg_y_coord
+        FROM 
+          "clickTable2"
+        WHERE
+          "user_id" = $1
+          AND "website_name" = $2
+          ${
+            timeFrame !== "allTime"
+              ? `AND "created_at" >= NOW() - INTERVAL '${timeFrame}'`
+              : ""
+          }
+        GROUP BY 
+          "page_url"
+        ORDER BY 
+          "page_url";
+      `;
       queryParams.push(website);
     } else {
       query = `
@@ -68,10 +67,14 @@ const aiController = {
           total_clicks DESC;
       `;
     }
-
+  
     try {
       const response = await pool.query(query, queryParams);
-
+      if (response.rows.length === 0) {
+        console.log("hit")
+        return res.json("Please gather some data before generating an AI response");
+      }
+  
       const relevantData = response.rows.map((row: ClickData) => {
         if (website) {
           return {
@@ -87,10 +90,9 @@ const aiController = {
           };
         }
       });
-
-      console.log(relevantData);
+  
       let promptText = "";
-
+  
       if (website) {
         promptText = `
           Here is the summarized data of user interactions with the website:
@@ -99,7 +101,6 @@ const aiController = {
           Please provide an overall report and summary of this data.
           Also, analyze the x and y coordinates to summarize where the majority of user interactions occurred on the screen based on screen size.
           Please keep this in numbered list format.
-          Generate a pdf report link right after
           `;
       } else {
         promptText = `
@@ -109,7 +110,7 @@ const aiController = {
           Please keep this in numbered list format.
         `;
       }
-
+  
       const requestBody = JSON.stringify({
         inputText: JSON.stringify(relevantData) + promptText,
         textGenerationConfig: {
@@ -122,7 +123,7 @@ const aiController = {
         accept: "application/json",
         body: requestBody,
       };
-
+  
       const command = new InvokeModelCommand(params);
       const summarized = await client.send(command);
       const result = JSON.parse(Buffer.from(summarized.body).toString("utf-8"));
@@ -135,7 +136,7 @@ const aiController = {
       });
     }
   },
-//not yet finished
+  //not yet finished
   async getDataOpenai(req: Request, res: Response, next: NextFunction) {
     //connect and grab data from open ai
     const id = res.locals.userId;
@@ -225,7 +226,8 @@ const aiController = {
               {
                 role: "user",
                 content:
-                JSON.stringify(relevantData) + "based on this data just generate a pdf file report, use some graphs and create a actual report",
+                  JSON.stringify(relevantData) +
+                  "based on this data just generate a pdf file report, use some graphs and create a actual report",
               },
             ],
           }),
@@ -236,7 +238,7 @@ const aiController = {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
 
-      const data = await response.json() as OpenAIResponse;
+      const data = (await response.json()) as OpenAIResponse;
       console.log("OpenAI API response:", data);
 
       if (data.choices && data.choices.length > 0) {
