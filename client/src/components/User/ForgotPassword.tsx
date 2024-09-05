@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { backendUrl } from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
+import { TextField, Button, Box, Typography } from '@mui/material';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ export default function ForgotPassword() {
     try {
       await axios.post(`${backendUrl}/api/auth/forgot-password`, { email });
       alert('Password reset code sent to your email.');
-      setStep(2); 
+      setStep(2);
     } catch (err: unknown) {
       const error = err as Error;
       console.error(error.message);
@@ -38,92 +39,61 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-        <Navbar />
-      <h2>Forgot Password</h2>
+    <Box sx={{ textAlign: 'center', padding: '20px' }}>
+      <Navbar />
+      <Typography variant="h4" gutterBottom>
+        Forgot Password
+      </Typography>
       {step === 1 ? (
-        <div>
-          <input
+        <Box>
+          <TextField
             type="email"
-            placeholder="Enter your email"
+            label="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            style={{
-              margin: '10px 0',
-              padding: '10px',
-              width: '80%',
-              maxWidth: '300px',
-              borderRadius: '5px',
-              border: '1px solid #ccc',
-              fontSize: '16px',
-            }}
+            fullWidth
+            sx={{ marginBottom: '16px', maxWidth: '300px' }}
           />
-          <button
+          <Button
+            variant="contained"
+            color="primary"
             onClick={handleForgotPassword}
-            style={{
-              padding: '10px 20px',
-              backgroundColor: '#007BFF',
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              fontSize: '16px',
-            }}
+            sx={{ padding: '10px 20px', fontSize: '16px' }}
           >
             Send Reset Code
-          </button>
-        </div>
+          </Button>
+        </Box>
       ) : (
-        <div>
-          <input
+        <Box>
+          <TextField
             type="text"
-            placeholder="Enter the code you received"
+            label="Enter the code you received"
             value={code}
             onChange={(e) => setCode(e.target.value)}
             required
-            style={{
-              margin: '10px 0',
-              padding: '10px',
-              width: '80%',
-              maxWidth: '300px',
-              borderRadius: '5px',
-              border: '1px solid #ccc',
-              fontSize: '16px',
-            }}
+            fullWidth
+            sx={{ marginBottom: '16px', maxWidth: '300px' }}
           />
-          <input
+          <TextField
             type="password"
-            placeholder="Enter new password"
+            label="Enter new password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
             required
-            style={{
-              margin: '10px 0',
-              padding: '10px',
-              width: '80%',
-              maxWidth: '300px',
-              borderRadius: '5px',
-              border: '1px solid #ccc',
-              fontSize: '16px',
-            }}
+            fullWidth
+            sx={{ marginBottom: '16px', maxWidth: '300px' }}
           />
-          <button
+          <Button
+            variant="contained"
+            color="success"
             onClick={handleConfirmPassword}
-            style={{
-              padding: '10px 20px',
-              backgroundColor: '#28A745',
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              fontSize: '16px',
-            }}
+            sx={{ padding: '10px 20px', fontSize: '16px' }}
           >
             Reset Password
-          </button>
-        </div>
+          </Button>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }
