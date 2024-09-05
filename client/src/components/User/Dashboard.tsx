@@ -41,35 +41,22 @@ function Dashboard() {
     
     <section className={styles.dashboard}>
       
-      <div className={styles.chartBox}>
-        <h2>{`Welcome back, ${activeUser} ` }</h2>
-        <select
+      <div className={styles.dashboardHeader}>
+        {/* <select className="dropdown"
           onChange={(e) => {
             handleWebsiteSelect(e);
           }}
         >
-          <option value={undefined}>Select website</option>
+          <option value={undefined}>Data Across All Websites</option>
           {websites.map((el) => (
             <option key={el} value={el}>
               {el}
             </option>
           ))}
-        </select>
-        {/* <ul>
-          {websites.map((site) => {
-            const totalClicks = userData.filter(
-              (el: any) => el.website_name === site
-            ).length;
-
-            return (
-              <li>
-                <h4>{`${site}: ${totalClicks}`}</h4>
-              </li>
-            );
-          })}
-        </ul> */}
+        </select> */}
+        <TimeFrameDropdown />
       </div>
-      <TimeFrameDropdown />
+
       <div>
 
           {activeWebsite === 'Select website' ? (

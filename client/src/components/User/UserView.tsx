@@ -1,4 +1,4 @@
-import Navbar from "../Navbar/Navbar"
+import NavbarDashboard from "../Navbar/NavbarDashboard"
 import NavMobile from "../Navbar/NavMobile"
 import Dashboard from "./Dashboard"
 import Sidebar from "./Sidebar"
@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar"
 function UserView(){
     return (
         <div className="viewWithSide">
-            <Navbar />
+            <NavbarDashboard />
             <NavMobile />
             <Sidebar/>
             <Dashboard />
