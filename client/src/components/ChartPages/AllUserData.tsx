@@ -2,6 +2,7 @@ import ClickGraph from "./Charts/LineGraph-clicks";
 import DuelPieGraphs from "./Charts/DuelPieChart-clicks";
 import BarGraph from "./Charts/BarGraph-clicks";
 import AiResponseComponent from "./Charts/aiResponse";
+import Heatmap from "./Charts/Heatmap.jsx"
 import { userDataAtom } from "../../state/Atoms";
 import { useAtom } from "jotai";
 import styles from "./Charts.module.css";
@@ -23,8 +24,8 @@ import { mapUserData } from '../../services/extractData';  <------ map hook to p
 
 */
 const ClickDataVisualization = () => {
-  const [userData] = useAtom(userDataAtom);
-  const mappedData = mapUserData(userData);
+  const [userData] = useAtom(userDataAtom); // grab user data
+  const mappedData = mapUserData(userData); // grab relevant fields from user data, for each graph
 
   return (
     <div className={styles.chartDisplay}>
@@ -36,6 +37,7 @@ const ClickDataVisualization = () => {
       />
       <BarGraph data={mappedData} keyword={"website"} />
       <AiResponseComponent />
+      <Heatmap/>
     </div>
   );
 };

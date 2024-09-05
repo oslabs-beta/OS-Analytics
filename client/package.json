@@ -17,6 +17,7 @@
     "@xyflow/react": "^12.1.1",
     "axios": "^1.7.4",
     "chart.js": "^4.4.4",
+    "heatmap.js": "https://github.com/ionata/heatmap.js.git",
     "jotai": "^2.9.3",
     "passport-google-oauth": "^2.0.0",
     "react": "^18.3.1",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "@types/d3": "^7.4.3",
+    "@types/heatmap.js": "^2.0.41",
     "@types/react": "^18.3.3",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^18.3.0",

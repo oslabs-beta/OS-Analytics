@@ -2,6 +2,10 @@ export type BarChartProps = {
     data: QueryData[];
     keyword: string;
   };
+
+  export type HeatmapProps = {
+    data: QueryData[];
+  };
   
   export type NoKeywordChart = {
     data: QueryData[];
