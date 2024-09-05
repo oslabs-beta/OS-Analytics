@@ -8,7 +8,6 @@ import NavMobile from '../Navbar/NavMobile';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-
 export default function Login() {
 
   const [, setActiveUser] = useAtom(activeUserAtom)
@@ -109,6 +108,7 @@ export default function Login() {
             Sign up now
           </Link></p>
         </div>
+        <Link to="/forgot-password">Forgot Password?</Link>
       </div>
     </div>
   );

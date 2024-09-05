@@ -1,7 +1,6 @@
 import ClickGraph from "./Charts/LineGraph-clicks";
 import DuelPieGraphs from "./Charts/DuelPieChart-clicks";
 import BarGraph from "./Charts/BarGraph-clicks";
-import TimeFrameDropdown from "./TimeFrameDropdown";
 import AiResponseComponent from "./Charts/aiResponse";
 import { websiteDataAtom } from "../../state/Atoms";
 import ScatterChart from "./Charts/ScatterChart-clicks";
@@ -16,7 +15,6 @@ const ClickDataVisualization = () => {
   //console.log(allDataResponse);
   return (
     <div className={styles.chartDisplay}>
-      <TimeFrameDropdown />
       <BarGraph data={allDataResponse} keyword={"page_url"} />
       <ScatterChart data={allDataResponse} />
       <ClickGraph data={allDataResponse} />

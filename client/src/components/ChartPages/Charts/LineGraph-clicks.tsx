@@ -15,8 +15,9 @@ import {
   Filler,
 } from 'chart.js';
 
-import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
-import { NoKeywordChart } from "../../../../types"
+import { filterDataByTimeFrame } from '../../../services/filterDataByTimeFrame ';
+import { NoKeywordChart } from "../../../../types";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,24 +28,39 @@ ChartJS.register(
   Legend,
   Filler
 );
- 
 
 const ClickGraph = ({ data }: NoKeywordChart) => {
   const [timeFrame] = useAtom(timeFrameAtom);
 
   const filteredData = filterDataByTimeFrame(data, timeFrame);
 
-  const aggregatedData: { [array: string]: number } = {};
+  const aggregatedData: { [key: string]: number } = {};
 
   for (let i = 0; i < filteredData.length; i++) {
     const curr = filteredData[i];
-    const clickTime = new Date(curr.time || 0); 
+    const clickTime = new Date(curr.time || 0);
 
-    let timeKey;
-    if (timeFrame === '24hours') {
-      timeKey = clickTime.getHours();
-    } else {
-      timeKey = clickTime.getDate();
+    let timeKey = '';
+
+    switch (timeFrame) {
+      case '1 day':
+        timeKey = `${clickTime.getHours()}:00`;
+        break;
+      case '1 month':
+        timeKey = `Day ${clickTime.getDate()}`;
+        break;
+      case '1 year':
+        timeKey = `${clickTime.getMonth() + 1}/${clickTime.getFullYear()}`;
+        break;
+      case '5 years':
+        timeKey = `${clickTime.getFullYear()}`;
+        break;
+      case 'allTime':
+        timeKey = `${clickTime.getMonth() + 1}/${clickTime.getFullYear()}`;
+        break;
+      default:
+        timeKey = clickTime.toISOString();
+        break;
     }
 
     if (aggregatedData[timeKey]) {
@@ -55,14 +71,10 @@ const ClickGraph = ({ data }: NoKeywordChart) => {
   }
 
   const chartData = {
-    labels: Object.keys(aggregatedData).map((key) =>
-      timeFrame === '24hours' ? `${key}:00` : `Day ${key}`
-    ),
+    labels: Object.keys(aggregatedData),
     datasets: [
       {
-        label: `Clicks in the last ${
-          timeFrame === '24hours' ? '24 hours' : 'month'
-        }`,
+        label: `Clicks over the selected timeframe`,
         data: Object.values(aggregatedData),
         fill: true,
         backgroundColor: 'rgba(75,192,192,0.4)',

@@ -4,6 +4,7 @@ import { timeFrameAtom, activeWebsiteAtom } from "../../../state/Atoms";
 import { useAtom } from "jotai";
 import axios from "axios";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { backendUrl } from "../../../state/Atoms";
 
 const AiResponseComponent = () => {
   const [loading, setLoading] = useState(false);
@@ -57,7 +58,7 @@ const AiResponseComponent = () => {
     setLoading(true);
     try {
       const result = await axios.post(
-        'http://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080/api/ai/bedrock',
+        `${backendUrl}/api/ai/bedrock`,
         { timeFrame, website },
         {
           headers: {
@@ -65,9 +66,10 @@ const AiResponseComponent = () => {
           },
         }
       );
+      console.log(result)
       setResponse(result.data.results[0].outputText.split("\n"));
     } catch (error) {
-      setResponse(["Error fetching AI response"]);
+      setResponse(["Please have visable chart data then try again"]);
     }
     setLoading(false);
   };
