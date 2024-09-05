@@ -17,6 +17,9 @@
     "@xyflow/react": "^12.1.1",
     "axios": "^1.7.4",
     "chart.js": "^4.4.4",
+    "dagre": "^0.8.5",
+    "framer-motion": "^11.3.31",
+    "html-to-image": "^1.11.11",
     "heatmap.js": "https://github.com/ionata/heatmap.js.git",
     "jotai": "^2.9.3",
     "passport-google-oauth": "^2.0.0",
@@ -25,11 +28,13 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.3.1",
     "react-flow-renderer": "^10.3.17",
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.1",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "@types/d3": "^7.4.3",
+    "@types/dagre": "^0.7.52",
     "@types/heatmap.js": "^2.0.41",
     "@types/react": "^18.3.3",
     "@types/react-copy-to-clipboard": "^5.0.7",

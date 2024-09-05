@@ -14,7 +14,7 @@ export const loadingAtom = atom<boolean>(false);
 // User's Click Data
 export const userDataAtom = atom<QueryData[]>([]);
 export const websitesAtom = atom<string[]>([])
-export const activeWebsiteAtom = atom<string>('Select website');
+export const activeWebsiteAtom = atom<string>('All Websites');
 
 export const websiteDataAtom = atom((get) => {
   //references the active website atom

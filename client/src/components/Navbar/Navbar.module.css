@@ -26,6 +26,13 @@
   gap: 2rem;
 }
 
+.navLeftDash {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: 5rem;
+}
+
 .navLogo {
   height: 50px;
 }
@@ -101,7 +108,7 @@
     /* background: red; */
   }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 1000px) {
   .navLinks {
     display: none;
   }
