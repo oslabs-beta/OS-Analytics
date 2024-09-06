@@ -16,6 +16,7 @@ function Dashboard() {
       <div className={styles.chartBox}>
         <h2>{`Welcome back, ${activeUser} `}</h2>
         <SelectWebsiteDropDown />
+        <TimeFrameDropdown/>
       </div>
 
       <div>

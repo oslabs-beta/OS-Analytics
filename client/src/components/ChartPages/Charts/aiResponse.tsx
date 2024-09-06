@@ -11,7 +11,6 @@ import { timeFrameAtom, activeWebsiteAtom, backendUrl } from '../../../state/Ato
 import { useAtom } from 'jotai';
 import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { backendUrl } from "../../../state/Atoms";
 
 const AiResponseComponent = () => {
   const [loading, setLoading] = useState(false);
@@ -64,7 +63,6 @@ const AiResponseComponent = () => {
   }, [response]);
 
   const handleButtonClick = async () => {
-    // console.log(timeFrame, website);
     setDisplayedText([]);
     setLoading(true);
     try {

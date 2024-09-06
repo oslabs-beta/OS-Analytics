@@ -7,12 +7,13 @@ import ScatterChart from "./Charts/ScatterChart-clicks";
 import styles from "./Charts.module.css";
 import { useAtom } from "jotai";
 import { mapUserData } from "../../services/extractData";
+import Heatmap from "./Charts/Heatmap"
 
 const ClickDataVisualization = () => {
   const [websiteData] = useAtom(websiteDataAtom);
   const allDataResponse = mapUserData(websiteData);
 
-  //console.log(allDataResponse);
+  // console.log(allDataResponse);
   return (
     <div className={styles.chartDisplay}>
       <BarGraph data={allDataResponse} keyword={"page_url"} />
@@ -25,6 +26,7 @@ const ClickDataVisualization = () => {
       />
 
       <AiResponseComponent />
+      <Heatmap data={allDataResponse} />
     </div>
   );
 };

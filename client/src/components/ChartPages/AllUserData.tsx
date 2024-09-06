@@ -2,7 +2,7 @@ import ClickGraph from "./Charts/LineGraph-clicks";
 import DuelPieGraphs from "./Charts/DuelPieChart-clicks";
 import BarGraph from "./Charts/BarGraph-clicks";
 import AiResponseComponent from "./Charts/aiResponse";
-import Heatmap from "./Charts/Heatmap.jsx"
+import Heatmap from "./Charts/Heatmap"
 import { userDataAtom } from "../../state/Atoms";
 import { useAtom } from "jotai";
 import styles from "./Charts.module.css";
@@ -37,7 +37,7 @@ const ClickDataVisualization = () => {
       />
       <BarGraph data={mappedData} keyword={"website"} />
       <AiResponseComponent />
-      <Heatmap/>
+      <Heatmap data={mappedData}/>
     </div>
   );
 };
