@@ -1,0 +1,8 @@
+.barContainer {
+    height: 400px;
+    aspect-ratio: 1/1;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    background: gray;
+    z-index: 100;
+}

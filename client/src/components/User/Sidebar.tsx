@@ -1,5 +1,6 @@
 import styles from './UserView.module.css';
-import logo from '../../assets/map-logo.png';
+import logo from '../../assets/icons/pie-chart.png';
+import chart from '../../assets/icons/chart.png'
 import { Link, NavLink } from 'react-router-dom';
 
 function Sidebar() {
@@ -14,14 +15,14 @@ function Sidebar() {
 
       <div className={styles.sidebarLinks}>
         <NavLink to="/dashboard" className={styles.sidebarLink}>
-          <img className={styles.sideIcon} src={logo} alt="AT.io" />
+          <img className={styles.sideIcon} src={chart} alt="AT.io" />
           <span className={styles.sidebarSpan}>Dashboard</span>
         </NavLink>
         <NavLink to="/documentation" className={`${styles.sidebarLink}`}>
-          <img className={styles.sideIcon} src={logo} alt="AT.io" />
+          <img className={styles.sideIcon} src={chart} alt="AT.io" />
         </NavLink>
         <NavLink to="/settings" className={`${styles.sidebarLink}`}>
-          <img className={styles.sideIcon} src={logo} alt="AT.io" />
+          <img className={styles.sideIcon} src={chart} alt="AT.io" />
         </NavLink>
       </div>
     </div>

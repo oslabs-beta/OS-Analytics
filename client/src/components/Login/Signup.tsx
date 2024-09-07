@@ -9,9 +9,9 @@ import NavMobile from '../Navbar/NavMobile';
 export default function Signup() {
   const [, setActiveUser] = useAtom(activeUserAtom);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({
@@ -23,10 +23,13 @@ export default function Signup() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      const response = await axios.post(`${backendUrl}/api/auth/signup`, formData);
+      const response = await axios.post(
+        `${backendUrl}/api/auth/signup`,
+        formData
+      );
       console.log(response.data);
       setActiveUser(response.data.email);
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem('token', response.data.token);
     } catch (err: unknown) {
       const error = err as Error;
       console.log(error.message);
@@ -37,60 +40,66 @@ export default function Signup() {
     <div className="viewNoSide">
       <Navbar />
       <NavMobile />
-      <div className={styles.login}>
-        <h2>Welcome to Activity Tracker</h2>
-        <div className={styles.oathButtons}>
-          <button className={`${styles.loginBtn} ${styles.google}`}
-        onClick = {(() => window.location.href = `${backendUrl}/api/google`)}
+      <section className={styles.loginPage}>
+        <div className={styles.login}>
+          <h2>Create Account</h2>
+          <div className={styles.oathButtons}>
+            <button
+              className={`${styles.loginBtn} ${styles.google}`}
+              onClick={() =>
+                (window.location.href = `${backendUrl}/api/google`)
+              }
+            >
+              Continue with Google
+            </button>
+            <button className={`${styles.loginBtn} ${styles.github}`}>
+              Continue with GitHub
+            </button>
+          </div>
+          <form
+            onSubmit={(e) => handleSubmit(e)}
+            className={styles.loginCredentials}
           >
-            Continue with Google
-          </button>
-          <button className={`${styles.loginBtn} ${styles.github}`}>
-            Continue with GitHub
-          </button>
+            <input
+              type="email"
+              placeholder="email"
+              name="email"
+              value={formData.email}
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              required
+            ></input>
+            <input
+              type="password"
+              minLength={6}
+              placeholder="password"
+              value={formData.password}
+              name="password"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              required
+            ></input>
+            <input
+              type="password"
+              minLength={6}
+              placeholder="confirm password"
+              value={formData.confirmPassword}
+              name="confirmPassword"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              required
+            ></input>
+            <button type="submit" className={`btn-primary`}>
+              Create account
+            </button>
+          </form>
+          <div className={styles.createAccountQuery}></div>
         </div>
-        <form
-          onSubmit={(e) => handleSubmit(e)}
-          className={styles.loginCredentials}
-        >
-          <input
-            type="email"
-            placeholder="email"
-            name="email"
-            value={formData.email}
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            required
-          ></input>
-          <input
-            type="password"
-            minLength={6}
-            placeholder="password"
-            value={formData.password}
-            name="password"
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            required
-          ></input>
-          <input
-            type="password"
-            minLength={6}
-            placeholder="confirm password"
-            value={formData.confirmPassword}
-            name="confirmPassword"
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            required
-          ></input>
-          <button type="submit" className={`btn-primary`}>
-            Create account
-          </button>
-        </form>
-        <div className={styles.createAccountQuery}></div>
-      </div>
+        <div className={styles.loginBackground}></div>{' '}
+      </section>
     </div>
   );
 }
