@@ -38,6 +38,7 @@
     "@types/dagre": "^0.7.52",
     "@types/heatmap.js": "^2.0.41",
     "@types/node": "^22.5.4",
+    "@types/puppeteer-core": "^7.0.4",
     "@types/react": "^18.3.3",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^18.3.0",

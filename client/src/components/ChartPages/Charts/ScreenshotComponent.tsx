@@ -1,4 +1,6 @@
-import puppeteer from 'puppeteer';
+// import React from 'react';
+import axios from 'axios';
+import {backendUrl} from '../../../state/Atoms';
 
 const ScreenshotComponent = () => {
     // const takeScreenshot = async (url: string, savePath: string): Promise<void> => {
@@ -16,21 +18,24 @@ const ScreenshotComponent = () => {
     //     }
     // };
 
-    // const url = 'https://example.com';
-    // const savePath = 'screenshot.png';
-    // takeScreenshot(url, savePath)
+    // // const url = 'http://localhost:3001';
+    // // const savePath = 'screenshot.png';
+    // // takeScreenshot(url, savePath)
 
-    // const handleClick = () => {
-    //     const url = 'https://example.com';
-    //     const savePath = 'screenshot.png';
-    //     takeScreenshot(url, savePath)
-    //         .then(() => console.log('Screenshot process completed'))
-    //         .catch(err => console.error('Error in screenshot process:', err));
-    // };
+    const handleClick = async () => {
+        const url:string = 'http://localhost:3001'
+        try {
+            const response = await axios.get(`${backendUrl}/api/screenshot?url=${url}`);
+            return response;
+          } catch (error) {
+            console.error('Error fetching screenshot:', error);
+            throw error;
+          }
+        };
 
     return (
         <div>
-            {/* <button onClick={handleClick}>Take Screenshot</button> */}
+            <button onClick={handleClick} style = {{height:'500px', width: '500px'}}>Take Screenshot</button>
         </div>
     )
 }

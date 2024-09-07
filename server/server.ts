@@ -8,6 +8,7 @@ import dataRoutes from './routes/dataRoute';
 import aiRoutes from './routes/aiRoutes'; 
 import authRoutes from './routes/authRoute' 
 import passport from './middleware/passportUserMiddleware';
+import puppeteer from 'puppeteer';
 
 
 
@@ -16,7 +17,6 @@ const cors = require('cors');
 
 //check db connection
 checkDatabaseConnection();
-
 
 const app = express();
 app.use(express.json());
@@ -35,6 +35,25 @@ app.use('/api/click-data',clickRoutes)
 app.use('/api/data',dataRoutes)
 
 app.use('/api/ai',aiRoutes)
+
+app.get('api/screenshot', async (req: Request, res: Response) => {
+  console.log('inside screenshot backend!')
+  const query:any = req.query.url
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto(query); // URL is given by the "user" (your client-side application)
+  const screenshotBuffer = await page.screenshot();
+
+  // Respond with the image
+  res.writeHead(200, {
+      'Content-Type': 'image/png',
+      'Content-Length': screenshotBuffer.length
+  });
+  res.end(screenshotBuffer);
+
+  await browser.close();
+})
+
 
 // app.use('/api/oauth',oauthRoute)
 // app.use('/api/oauthrequest',oauthRequestRoute)
