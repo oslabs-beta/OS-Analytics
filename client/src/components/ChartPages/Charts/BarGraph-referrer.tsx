@@ -10,29 +10,36 @@ import {
 } from "chart.js";
 import { useAtom } from "jotai";
 import { timeFrameAtom } from '../../../state/Atoms';
-import styles from '../Charts.module.css'
-import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
-import { BarChartProps } from "../../../../types"
+import styles from '../Charts.module.css';
+import { filterReferralDataByTimeFrame } from "../../../services/filterDataByReferralTimeFrame";
+import { referralBarChartProps } from "../../../../types";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const BarChart = ({ data, keyword }: BarChartProps) => {
+const BarChart = ({ data }: referralBarChartProps) => {
   const [timeFrame] = useAtom(timeFrameAtom);
-
-  const filteredData = filterDataByTimeFrame(data, timeFrame);
+  console.log(data);
+  const filteredData = filterReferralDataByTimeFrame(data, timeFrame);
   console.log(filteredData);
   const websiteCounts: { [key: string]: number } = {};
 
   filteredData.forEach(item => {
-    if (websiteCounts[item[keyword]]) {
-      websiteCounts[item[keyword]] += 1;
+    if (websiteCounts[item.referrer]) {
+      websiteCounts[item.referrer] += 1;
     } else {
-      websiteCounts[item[keyword]] = 1;
+      websiteCounts[item.referrer] = 1;
     }
   });
 
-  const labels = Object.keys(websiteCounts);
-  const counts = Object.values(websiteCounts);
+
+  const sortedReferrals = Object.entries(websiteCounts)
+    .sort(([, countA], [, countB]) => countB - countA) 
+    .slice(0, 8); 
+  console.log(sortedReferrals);
+
+
+  const labels = sortedReferrals.map(([referrer]) => referrer);
+  const counts = sortedReferrals.map(([, count]) => count);
 
   const colorPattern = [
     "rgba(54, 162, 235, 0.2)",  
@@ -46,7 +53,7 @@ const BarChart = ({ data, keyword }: BarChartProps) => {
     labels: labels,
     datasets: [
       {
-        label: "Clicks",
+        label: "Referrals",
         data: counts,
         backgroundColor: backgroundColors,
         borderColor: borderColors,
@@ -55,9 +62,10 @@ const BarChart = ({ data, keyword }: BarChartProps) => {
     ],
   };
 
-  const options = {
+  const options :any= {
+    indexAxis: 'y',
     scales: {
-      y: {
+      x: {
         beginAtZero: true,
         ticks: {
           stepSize: 1,
@@ -70,7 +78,7 @@ const BarChart = ({ data, keyword }: BarChartProps) => {
       },
       title: {
         display: true,
-        text: `Clicks per ${keyword ==="page_url"? "Page URLS": "Website"}`,
+        text: "Top 8 Referrals",
         color: 'white',
         font: {
           size: 20

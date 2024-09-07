@@ -1,0 +1,49 @@
+.whyOSA {
+    width: 100%;
+    background: var(--blue-white);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 3rem;
+    gap: 1rem;
+}
+/* .whyOSA h1, h2, h3, h4, p {
+    color: var(--black);
+} */
+
+.whyGrid {
+    width: 100%;
+    max-width: 1400px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @media only screen and (max-width: 850px) {
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+      }
+}
+
+.whyItem {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.iconBox {
+padding: 2rem;
+}
+/* .whyContentBox {
+    flex-grow: true;
+} */
+
+.whyIcon {
+    height: 4rem;
+
+    @media only screen and (max-width: 850px) {
+        height: 2.4rem;
+      }
+}

@@ -1,11 +1,8 @@
 import styles from './Navbar.module.css';
-import logo from '../../assets/map-logo.png';
-import logout from '../../assets/logout.png';
 import { Link, NavLink } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
 import { handleLogout } from '../../services/authConfig';
-import ApiKeyDisplay from '../User/ApiKeyDisplay';
 export default function NavbarDashboard() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);
   const [activeNav, setActiveNav] = useAtom(activeNavAtom);
@@ -22,29 +19,32 @@ export default function NavbarDashboard() {
         <div className={styles.navLeftDash}>
           {activeUser ? (
             <div className={styles.navLinks}>
-              <Link to  = "/dashboard">
-              <span> Dashboard</span>
+              <Link to="/dashboard">
+                <span> Dashboard</span>
               </Link>
-              <Link to = "/websites">
-              <span> Websites</span>
+              <Link to="/websites">
+                <span> Websites</span>
               </Link>
-              <Link to = "/docs">
-              <span>Documentation</span>
+              <Link to="/docs">
+                <span>Documentation</span>
               </Link>
-              <Link to = "/teams">
+              <Link to = "/settings">
               <span>Settings</span>
+              </Link>
+              <Link to = "/playground">
+              <span>Playground</span>
               </Link>
             </div>
           ) : (
             <div className={styles.navLinks}>
-              <NavLink to = "/docs">
-              <span>Documentation</span>
+              <NavLink to="/docs">
+                <span>Documentation</span>
               </NavLink>
-              <Link to = "/signup">
-              <span>Getting Started</span>
+              <Link to="/signup">
+                <span>Getting Started</span>
               </Link>
-              <Link to = "/team">
-              <span>Team</span>
+              <Link to="/team">
+                <span>Team</span>
               </Link>
             </div>
           )}
@@ -52,7 +52,6 @@ export default function NavbarDashboard() {
         <div className={styles.navRight}>
           {activeUser ? (
             <>
-               <ApiKeyDisplay />
                <span>{activeUser.split('@')[0].toLowerCase()}</span>
               <Link
                 to="/"
@@ -60,22 +59,26 @@ export default function NavbarDashboard() {
                   onLogoutClick();
                 }}
               >
-                <img
-                  className={styles.logOutIcon}
-                  src={logout}
-                  alt="sign out"
-                />
+                <button
+                  className={`btn-secondary btn-animated ${styles.navButton}`}
+                >
+                  Log out
+                </button>
               </Link>
             </>
           ) : (
             <>
               <Link to="/login">
-                <button className={`btn-secondary btn-animated ${styles.navButton}`}>
+                <button
+                  className={`btn-secondary btn-animated ${styles.navButton}`}
+                >
                   Sign in
                 </button>
               </Link>
               <Link to="/signup">
-                <button className={`btn-primary btn-animated ${styles.navButton}`}>
+                <button
+                  className={`btn-primary btn-animated ${styles.navButton}`}
+                >
                   Create account
                 </button>
               </Link>

@@ -14,7 +14,6 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
       'SELECT * FROM "userTable2" WHERE "api_key" = $1',
       [apiKey]
     );
-    console.log(result.length)
     if (result.rows.length === 0) {
       return res.status(401).send("Unauthorized: Invalid API key");
     }
