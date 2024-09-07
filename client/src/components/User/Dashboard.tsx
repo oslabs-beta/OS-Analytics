@@ -11,6 +11,7 @@ function Dashboard() {
   const [activeUser] = useAtom(activeUserAtom);
   const [activeWebsite] = useAtom(activeWebsiteAtom);
 
+
   return (
     <section className={styles.dashboard}>
       <div className={styles.chartBox}>
@@ -18,7 +19,9 @@ function Dashboard() {
         <SelectWebsiteDropDown />
         <TimeFrameDropdown />
       </div>
-
+      <a href="http://localhost:3001" target="_blank">
+          Go to Localhost:3001  
+        </a>
       <div>
         {activeWebsite === "All Websites" ? (
           <ClickDataVisualization />

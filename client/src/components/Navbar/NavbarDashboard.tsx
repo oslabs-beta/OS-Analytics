@@ -1,11 +1,9 @@
 import styles from './Navbar.module.css';
-import logo from '../../assets/map-logo.png';
 import logout from '../../assets/logout.png';
 import { Link, NavLink } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
 import { handleLogout } from '../../services/authConfig';
-import ApiKeyDisplay from '../User/ApiKeyDisplay';
 export default function NavbarDashboard() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);
   const [activeNav, setActiveNav] = useAtom(activeNavAtom);
@@ -31,8 +29,11 @@ export default function NavbarDashboard() {
               <Link to="/docs">
                 <span>Documentation</span>
               </Link>
-              <Link to="/teams">
-                <span>Settings</span>
+              <Link to = "/settings">
+              <span>Settings</span>
+              </Link>
+              <Link to = "/playground">
+              <span>Playground</span>
               </Link>
             </div>
           ) : (
@@ -52,8 +53,7 @@ export default function NavbarDashboard() {
         <div className={styles.navRight}>
           {activeUser ? (
             <>
-              <ApiKeyDisplay />
-              <span>{activeUser.split('@')[0].toLowerCase()}</span>
+               <span>{activeUser.split('@')[0].toLowerCase()}</span>
               <Link
                 to="/"
                 onClick={() => {

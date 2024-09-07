@@ -1,8 +1,9 @@
 import ClickGraph from "./Charts/LineGraph-clicks";
 import DuelPieGraphs from "./Charts/DuelPieChart-clicks";
 import BarGraph from "./Charts/BarGraph-clicks";
+import BarGraph_referrer from "./Charts/BarGraph-referrer";
 import AiResponseComponent from "./Charts/aiResponse";
-import { websiteDataAtom } from "../../state/Atoms";
+import { websiteDataAtom, websiteReferralDataAtom } from "../../state/Atoms";
 import ScatterChart from "./Charts/ScatterChart-clicks";
 import styles from "./Charts.module.css";
 import { useAtom } from "jotai";
@@ -11,7 +12,7 @@ import { mapUserData } from "../../services/extractData";
 const ClickDataVisualization = () => {
   const [websiteData] = useAtom(websiteDataAtom);
   const allDataResponse = mapUserData(websiteData);
-
+const [webstiteRefferalData] = useAtom(websiteReferralDataAtom)
   //console.log(allDataResponse);
   return (
     <div className={styles.chartDisplay}>
@@ -23,7 +24,7 @@ const ClickDataVisualization = () => {
         keyword={"user_browser"}
         keywordTwo={"user_os"}
       />
-
+ <BarGraph_referrer data={webstiteRefferalData} />
       <AiResponseComponent />
     </div>
   );

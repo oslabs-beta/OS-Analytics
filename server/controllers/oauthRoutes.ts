@@ -6,8 +6,7 @@ const{Oauth2Client} = require('google-auth-library')
 
 async function getUserData(access_token:string ){
     const response = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?acess_token${access_token}`);
-    const data = await response.json();
-    console.log('data',data);
+    const data = await response.json();;
 }
 
 router.get('/', async function(req,res,next){
@@ -21,9 +20,7 @@ router.get('/', async function(req,res,next){
         );
         const res = await oauth2Client.getToken(code);
         await oauth2Client.setCredentials(res.tokens);
-        console.log('Token acc');
         const user  = oauth2Client.credentials;
-        console.log('credentials', user);
         await getUserData(user.access_token);
     }catch(err){
         return next({

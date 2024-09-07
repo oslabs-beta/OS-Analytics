@@ -19,6 +19,12 @@ router.post(
   userController.login,
   (req: Request, res: Response) => {}
 );
+router.delete(
+  "/delete-account", 
+  authMiddleware,
+  userController.deleteAccount,
+  (req: Request, res: Response) => {}
+);
 
 router.get(
     "/activeUser",
@@ -36,11 +42,16 @@ router.get(
     }
   );
 
+  
+  router.delete('/apiKey',authMiddleware, userController.deleteApiKey);
+  router.put('/apiKey', authMiddleware,userController.refreshApiKey);
+
 router.post(
   "/logout",
   userController.logout,
   (req: Request, res: Response) => {}
 );
+
 
 router.post('/forgot-password', userController.forgotPassword);
 router.post('/confirm-password', userController.confirmPassword);
