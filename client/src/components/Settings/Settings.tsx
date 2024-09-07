@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useAtom } from "jotai";
 import { Box, Typography, Button, Paper, TextField } from "@mui/material";
 import Navbar from "../Navbar/Navbar";
-import { useApiKey } from "./useApiKey";
+import { useApiKey } from "./UseApiKey";
 import { ApiKeyDialog } from "./Dialogs";
-import { ApiKeySection } from "./apiKeyDisplay";
-import { WebsiteSelector } from "./websiteSelection";
+import { ApiKeySection } from "./ApiKeyDisplay";
+import { WebsiteSelector } from "./WebsiteSelection";
 import { deleteWebsite, deleteAccount } from "../../services/deleteDataApi";
 import { activeUserAtom, websitesAtom } from "../../state/Atoms";
 
