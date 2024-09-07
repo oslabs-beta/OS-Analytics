@@ -5,7 +5,6 @@ const addUserToDatabase = async (req: Request, res: Response, next: NextFunction
   const { email } = req.body;
 const cognito_id = res.locals.cognito_Id;
   try {
-    //might be redundant
     const existingUser = await pool.query(
       'SELECT * FROM "userTable2" WHERE email = $1',
       [email]

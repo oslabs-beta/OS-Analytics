@@ -5,7 +5,6 @@ import { Link, NavLink } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
 import { handleLogout } from '../../services/authConfig';
-import ApiKeyDisplay from '../User/ApiKeyDisplay';
 export default function Navbar() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);
   const [activeNav, setActiveNav] = useAtom(activeNavAtom);
@@ -42,8 +41,11 @@ export default function Navbar() {
               <Link to = "/docs">
               <span>Documentation</span>
               </Link>
-              <Link to = "/teams">
+              <Link to = "/settings">
               <span>Settings</span>
+              </Link>
+              <Link to = "/playground">
+              <span>Playground</span>
               </Link>
             </div>
           ) : (
@@ -63,7 +65,6 @@ export default function Navbar() {
         <div className={styles.navRight}>
           {activeUser ? (
             <>
-               <ApiKeyDisplay />
                <span>GitHub</span>
               <Link to="/dashboard">
                 <button className={`btn-primary btn-animated ${styles.navButton}`}>

@@ -29,6 +29,17 @@ export type QueryData = {
   website_name?: string;
   [key: string]: any; //this could be anything its a keyword that the userdefines
 };
+
+export type referralData = {
+  website_name?: string;
+  referrer: string;
+  created_at?:string;
+};
+
+export type referralBarChartProps = {
+  data: referralData[];
+};
+
 export type DrawerFrequencyProps = {
   onSelectView: (view: string) => void;
   onSelectWebsite: (website: string) => void;

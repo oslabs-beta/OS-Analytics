@@ -36,6 +36,9 @@ const ClickGraph = ({ data }: NoKeywordChart) => {
 
   const aggregatedData: { [key: string]: number } = {};
 
+  const formatDate = (date: Date, options: Intl.DateTimeFormatOptions) =>
+    date.toLocaleDateString('en-US', options);
+
   for (let i = 0; i < filteredData.length; i++) {
     const curr = filteredData[i];
     const clickTime = new Date(curr.time || 0);
@@ -47,7 +50,7 @@ const ClickGraph = ({ data }: NoKeywordChart) => {
         timeKey = `${clickTime.getHours()}:00`;
         break;
       case '1 month':
-        timeKey = `Day ${clickTime.getDate()}`;
+        timeKey = formatDate(clickTime, { month: 'short', day: 'numeric' });
         break;
       case '1 year':
         timeKey = `${clickTime.getMonth() + 1}/${clickTime.getFullYear()}`;
@@ -56,7 +59,7 @@ const ClickGraph = ({ data }: NoKeywordChart) => {
         timeKey = `${clickTime.getFullYear()}`;
         break;
       case 'allTime':
-        timeKey = `${clickTime.getMonth() + 1}/${clickTime.getFullYear()}`;
+        timeKey = formatDate(clickTime, { month: 'short', year: 'numeric' });
         break;
       default:
         timeKey = clickTime.toISOString();
@@ -71,7 +74,7 @@ const ClickGraph = ({ data }: NoKeywordChart) => {
   }
 
   const chartData = {
-    labels: Object.keys(aggregatedData),
+    labels: Object.keys(aggregatedData).reverse(), 
     datasets: [
       {
         label: `Clicks over the selected timeframe`,
@@ -84,12 +87,27 @@ const ClickGraph = ({ data }: NoKeywordChart) => {
     ],
   };
 
+  const chartOptions = {
+    responsive: true,
+    scales: {
+      x: {
+        ticks: {
+          maxTicksLimit: timeFrame === 'allTime'|| '1 month' ? 7 : undefined,
+          autoSkip: true,
+        },
+      },
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
   return (
     <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
       <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
         Click Data Overview
       </Typography>
-      <Line data={chartData} />
+      <Line data={chartData} options={chartOptions} />
     </div>
   );
 };
