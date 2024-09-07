@@ -1,5 +1,5 @@
 import styles from './Navbar.module.css';
-import logo from '../../assets/map-logo.png';
+import logo from '../../assets/icons/pie-chart.png';
 import logout from '../../assets/logout.png';
 import { Link, NavLink } from 'react-router-dom';
 import { useAtom } from 'jotai';
@@ -76,25 +76,24 @@ export default function Navbar() {
                   onLogoutClick();
                 }}
               >
-                <img
-                  className={styles.logOutIcon}
-                  src={logout}
-                  alt="sign out"
-                />
+                <button className={`btn-secondary btn-animated ${styles.navButton}`}>
+                  Log out
+                </button>
               </Link>
             </>
           ) : (
             <>
-              <Link to="/login">
-                <button className={`btn-secondary btn-animated ${styles.navButton}`}>
-                  Sign in
-                </button>
-              </Link>
-              <Link to="/signup">
+             <Link to="/signup">
                 <button className={`btn-primary btn-animated ${styles.navButton}`}>
                   Create account
                 </button>
               </Link>
+              <Link to="/login">
+                <button className={`btn-secondary btn-animated ${styles.navButton}`}>
+                  Log in
+                </button>
+              </Link>
+             
             </>
           )}
         </div>

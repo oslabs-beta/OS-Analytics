@@ -5,7 +5,6 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  /* background: blue; */
 }
 
 .sidebar {
@@ -15,11 +14,7 @@
   height: 100vh;
   background: transparent;
   width: 4rem;
-  background: linear-gradient(
-    to bottom,
-    var(--black-green),
-    var(--black-green-secondary)
-  );
+  background: var(--blue-secondary);
   border-right: 1px solid var(--gray-border);
   z-index: 15;
   display: flex;
