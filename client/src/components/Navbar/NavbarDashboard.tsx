@@ -1,5 +1,4 @@
 import styles from './Navbar.module.css';
-import logout from '../../assets/logout.png';
 import { Link, NavLink } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
