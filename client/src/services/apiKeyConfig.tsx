@@ -39,7 +39,7 @@ export const handleDeleteApiKey = async (token: string) => {
   
   export const handleRegenerateApiKey = async (token: string) => {
     try {
-      const response = await axios.put('/api/auth/apiKey', {}, {
+      const response = await axios.put('/api/auth/apiKey', {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,

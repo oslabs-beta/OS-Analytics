@@ -64,7 +64,6 @@ const AiResponseComponent = () => {
   }, [response]);
 
   const handleButtonClick = async () => {
-    // console.log(timeFrame, website);
     setDisplayedText([]);
     setLoading(true);
     try {
@@ -78,8 +77,8 @@ const AiResponseComponent = () => {
         }
       );
       setResponse(result.data.results[0].outputText.split('\n'));
-    } catch (error) {
-      setResponse(["Please have visable chart data then try again"]);
+    } catch (error:any) {
+      setResponse([error.response.data.message]);
     }
     setLoading(false);
     setAiResponse(true);

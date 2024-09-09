@@ -14,7 +14,7 @@ export const handleSession = async () => {
          Authorization: `Bearer ${token}`
       }
     });
-    console.log(response);
+  
     if (response.status === 200) {
       return response.data.email;
     } else {
@@ -22,7 +22,7 @@ export const handleSession = async () => {
     }
   } catch (err) {
     localStorage.removeItem('token');
-    console.log("hit");
+   
     return "";
   }
 };

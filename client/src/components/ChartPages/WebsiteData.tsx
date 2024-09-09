@@ -8,12 +8,12 @@ import ScatterChart from "./Charts/ScatterChart-clicks";
 import styles from "./Charts.module.css";
 import { useAtom } from "jotai";
 import { mapUserData } from "../../services/extractData";
-
+import RadarChart from "./Charts/RadarGraph-clicks";
+import StackedBarChart from "./Charts/StackedBarGraph-clicks";
 const ClickDataVisualization = () => {
   const [websiteData] = useAtom(websiteDataAtom);
   const allDataResponse = mapUserData(websiteData);
-const [webstiteRefferalData] = useAtom(websiteReferralDataAtom)
-  //console.log(allDataResponse);
+  const [webstiteRefferalData] = useAtom(websiteReferralDataAtom);
   return (
     <div className={styles.chartDisplay}>
       <BarGraph data={allDataResponse} keyword={"page_url"} />
@@ -24,7 +24,17 @@ const [webstiteRefferalData] = useAtom(websiteReferralDataAtom)
         keyword={"user_browser"}
         keywordTwo={"user_os"}
       />
- <BarGraph_referrer data={webstiteRefferalData} />
+      <RadarChart
+        data={allDataResponse}
+        keyword={"page_url"}
+        keywordTwo={"user_browser"}
+      />
+      <StackedBarChart
+        data={allDataResponse}
+        keyword={"user_browser"}
+        keywordTwo={"page_url"}
+      />
+      <BarGraph_referrer data={webstiteRefferalData} />
       <AiResponseComponent />
     </div>
   );

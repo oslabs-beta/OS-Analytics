@@ -22,9 +22,6 @@ export default function NavbarDashboard() {
               <Link to="/dashboard">
                 <span> Dashboard</span>
               </Link>
-              <Link to="/websites">
-                <span> Websites</span>
-              </Link>
               <Link to="/docs">
                 <span>Documentation</span>
               </Link>
@@ -60,7 +57,7 @@ export default function NavbarDashboard() {
                 }}
               >
                 <button
-                  className={`btn-secondary btn-animated ${styles.navButton}`}
+                  className={`button navButton btn-secondary btn-animated ${styles.navButton}`}
                 >
                   Log out
                 </button>
@@ -70,14 +67,14 @@ export default function NavbarDashboard() {
             <>
               <Link to="/login">
                 <button
-                  className={`btn-secondary btn-animated ${styles.navButton}`}
+                  className={` navButton button btn-secondary btn-animated ${styles.navButton}`}
                 >
                   Sign in
                 </button>
               </Link>
               <Link to="/signup">
                 <button
-                  className={`btn-primary btn-animated ${styles.navButton}`}
+                  className={`button btn-primary btn-animated ${styles.navButton}`}
                 >
                   Create account
                 </button>

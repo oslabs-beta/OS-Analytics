@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Scatter } from 'react-chartjs-2';
 import { Typography } from '@mui/material';
 import { useAtom } from 'jotai';
@@ -12,14 +13,14 @@ import {
 } from 'chart.js';
 import styles from '../Charts.module.css';  
 import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
-import { NoKeywordChart } from "../../../../types"
+import { NoKeywordChart } from "../../../../types";
+import ChartDownload from '../ChartDownload';
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, Tooltip, Legend);
-
-
 
 const ScatterChart = ({ data }: NoKeywordChart) => {
   const [timeFrame] = useAtom(timeFrameAtom);
-
+  const chartRef = useRef(null); 
 
   const filteredData = filterDataByTimeFrame(data, timeFrame);
 
@@ -62,11 +63,19 @@ const ScatterChart = ({ data }: NoKeywordChart) => {
   };
 
   return (
-    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
+   
+   <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
+      
+     
+      
       <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
         Click Scatter Plot
       </Typography>
-      <Scatter data={scatterData} options={options} />
+      <Scatter ref={chartRef} data={scatterData} options={options} />
+     <div style={{ marginLeft: "620px" }}>
+        <ChartDownload chartRef={chartRef} />
+      </div>
+    
     </div>
   );
 };

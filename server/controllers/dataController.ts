@@ -9,8 +9,9 @@ const dataController = {
       //user_id, element, element_name, dataset_id, x_coord, y_coord, user_browser, user_os, page_url
       const response = await pool.query(
         `SELECT *
-          FROM "clickTable2"
-          WHERE user_id = $1`,
+FROM "clickTable2"
+WHERE user_id = $1
+ORDER BY created_at ASC;`,
         [id]
       );
 
@@ -53,7 +54,7 @@ const dataController = {
   async deleteWebsite(req: Request, res: Response, next: NextFunction) {
     const { website_name } = req.body;
     const userId = res.locals.userId;
-console.log("hit")
+
     try {
       const deleteClicks = await pool.query(
         `DELETE FROM "clickTable2" WHERE website_name = $1 AND user_id = $2`,
