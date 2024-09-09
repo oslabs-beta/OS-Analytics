@@ -61,26 +61,27 @@ const aiController = {
           total_clicks DESC;
       `;
     }
-
     try {
       const awsCredsQuery = `
-        SELECT "AWS_ACCESS_KEY", "AWS_SECRET_KEY" 
+        SELECT "AWS_ACCESS_KEY", "AWS_SECRET_KEY", "AWS_REGION"
         FROM "userTable2" 
         WHERE "cognito_id" = $1
       `;
       const awsCredsResponse = await pool.query(awsCredsQuery, [id]);
-      const encryptedClientKey = JSON.parse(
-        awsCredsResponse.rows[0].AWS_ACCESS_KEY
-      );
-      const encryptedSecretKey = JSON.parse(
-        awsCredsResponse.rows[0].AWS_SECRET_KEY
-      );
-
+      
+      if (awsCredsResponse.rows.length === 0) {
+        throw new Error("AWS credentials not found for the given cognito_id");
+      }
+    
+      const encryptedClientKey = JSON.parse(awsCredsResponse.rows[0].AWS_ACCESS_KEY);
+      const encryptedSecretKey = JSON.parse(awsCredsResponse.rows[0].AWS_SECRET_KEY);
+      const AWS_REGION = awsCredsResponse.rows[0].AWS_REGION;
+    
       const AWS_ACCESS_KEY = decrypt(encryptedClientKey);
       const AWS_SECRET_KEY = decrypt(encryptedSecretKey);
-
+    
       const client = new BedrockRuntimeClient({
-        region: "us-east-1",
+        region: AWS_REGION,
         credentials: {
           accessKeyId: AWS_ACCESS_KEY,
           secretAccessKey: AWS_SECRET_KEY,

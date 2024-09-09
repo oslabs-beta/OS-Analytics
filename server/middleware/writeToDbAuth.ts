@@ -24,7 +24,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
     next(); 
   } catch (error) {
     console.error("Error during API key verification:", error);
-    return res.status(401).send("Unauthorized: Invalid API key");
+    return res.status(401).send("Unauthorized: Invalid API key"); 
   }
 };
 
