@@ -246,7 +246,7 @@ const userController = {
   async addAwsCredentials(req: Request, res: Response, next: NextFunction) {
     try {
       const user = res.locals.userId;
-      const { awsClientKey, awsSecretKey } = req.body;
+      const { awsClientKey, awsSecretKey, awsRegion } = req.body;
 
       const encryptedClientKey = encrypt(awsClientKey);
       const encryptedSecretKey = encrypt(awsSecretKey);
@@ -258,8 +258,8 @@ const userController = {
 
       if (response.rows.length > 0) {
         await pool.query(
-          'UPDATE "userTable2" SET "AWS_ACCESS_KEY" = $1, "AWS_SECRET_KEY" = $2 WHERE "cognito_id" = $3 RETURNING "api_key"',
-           [JSON.stringify(encryptedClientKey), JSON.stringify(encryptedSecretKey), user]
+          'UPDATE "userTable2" SET "AWS_ACCESS_KEY" = $1, "AWS_SECRET_KEY" = $2, "AWS_REGION" = $3 WHERE "cognito_id" = $4 RETURNING "api_key"',
+           [JSON.stringify(encryptedClientKey), JSON.stringify(encryptedSecretKey), awsRegion, user]
         );
         res.status(200).json({
           message: "AWS credentials updated successfully",

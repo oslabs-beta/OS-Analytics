@@ -1,4 +1,4 @@
-import { Box, Typography, Button, TextField, CircularProgress, Alert } from "@mui/material";
+import { Box, Typography, Button, TextField, CircularProgress, Alert, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 import { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
@@ -6,6 +6,7 @@ import axios from "axios";
 const AwsBedrockConfig = () => {
   const [awsClientKey, setAwsClientKey] = useState("");
   const [awsSecretKey, setAwsSecretKey] = useState("");
+  const [awsRegion, setAwsRegion] = useState("");
   const [loading, setLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
   const [alertType, setAlertType] = useState<"success" | "error" | null>(null);
@@ -14,9 +15,9 @@ const AwsBedrockConfig = () => {
     event.preventDefault();
     setLoading(true);
     setAlertMessage(null);
-    if (!awsClientKey || !awsSecretKey) {
+    if (!awsClientKey || !awsSecretKey || !awsRegion) {
       setAlertType("error");
-      setAlertMessage("Both AWS Client Key and Secret Key are required.");
+      setAlertMessage("AWS Client Key, Secret Key, and Region are all required.");
       setLoading(false);
       return;
     }
@@ -29,6 +30,7 @@ const AwsBedrockConfig = () => {
         {
           awsClientKey,
           awsSecretKey,
+          awsRegion,
         },
         {
           headers: {
@@ -38,6 +40,7 @@ const AwsBedrockConfig = () => {
       );
       setAwsClientKey("");
       setAwsSecretKey("");
+      setAwsRegion("");
       setAlertType("success");
       setAlertMessage("AWS Credentials saved successfully!");
     } catch (error) {
@@ -66,8 +69,8 @@ const AwsBedrockConfig = () => {
         <Box sx={{ mb: 2 }}>
           <TextField
             fullWidth
-           label="AWS Client Key" 
-           variant="outlined"
+            label="AWS Client Key" 
+            variant="outlined"
             type="password"
             value={awsClientKey}
             onChange={(e) => setAwsClientKey(e.target.value)}
@@ -81,8 +84,21 @@ const AwsBedrockConfig = () => {
             type="password"
             value={awsSecretKey}
             onChange={(e) => setAwsSecretKey(e.target.value)}
-            
           />
+        </Box>
+
+        <Box sx={{ mb: 2 }}>
+          <FormControl fullWidth>
+            <InputLabel>AWS Region</InputLabel>
+            <Select
+              value={awsRegion}
+              onChange={(e) => setAwsRegion(e.target.value as string)}
+              label="AWS Region"
+            >
+              <MenuItem value="us-east-1">US East 1 (N. Virginia)</MenuItem>
+              <MenuItem value="us-west-2">US West 2 (Oregon)</MenuItem>
+            </Select>
+          </FormControl>
         </Box>
 
         <Button
@@ -91,7 +107,6 @@ const AwsBedrockConfig = () => {
           fullWidth
           onClick={handleSubmit}
           disabled={loading}
-          
         >
           {loading ? <CircularProgress size={24} /> : "Save Credentials"}
         </Button>
