@@ -11,6 +11,11 @@
   --green-primary: #66bb6a;
   --green-secondary: #43a047;
   --orange-primary: #ffa500;
+  --error-color: #af4242; 
+  --error-bg: white; 
+  -- #f67259; 
+  -- #fbdc65;
+
 
   --white: rgba(255, 255, 255, 0.87);
   --white-secondary: rgba(255, 255, 255, 0.6);
@@ -18,6 +23,10 @@
   --black-green: #1d251e;
   --black-green-secondary: rgb(14, 32, 15);
   --black: rgba(0, 0, 0, 1);
+  --blue-secondary: #031230;
+  --blue-primary: #2444c4;
+
+
 
   --gradient: linear-gradient(
     45deg,

@@ -6,6 +6,9 @@ import { activeUserAtom, backendUrl} from '../../state/Atoms';
 import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
 import { Link } from 'react-router-dom';
+import { loadingAtom } from '../../state/Atoms';
+import GoogleSignInButton from './Google';
+import GithubSignInButton from './Github.signin';
 
 
 export default function Login() {
@@ -21,6 +24,7 @@ export default function Login() {
       [e.target.name]: e.target.value,
     });
   }
+  const [error, setError] = useState<string | null>(null);
 
   
 
@@ -28,6 +32,7 @@ export default function Login() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true)
+    setError(null);
     try{
     const response = await axios.post (`${backendUrl}/api/auth/login`, formData)
     console.log(response.data);
@@ -37,6 +42,7 @@ export default function Login() {
     catch (err: unknown){
       const error = err as Error;
       console.log(error.message)
+      setError('Incorrect email or password. Please try again.');
     }finally {
       setLoading(false)
     }
@@ -55,14 +61,12 @@ export default function Login() {
       <div className={styles.login}>
         <h2>Welcome back</h2>
         <div className={styles.oathButtons}>
-          <button className={`${styles.loginBtn} ${styles.google}`}
-            onClick = {(() => window.location.href = `${backendUrl}/api/google`)}>
-            Continue with Google
-          </button>
-          <button className={`${styles.loginBtn} ${styles.github}`}>
-            Continue with GitHub
-          </button>
+          <GoogleSignInButton /> 
+          <GithubSignInButton/>
         </div>
+      
+        </div>
+        {error && <div className={styles.error}>{error}</div>} 
         <form
           onSubmit={(e) => handleSubmit(e)}
           className={styles.loginCredentials}
@@ -98,8 +102,8 @@ export default function Login() {
             Sign up now
           </Link></p>
         </div>
-        <Link to="/forgot-password">Forgot Password?</Link>
-      </div>
+        <Link to="/forgot-password" className={styles.forgotPassword}>Forgot Password?</Link>
+    
     </>
   );
 }

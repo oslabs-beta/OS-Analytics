@@ -1,0 +1,35 @@
+.github {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .loginBtn {
+    height: 50px;
+    width: 100%;
+    background-color:  #ffffff26;
+    color: white;
+    border: none;
+    padding: 10px 40px; 
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    position: relative; 
+  }
+  
+  .githubLogo {
+    width: 20px; 
+    height: 20px; 
+    margin-right: 8px; 
+    vertical-align: middle;
+  }
+  
+  .buttonText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

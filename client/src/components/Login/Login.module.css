@@ -1,3 +1,8 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 .login {
     display: flex;
     flex-direction: column;
@@ -66,3 +71,19 @@ width: 100%;
 .createAccountQuery a:hover {
 color: var(--green-primary);
 }
+.error {
+    color: #af4242;
+    background-color : #fde8ec;
+    padding: 10px;
+}
+.error.display.error{
+    display: block;
+    margin-bottom: 20px;
+    transform: translateY(-20px);
+}
+.forgotPassword {
+    display: block;
+    text-align: center;
+    margin-top: 10px; 
+  }
+  

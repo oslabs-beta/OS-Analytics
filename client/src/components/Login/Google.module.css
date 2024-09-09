@@ -1,0 +1,29 @@
+.loginBtn {
+  height: 50px;
+  width: 100%;
+  background-color: white;
+  color: rgba(0, 0, 0, 1);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  margin-bottom: 10px; 
+  position: relative; 
+}
+
+.googleLogo {
+  width: 20px; 
+  height: 20px; 
+  margin-right: 8px; 
+  vertical-align: middle;
+}
+
+.buttonText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
