@@ -16,7 +16,7 @@ export const loadingAtom = atom<boolean>(false);
 export const userDataAtom = atom<QueryData[]>([]);
 export const userReferralDataAtom = atom<referralData[]>([]);
 export const websitesAtom = atom<string[]>([]);
-export const activeWebsiteAtom = atom<string>("All Websites");
+export const activeWebsiteAtom = atom<string>("overview");
 
 export const websiteDataAtom = atom((get) => {
   //references the active website atom

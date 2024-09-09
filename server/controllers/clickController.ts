@@ -3,7 +3,7 @@ import { pool } from "../models/db";
 
 const clickDataController = {
   async storeClickData (req: Request, res: Response){
-    console.log("hit")
+
     //get click data back as a body
     const { websiteName, x_coord, y_coord, element, elementName, activityId, userAgent, platform, pageUrl} = req.body;
     const userId = res.locals.user;
@@ -30,7 +30,7 @@ const clickDataController = {
   },
 
   async storeVisitData(req: Request, res: Response) {
-    console.log("hit visit");
+  
     const { websiteName, referrer } = req.body;
     const userId = res.locals.user;
 

@@ -2,6 +2,16 @@ export type BarChartProps = {
   data: QueryData[];
   keyword: string;
 };
+export type RadarChartProps = {
+  data: QueryData[];
+  keyword: string;
+  keywordTwo: string;
+};
+export type StackedBarChart = {
+  data: QueryData[];
+  keyword: string;
+  keywordTwo: string;
+};
 
 export type NoKeywordChart = {
   data: QueryData[];
@@ -16,6 +26,11 @@ export type PieChartsProps = {
   keyword: string;
   keywordTwo: string;
 };
+
+export type ChartDownloadProps = {
+  chartRef: { current: { toBase64Image: () => string } | null };
+  fileName?: string;
+}
 
 export type QueryData = {
   element: string;
@@ -33,7 +48,7 @@ export type QueryData = {
 export type referralData = {
   website_name?: string;
   referrer: string;
-  created_at?:string;
+  created_at?: string;
 };
 
 export type referralBarChartProps = {
@@ -52,18 +67,18 @@ export type FrequencyProps = {
 };
 
 export type AggregatedData = {
-    [key: string]: {
-        dataset_id: string;
-        x_coord: number ;
-        y_coord: number;
-        count: number;
-      };
-  }
-
-  export type InteractionData = {
+  [key: string]: {
     dataset_id: string;
-    website_name: string;
-    page_url: string;
-    x_coord: string;
-    y_coord: string;
-  }
+    x_coord: number;
+    y_coord: number;
+    count: number;
+  };
+};
+
+export type InteractionData = {
+  dataset_id: string;
+  website_name: string;
+  page_url: string;
+  x_coord: string;
+  y_coord: string;
+};

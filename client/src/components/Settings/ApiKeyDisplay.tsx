@@ -1,7 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import ApiKeyDisplay from "../User/ApiKeyDisplay";
+import ApiKeyDisplay from "./ApiKeyFormat";
 
 export const ApiKeySection = ({
   apiKey,

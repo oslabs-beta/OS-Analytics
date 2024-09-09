@@ -31,7 +31,6 @@ export const useApiKey = (token: string) => {
     try {
       const response = await handleRegenerateApiKey(token);
       if (response) {
-        console.log("hit")
         setApiKey(response);
         return response;
       }

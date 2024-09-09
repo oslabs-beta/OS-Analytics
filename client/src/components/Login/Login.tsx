@@ -44,7 +44,7 @@ export default function Login() {
         `${backendUrl}/api/auth/login`,
         formData
       );
-      console.log(response.data);
+    
       setActiveUser(response.data.email);
       localStorage.setItem('token', response.data.token);
     } catch (err: unknown) {
@@ -54,7 +54,7 @@ export default function Login() {
       // setloadingAtom(false)
     }
     // const content = formData;
-    // console.log(content);
+  
   }
 
   return (
@@ -66,14 +66,14 @@ export default function Login() {
           <h2>Welcome back</h2>
           <div className={styles.oathButtons}>
             <button
-              className={`${styles.loginBtn} ${styles.google}`}
+              className={` ${styles.loginBtn} ${styles.google} button`}
               onClick={() =>
                 (window.location.href = `${backendUrl}/api/google`)
               }
             >
               Continue with Google
             </button>
-            <button className={`${styles.loginBtn} ${styles.github}`}>
+            <button className={`  ${styles.loginBtn} ${styles.github} button`}>
               Continue with GitHub
             </button>
           </div>
@@ -82,6 +82,7 @@ export default function Login() {
             className={styles.loginCredentials}
           >
             <input
+            className='input'
               type="email"
               placeholder="email"
               name="email"
@@ -92,6 +93,7 @@ export default function Login() {
               required
             ></input>
             <input
+            className='input'
               type="password"
               minLength={6}
               placeholder="password"
@@ -102,7 +104,7 @@ export default function Login() {
               }}
               required
             ></input>
-            <button type="submit" className={`btn-primary`}>
+            <button type="submit" className={` button btn-primary`}>
               Sign in
             </button>
           </form>
