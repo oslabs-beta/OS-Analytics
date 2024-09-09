@@ -6,8 +6,8 @@ const TimeFrameDropdown = () => {
     const [timeFrame, setTimeFrame] = useAtom(timeFrameAtom);
   
     return (
-      <div >
-        <FormControl variant="outlined" style={{ minWidth: 120, marginBottom: '20px', height: '30px', width: '200px', textAlign: 'Center' }}>
+      <div>
+        <FormControl variant="outlined" style={{ minWidth: 120, marginBottom: '20px', height: '30px' }}>
           <Select
             value={timeFrame}
             onChange={(e) => setTimeFrame(e.target.value)}
@@ -29,6 +29,7 @@ const TimeFrameDropdown = () => {
             }}
           >
             <MenuItem value="1 day">Last 24 Hours</MenuItem>
+            <MenuItem value="1 week">Last Week</MenuItem>
             <MenuItem value="1 month">This Month</MenuItem>
             <MenuItem value="1 year">1 year</MenuItem>
             <MenuItem value="5 years">5 years</MenuItem>
@@ -37,6 +38,6 @@ const TimeFrameDropdown = () => {
         </FormControl>
       </div>
     );
-  };
-  
-  export default TimeFrameDropdown;
+};
+
+export default TimeFrameDropdown;

@@ -45,6 +45,7 @@ router.get(
   
   router.delete('/apiKey',authMiddleware, userController.deleteApiKey);
   router.put('/apiKey', authMiddleware,userController.refreshApiKey);
+  router.put('/awsCredentials', authMiddleware,userController.addAwsCredentials);
 
 router.post(
   "/logout",

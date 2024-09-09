@@ -131,10 +131,10 @@ button:hover {
   /* transform: translateY(-3px); */
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
-button:focus,
+/* button:focus,
 button:focus-visible {
   outline: 4px auto var(--white);
-}
+} */
 
 .btn-animated:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
@@ -167,7 +167,7 @@ button:active {
  background: #ffffff71;
 }
 
-input {
+.input {
   height: 3.2rem;
   width: 100%;
   font-size: 1.2rem;
@@ -216,7 +216,9 @@ input:focus:invalid {
   flex-direction: column;
   /* align-items: center; */
 }
-
+.hidden {
+  display: none !important;
+}
 .viewWithSide {
   height: calc(100vh - 4rem);
   width: calc(100vw - 4rem);

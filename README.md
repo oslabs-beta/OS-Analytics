@@ -4,7 +4,7 @@
    ```bash
    cd client
    npm install
-   cd..
+   cd ..
    cd server
    npm install
    ```

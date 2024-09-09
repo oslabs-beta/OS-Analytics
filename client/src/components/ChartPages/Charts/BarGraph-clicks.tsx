@@ -13,14 +13,16 @@ import { timeFrameAtom } from '../../../state/Atoms';
 import styles from '../Charts.module.css'
 import { filterDataByTimeFrame } from "../../../services/filterDataByTimeFrame ";
 import { BarChartProps } from "../../../../types"
+import ChartDownload from "../ChartDownload";
+import { useRef } from "react";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const BarChart = ({ data, keyword }: BarChartProps) => {
+  const chartRef = useRef(null);
   const [timeFrame] = useAtom(timeFrameAtom);
 
   const filteredData = filterDataByTimeFrame(data, timeFrame);
-  console.log(filteredData);
   const websiteCounts: { [key: string]: number } = {};
 
   filteredData.forEach(item => {
@@ -82,8 +84,11 @@ const BarChart = ({ data, keyword }: BarChartProps) => {
   };
 
   return (
-    <div className={styles.chartBox} style={{ padding: '20px', textAlign: 'center' }}>
-      <Bar data={chartData} options={options} />
+    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
+      <Bar ref={chartRef} data={chartData} options={options} />
+      <div style={{ marginLeft: "620px" }}>
+        <ChartDownload chartRef={chartRef} />
+      </div>
     </div>
   );
 };

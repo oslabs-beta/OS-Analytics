@@ -5,7 +5,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 const ApiKeyDisplay = ({ data }: { data: string }) => {
-    const [apiKey] = useState('');
     const [showKey, setShowKey] = useState(false);
     const [copied, setCopied] = useState(false);
 
@@ -58,7 +57,7 @@ const ApiKeyDisplay = ({ data }: { data: string }) => {
                 >
                     {showKey ? <VisibilityOff fontSize="small" sx={{ color: '#333333' }} /> : <Visibility fontSize="small" sx={{ color: '#333333' }} />}
                 </IconButton>
-                <CopyToClipboard text={apiKey} onCopy={handleCopy}>
+                <CopyToClipboard text={data} onCopy={handleCopy}>
                     <IconButton
                         size="small"
                         sx={{ 

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, ChangeEventHandler } from "react";
 import {
   ReactFlow,
   useNodesState,
@@ -14,7 +14,8 @@ import { userDataAtom, websitesAtom } from "../../../state/Atoms";
 import "@xyflow/react/dist/style.css";
 import Button from "@mui/material/Button";
 import Layout from "./Layout";
-import * as htmlToImage from "html-to-image"; 
+import * as htmlToImage from "html-to-image";
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 const FlowDiagram = () => {
   const diagramRef = useRef(null);
@@ -23,6 +24,10 @@ const FlowDiagram = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
   const [layoutDirection, setLayoutDirection] = useState("TB");
+  const proOptions = { hideAttribution: true };
+  const [colorMode, setColorMode] = useState<"dark" | "light" | "system">(
+    "light"
+  );
 
   useEffect(() => {
     const nodeData: Node[] = [];
@@ -155,24 +160,28 @@ const FlowDiagram = () => {
   const handleExport = () => {
     if (diagramRef.current) {
       const diagramElement = diagramRef.current as HTMLElement;
-      const panelElement = diagramElement.querySelector('.react-flow__panel') as HTMLElement;
+      const panelElement = diagramElement.querySelector(
+        ".react-flow__panel"
+      ) as HTMLElement;
       if (panelElement) {
-        panelElement.style.display = 'none';
+        panelElement.style.display = "none";
       }
-      htmlToImage
-        .toPng(diagramElement)
-        .then((dataUrl) => {
-          if (panelElement) {
-            panelElement.style.display = 'block';
-          }
-          const link = document.createElement("a");
-          link.href = dataUrl;
-          link.download = "flow-diagram.png";
-          link.click();
-        })
+      htmlToImage.toPng(diagramElement).then((dataUrl) => {
+        if (panelElement) {
+          panelElement.style.display = "block";
+        }
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = "flow-diagram.png";
+        link.click();
+      });
     }
   };
-  
+
+  const onChange: ChangeEventHandler<HTMLSelectElement> = (evt) => {
+    setColorMode(evt.target.value as "dark" | "light" | "system");
+  };
+
   return (
     <div
       ref={diagramRef}
@@ -191,6 +200,8 @@ const FlowDiagram = () => {
         onEdgesChange={onEdgesChange}
         fitView
         fitViewOptions={{ padding: 0.2, minZoom: 0.5, maxZoom: 0.8 }}
+        colorMode={colorMode}
+        proOptions={proOptions}
       >
         <Background color="#aaa" gap={16} />
         <Panel
@@ -228,6 +239,42 @@ const FlowDiagram = () => {
           >
             Export to Image
           </Button>
+
+          <FormControl
+            variant="outlined"
+            sx={{ minWidth: 150, marginLeft: "10px" }}
+          >
+            <InputLabel
+              sx={{
+                color: colorMode === "dark" ? "#fff" : "#000", 
+              }}
+            >
+              Color Mode
+            </InputLabel>
+            <Select
+              label="Color Mode"
+              value={colorMode}
+              onChange={(evt) =>
+                setColorMode(evt.target.value as "dark" | "light" | "system")
+              }
+              sx={{
+                color: colorMode === "dark" ? "#fff" : "#000",
+                ".MuiOutlinedInput-notchedOutline": {
+                  borderColor: colorMode === "dark" ? "#fff" : "#000", 
+                },
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                  borderColor: colorMode === "dark" ? "#fff" : "#000",
+                },
+                "&:hover .MuiOutlinedInput-notchedOutline": {
+                  borderColor: colorMode === "dark" ? "#fff" : "#000",
+                },
+              }}
+            >
+              <MenuItem value="dark">Dark</MenuItem>
+              <MenuItem value="light">Light</MenuItem>
+              <MenuItem value="system">System</MenuItem>
+            </Select>
+          </FormControl>
         </Panel>
       </ReactFlow>
     </div>

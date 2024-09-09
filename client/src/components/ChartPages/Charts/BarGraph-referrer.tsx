@@ -7,21 +7,21 @@ import {
   Title,
   Tooltip,
   Legend,
+  ChartOptions,
 } from "chart.js";
 import { useAtom } from "jotai";
 import { timeFrameAtom } from '../../../state/Atoms';
 import styles from '../Charts.module.css';
 import { filterReferralDataByTimeFrame } from "../../../services/filterDataByReferralTimeFrame";
 import { referralBarChartProps } from "../../../../types";
-import { BorderAllRounded } from "@mui/icons-material";
-
+import ChartDownload from "../ChartDownload";
+import { useRef } from "react";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const BarChart = ({ data }: referralBarChartProps) => {
+    const chartRef = useRef(null);
   const [timeFrame] = useAtom(timeFrameAtom);
-  console.log(data);
   const filteredData = filterReferralDataByTimeFrame(data, timeFrame);
-  console.log(filteredData);
   const websiteCounts: { [key: string]: number } = {};
 
   filteredData.forEach(item => {
@@ -36,7 +36,6 @@ const BarChart = ({ data }: referralBarChartProps) => {
   const sortedReferrals = Object.entries(websiteCounts)
     .sort(([, countA], [, countB]) => countB - countA) 
     .slice(0, 8); 
-  console.log(sortedReferrals);
 
 
   const labels = sortedReferrals.map(([referrer]) => referrer);
@@ -64,7 +63,7 @@ const BarChart = ({ data }: referralBarChartProps) => {
     ],
   };
 
-  const options :any= {
+  const options: ChartOptions<'bar'>= {
     indexAxis: 'y',
     scales: {
       x: {
@@ -80,7 +79,7 @@ const BarChart = ({ data }: referralBarChartProps) => {
       },
       title: {
         display: true,
-        text: "Top 8 Referrals",
+        text: "Top referrals",
         color: 'white',
         font: {
           size: 20
@@ -90,8 +89,16 @@ const BarChart = ({ data }: referralBarChartProps) => {
   };
 
   return (
-    <div className={styles.chartBox} style={{ padding: '20px', textAlign: 'center' }}>
-      <Bar data={chartData} options={options} />
+    <div>
+      
+ 
+    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
+
+        <Bar ref={chartRef} data={chartData} options={options} />
+        <div style={{ marginLeft: "620px" }}>
+        <ChartDownload chartRef={chartRef} />
+      </div>
+          </div> 
     </div>
   );
 };

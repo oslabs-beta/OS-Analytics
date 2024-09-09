@@ -1,6 +1,5 @@
 import styles from './Navbar.module.css';
 import logo from '../../assets/icons/pie-chart.png';
-import logout from '../../assets/logout.png';
 import { Link, NavLink } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
@@ -35,9 +34,6 @@ export default function Navbar() {
               <Link to  = "/dashboard">
               <span> Dashboard</span>
               </Link>
-              <Link to = "/websites">
-              <span> Websites</span>
-              </Link>
               <Link to = "/docs">
               <span>Documentation</span>
               </Link>
@@ -67,7 +63,7 @@ export default function Navbar() {
             <>
                <span>GitHub</span>
               <Link to="/dashboard">
-                <button className={`btn-primary btn-animated ${styles.navButton}`}>
+                <button className={`button btn-primary btn-animated ${styles.navButton}`}>
                   Dashboard
                 </button>
               </Link>
@@ -77,7 +73,7 @@ export default function Navbar() {
                   onLogoutClick();
                 }}
               >
-                <button className={`btn-secondary btn-animated ${styles.navButton}`}>
+                <button className={`button btn-secondary btn-animated ${styles.navButton}`}>
                   Log out
                 </button>
               </Link>
@@ -85,12 +81,12 @@ export default function Navbar() {
           ) : (
             <>
              <Link to="/signup">
-                <button className={`btn-primary btn-animated ${styles.navButton}`}>
+                <button className={`button btn-primary btn-animated ${styles.navButton}`}>
                   Create account
                 </button>
               </Link>
               <Link to="/login">
-                <button className={`btn-secondary btn-animated ${styles.navButton}`}>
+                <button className={` button btn-secondary btn-animated ${styles.navButton} `}>
                   Log in
                 </button>
               </Link>
