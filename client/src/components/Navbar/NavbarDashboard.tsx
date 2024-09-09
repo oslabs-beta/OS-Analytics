@@ -52,7 +52,7 @@ export default function NavbarDashboard() {
         <div className={styles.navRight}>
           {activeUser ? (
             <>
-               <span>{activeUser.split('@')[0].toLowerCase()}</span>
+               <span style={{color:'white'}}>{activeUser.split('@')[0].toLowerCase()}</span>
               <Link
                 to="/"
                 onClick={() => {

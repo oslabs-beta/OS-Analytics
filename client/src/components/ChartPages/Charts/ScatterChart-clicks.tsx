@@ -62,8 +62,8 @@ const ScatterChart = ({ data }: NoKeywordChart) => {
   };
 
   return (
-    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
-      <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
+    <div className={styles.chartBox} style={{ padding: '20px', textAlign: 'center' }}>
+      <Typography variant="h4" gutterBottom style={{ textAlign: 'center', fontSize:'20px', color: 'black' }}>
         Click Scatter Plot
       </Typography>
       <Scatter data={scatterData} options={options} />

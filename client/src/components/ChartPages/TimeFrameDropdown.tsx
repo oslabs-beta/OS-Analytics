@@ -7,7 +7,7 @@ const TimeFrameDropdown = () => {
   
     return (
       <div >
-        <FormControl variant="outlined" style={{ minWidth: 120, marginBottom: '20px', height: '30px' }}>
+        <FormControl variant="outlined" style={{ minWidth: 120, marginBottom: '20px', height: '30px', width: '200px', textAlign: 'Center' }}>
           <Select
             value={timeFrame}
             onChange={(e) => setTimeFrame(e.target.value)}

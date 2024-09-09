@@ -9,7 +9,7 @@ import styles from "./Charts.module.css";
 import { useAtom } from "jotai";
 import { mapUserData } from "../../services/extractData";
 
-const ClickDataVisualization = () => {
+const WebsiteData = () => {
   const [websiteData] = useAtom(websiteDataAtom);
   const allDataResponse = mapUserData(websiteData);
 const [webstiteRefferalData] = useAtom(websiteReferralDataAtom)
@@ -30,4 +30,4 @@ const [webstiteRefferalData] = useAtom(websiteReferralDataAtom)
   );
 };
 
-export default ClickDataVisualization;
+export default WebsiteData;

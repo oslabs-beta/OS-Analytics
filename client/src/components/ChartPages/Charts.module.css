@@ -5,18 +5,34 @@
     flex-wrap:wrap;
     justify-content:center;
     align-items: center;
-    margin: 3rem 0;
-    /* max-width: calc(100vw - 2rem); */
-}
 
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    color: var(--black);
+    width: calc(100vw - 7rem);
+    max-width: calc(100vw - 4rem);
+    background: rgba(255, 127, 80, 0.338);
+    margin: 0 1rem; */
+}
+b
 .chartBox {
     background: rgba(148, 148, 148, 0.044);
     display: grid;
     place-content: center;
-    width: 700px;
-    aspect-ratio: 7/5;
-    max-width: 92vw;
-    border: 1px solid var(--gray-border);
-    border-radius: 8px;
+    border: 1px solid var(--blue-secondary);
+    border-radius: 2px;
+    width: 300px;
+    max-width: calc(100vw - 6rem);
 }
-
+/* .chartBox:nth-child(1), .chartBox:nth-child(4), .chartBox:nth-child(7), .chartBox:nth-child(10) {
+    grid-column: span 2;
+    background: transparent;
+} */
+@media only screen and (max-width: 1000px) {
+    .chartDisplay {
+        display: flex;
+        flex-direction: column;
+        
+    }
+  }

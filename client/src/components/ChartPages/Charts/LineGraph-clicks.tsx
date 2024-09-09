@@ -74,13 +74,13 @@ const ClickGraph = ({ data }: NoKeywordChart) => {
   }
 
   const chartData = {
-    labels: Object.keys(aggregatedData).reverse(), 
+    labels: Object.keys(aggregatedData), 
     datasets: [
       {
         label: `Clicks over the selected timeframe`,
         data: Object.values(aggregatedData),
         fill: true,
-        backgroundColor: 'rgba(75,192,192,0.4)',
+        backgroundColor: 'rgba(75,192,192,0.8)',
         borderColor: 'rgba(75,192,192,1)',
         tension: 0.1,
       },
@@ -103,8 +103,8 @@ const ClickGraph = ({ data }: NoKeywordChart) => {
   };
 
   return (
-    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
-      <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
+    <div className={styles.chartBox} style={{ padding: '20px', textAlign: 'center', maxHeight: '50vh' }}>
+      <Typography variant="h4" gutterBottom style={{ textAlign: 'center', fontSize: '20px', fontWeight: '400', color: 'black' }}>
         Click Data Overview
       </Typography>
       <Line data={chartData} options={chartOptions} />

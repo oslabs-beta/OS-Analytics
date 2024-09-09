@@ -22,7 +22,7 @@ import { mapUserData } from '../../services/extractData';  <------ map hook to p
  <BarGraph data={mappedData} keyword={"website"} /><---- using the graph anywhere and giving it data and a keyword on which data to display (clicks per "website")
 
 */
-const ClickDataVisualization = () => {
+const AllUserData = () => {
   const [userData] = useAtom(userDataAtom);
   const mappedData = mapUserData(userData);
 
@@ -40,4 +40,4 @@ const ClickDataVisualization = () => {
   );
 };
 
-export default ClickDataVisualization;
+export default AllUserData;

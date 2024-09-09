@@ -35,12 +35,12 @@ const BarChart = ({ data, keyword }: BarChartProps) => {
   const counts = Object.values(websiteCounts);
 
   const colorPattern = [
-    "rgba(54, 162, 235, 0.2)",  
-    "rgba(255, 99, 132, 0.2)",  
+    "rgba(54, 162, 235, 0.8)",  
+    "rgba(255, 99, 132, 0.8)",  
   ];
 
   const backgroundColors = labels.map((_, index) => colorPattern[index % colorPattern.length]);
-  const borderColors = labels.map((_, index) => colorPattern[index % colorPattern.length].replace("0.2", "1"));
+  const borderColors = labels.map((_, index) => colorPattern[index % colorPattern.length].replace("0.8", "1"));
 
   const chartData = {
     labels: labels,
@@ -50,7 +50,8 @@ const BarChart = ({ data, keyword }: BarChartProps) => {
         data: counts,
         backgroundColor: backgroundColors,
         borderColor: borderColors,
-        borderWidth: 1,
+        borderWidth: 3,
+        borderRadius: 5,
       },
     ],
   };
@@ -70,9 +71,10 @@ const BarChart = ({ data, keyword }: BarChartProps) => {
       },
       title: {
         display: true,
-        text: `Clicks per ${keyword ==="page_url"? "Page URLS": "Website"}`,
-        color: 'white',
+        text: `Clicks Per ${keyword ==="page_url"? "Page URLS": "Website"}`,
+        color: 'black',
         font: {
+          weight: 400,
           size: 20
         }
       },
@@ -80,7 +82,7 @@ const BarChart = ({ data, keyword }: BarChartProps) => {
   };
 
   return (
-    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
+    <div className={styles.chartBox} style={{ padding: '20px', textAlign: 'center' }}>
       <Bar data={chartData} options={options} />
     </div>
   );

@@ -11,11 +11,12 @@ import { timeFrameAtom, activeWebsiteAtom } from '../../../state/Atoms';
 import { useAtom } from 'jotai';
 import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { backendUrl } from "../../../state/Atoms";
+import { backendUrl } from '../../../state/Atoms';
+import styles from '../Charts.module.css';
 
 const AiResponseComponent = () => {
   const [loading, setLoading] = useState(false);
-  const [aiResponse, setAiResponse] = useState<boolean>(false)
+  const [aiResponse, setAiResponse] = useState<boolean>(false);
   const [response, setResponse] = useState<string[]>([]);
   const [displayedText, setDisplayedText] = useState<string[]>([]);
   const [timeFrame] = useAtom(timeFrameAtom);
@@ -79,7 +80,7 @@ const AiResponseComponent = () => {
       );
       setResponse(result.data.results[0].outputText.split('\n'));
     } catch (error) {
-      setResponse(["Please have visable chart data then try again"]);
+      setResponse(['Please have visable chart data then try again']);
     }
     setLoading(false);
     setAiResponse(true);
@@ -88,16 +89,16 @@ const AiResponseComponent = () => {
   return (
     <ThemeProvider theme={theme}>
       <Box
+        className={styles.chartBox}
         sx={{
-          backgroundColor: 'rgba(255, 255, 255, 0.044)',
-          color: '#bfbfbf',
-          padding: '20px',
-          width: '700px',
-          aspectRatio: '7/5',
+          color: 'red',
           overflowY: 'auto',
-          maxWidth: '92vw',
-          border: '1px solid var(--gray-border)',
-          borderRadius: '8px',
+          minHeight: '400px',
+          width: '100%',
+          placeContent: 'start',
+          border: '1px solid var(--blue-secondary)',
+          padding: '20px',
+          background: 'transparent',
         }}
       >
         <Button
@@ -107,31 +108,32 @@ const AiResponseComponent = () => {
           disabled={loading}
           style={
             loading
-              ? { backgroundColor: 'var(--green-secondary' }
-              : { backgroundColor: `${aiResponse ? 'var(--orange-primary' : 'var(--green-secondary)'}` }
+              ? { backgroundColor: 'var(--blue-primary', width: '100%' }
+              : {
+                  backgroundColor: `${
+                    aiResponse ? 'var(--blue-primary' : 'var(--blue-primary)'
+                  }`,
+                  width: '100%',
+                }
           }
           sx={{
             textTransform: 'none',
             fontSize: '16px',
             padding: '1rem 2rem',
-            width: '100%',
+
             height: '3.2rem',
             display: 'flex',
             borderRadius: '8px',
             // backgroundColor: "#E0E0E0",
             // color: "#333333",
             color: 'var(--white)',
-            '&:hover': {
-              // backgroundColor: "#D5D5D5",
-              backgroundColor: 'var(--orange-primary)',
-            },
             fontFamily: "'Roboto Mono', monospace",
           }}
         >
           {loading ? (
-            <CircularProgress size={24} color="inherit" />
+            <CircularProgress size={24} color="primary" />
           ) : (
-            `${aiResponse? 'AI Response' : 'Get AI Response'}`
+            `${aiResponse ? 'AI Response' : 'Get AI Response'}`
           )}
         </Button>
 
@@ -144,7 +146,7 @@ const AiResponseComponent = () => {
                   padding: '5px 0',
                   margin: 0,
                   fontFamily: "'Roboto Mono', monospace !important",
-                  color: '#bfbfbf',
+                  color: 'black',
                 }}
               />
             </ListItem>

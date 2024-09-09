@@ -226,6 +226,7 @@ input:focus:invalid {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
 
 /* Need to check if this works on firefox */
