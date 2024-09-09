@@ -9,6 +9,7 @@ import ScreenshotComponent from './ScreenshotComponent.tsx';
 const Heatmap = ({ data }: NoKeywordChart) => {
     // grab x,y coords from data
     const heatData: {'x':number, 'y': number, 'value': number}[] = data.map(point => ({"x":point.x_coord, "y":point.y_coord, "value": 1}));
+    console.log(heatData);
     useEffect(() => {
         // the element we are looking for
         const container = document.querySelector('.heatmapContainer');
@@ -28,7 +29,7 @@ const Heatmap = ({ data }: NoKeywordChart) => {
 
     return (
         <div>
-            <div className="heatmapContainer" style = {{height:'1500px', width: '1500px'}}>
+            <div className="heatmapContainer" style = {{height:'720px', width: '1280px', border:'5px solid #555'}}>
             <ScreenshotComponent />
             </div>
         </div>
