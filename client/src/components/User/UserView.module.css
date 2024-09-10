@@ -81,8 +81,21 @@ a.active {
   background: rgba(255, 255, 255, 0.1);
 }
 
+.timeframe {
+  position: absolute;
+  top: 4.1rem;
+  left: 4rem;
+  width: 10.5rem;
+  text-align: left;
+  /* border: 1px solid var(--blue-secondary); */
+}
+
 @media only screen and (max-width: 1000px) {
   .sidebar {
     display: none;
+  }
+  .timeframe {
+    left: 1rem;
+    width: calc(100vw - 2rem);
   }
 }

@@ -17,6 +17,10 @@
       background: var(--blue-secondary);
 }
 
+.login h2 {
+    color: var(--white);
+}
+
 .loginBackground {
     background-image: url("../../assets/backgrounds/blue-2.jpg");
     height: calc(100vw-4rem);

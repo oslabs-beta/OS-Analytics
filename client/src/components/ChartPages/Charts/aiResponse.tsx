@@ -16,10 +16,10 @@ import styles from '../Charts.module.css';
 
 const AiResponseComponent = () => {
   const [loading, setLoading] = useState(false);
-  const [aiResponse, setAiResponse] = useState<boolean>(false);;
+  const [aiResponse, setAiResponse] = useState<boolean>(false);
   const [response, setResponse] = useState<string[]>([]);
   const [displayedText, setDisplayedText] = useState<string[]>([]);
-  const [typewriterFinished, setTypewriterFinished] = useState<boolean>(false); 
+  const [typewriterFinished, setTypewriterFinished] = useState<boolean>(false);
   const [timeFrame] = useAtom(timeFrameAtom);
   const [website] = useAtom(activeWebsiteAtom);
   const token = localStorage.getItem('token');
@@ -146,7 +146,6 @@ const AiResponseComponent = () => {
             <CircularProgress size={24} color="primary" />
           ) : (
             `${aiResponse ? 'AI Response' : 'Get AI Response'}`
-            `${aiResponse ? 'AI Response' : 'Get AI Response'}`
           )}
         </Button>
 
@@ -166,29 +165,29 @@ const AiResponseComponent = () => {
           ))}
         </List>
         {typewriterFinished && aiResponse && (
-  <Button
-    variant="contained"
-    onClick={handleSaveLog}
-    sx={{
-      marginTop: '20px',
-      textTransform: 'none',
-      fontSize: '16px',
-      padding: '1rem 2rem',
-      width: '100%',
-      height: '3.2rem',
-      display: 'flex',
-      borderRadius: '8px',
-      backgroundColor: 'var(--orange-primary)',
-      color: 'var(--white)',
-      '&:hover': {
-        backgroundColor: 'var(--orange-primary)',
-      },
-      fontFamily: "'Roboto Mono', monospace",
-    }}
-  >
-    Save Log
-  </Button>
-)}
+          <Button
+            variant="contained"
+            onClick={handleSaveLog}
+            sx={{
+              marginTop: '20px',
+              textTransform: 'none',
+              fontSize: '16px',
+              padding: '1rem 2rem',
+              width: '100%',
+              height: '3.2rem',
+              display: 'flex',
+              borderRadius: '8px',
+              backgroundColor: 'var(--orange-primary)',
+              color: 'var(--white)',
+              '&:hover': {
+                backgroundColor: 'var(--orange-primary)',
+              },
+              fontFamily: "'Roboto Mono', monospace",
+            }}
+          >
+            Save Log
+          </Button>
+        )}
       </Box>
     </ThemeProvider>
   );

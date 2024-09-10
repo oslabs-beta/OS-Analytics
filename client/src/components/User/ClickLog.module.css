@@ -1,0 +1,94 @@
+.ClickLog {
+    height: 100%;
+        min-width: fit-content;
+    
+
+    margin: 3rem;
+    background: rgba(236, 236, 236, 0);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 2px solid rgba(0, 0, 0, 0.529);
+    padding: 1rem;
+}
+/* .ClickLog h2 {
+    padding: 1rem;
+} */
+table {border: none;}
+
+.ClickLog img {
+    width: 40px;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    object-fit: contain;
+}
+
+.ClickLogItems input {
+    /* size:10; */
+    width: 5.8rem;
+
+}
+
+
+
+.ClickLogItems tr:nth-child(odd) {
+}
+
+.ClickLogItems tr:nth-child(even) {
+    background: rgba(75,192,192,0.4);
+    }
+.ClickLog button {
+    border: none;
+}
+.ClickLogItems tr:hover {
+background: white;
+color: rgb(237, 88, 88);
+}
+.btnSave {
+    background: rgb(61, 202, 61);
+    color: white;
+}
+.btnDelete {
+    background: rgb(237, 88, 88);
+    color: white;
+}
+
+.textRight {
+    text-align: right;
+    padding-right: 5px;
+}
+.noWrap {
+    /* display: flex;
+    flex-wrap: nowrap; */
+    justify-content: center;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.pending {
+    background: rgb(232, 157, 157);
+}
+
+.addItemForm {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.span1 {
+    grid-column: span 1;
+}
+.span2 {
+    grid-column: span 2;
+}
+.span3 {
+    grid-column: span 3;
+}
+.span4 {
+    grid-column: span 4;
+}
+
+.productDescription {
+    height: 100px;
+}

@@ -6,6 +6,10 @@ import ClickDataVisualizationWebsite from "../ChartPages/WebsiteData";
 import TimeFrameDropdown from "../ChartPages/TimeFrameDropdown";
 import SelectWebsiteDropDown from "../ChartPages/SelectWebsiteDropdown";
 import populateAtoms from "../../services/populateAtoms";
+import { useParams } from "react-router-dom";
+import ClickLog from "./ClickLog";
+
+
 function Dashboard() {
   const [activeUser] = useAtom(activeUserAtom);
   const [activeWebsite,setActiveWebsite] = useAtom(activeWebsiteAtom);
@@ -14,10 +18,10 @@ function Dashboard() {
 
   return (
     <section id="dashboard-section" className={styles.dashboard}>
-      <div className={styles.chartBox}>
+
       
         <TimeFrameDropdown />
-      </div>
+        <ClickLog />
       <div>
         {activeWebsite === "overview"? (
           <ClickDataVisualization />
