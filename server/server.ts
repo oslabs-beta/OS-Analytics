@@ -8,6 +8,7 @@ import dataRoutes from './routes/dataRoute';
 import aiRoutes from './routes/aiRoutes'; 
 import authRoutes from './routes/authRoute' 
 import passport from './middleware/passportUserMiddleware';
+import puppeteerRoutes from './routes/puppeteerRoutes'; 
 
 
 
@@ -16,7 +17,6 @@ const cors = require('cors');
 
 //check db connection
 checkDatabaseConnection();
-
 
 const app = express();
 app.use(express.json());
@@ -35,6 +35,9 @@ app.use('/api/click-data',clickRoutes)
 app.use('/api/data',dataRoutes)
 
 app.use('/api/ai',aiRoutes)
+
+app.use('/api/screenshot', puppeteerRoutes)
+
 
 // app.use('/api/oauth',oauthRoute)
 // app.use('/api/oauthrequest',oauthRequestRoute)
