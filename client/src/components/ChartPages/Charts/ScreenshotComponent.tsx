@@ -3,15 +3,18 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import {backendUrl} from '../../../state/Atoms';
 
-const ScreenshotComponent = () => {
+/*******WEBSITE SCREENSHOT REQUEST********/
+const ScreenshotComponent = ({pageUrl}:any) => {
     // store image src
     const [imageSrc, setImageSrc] = useState<string | null>(null);
-    // need to pull this from the db
-    const webpage:string = 'http://localhost:3001'
-    const token = localStorage.getItem("token")!;
+    const webpage = pageUrl; // <--------- webpage to screenshot!!
+    const token = localStorage.getItem("token")!; 
+    
+    // rerender on pageurl change
     useEffect(() => {
         // fetchImage takes in a webpage url and sets imagesrc state to be a decoded url image 
         const fetchImage = async () => {
+            await console.log(webpage)
             try {
                 // Make a GET request to fetch the image as a binary buffer
                 const response = await axios.get(`${backendUrl}/api/screenshot?url=${webpage}`,
@@ -38,8 +41,8 @@ const ScreenshotComponent = () => {
             }
         };
 
-        fetchImage();
-    }, []);
+        if (pageUrl !== '') fetchImage();
+    }, [pageUrl]);
 
     return (
         <div>

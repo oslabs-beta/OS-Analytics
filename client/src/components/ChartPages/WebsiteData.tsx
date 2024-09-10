@@ -38,7 +38,7 @@ const ClickDataVisualization = () => {
       />
       <BarGraph_referrer data={webstiteRefferalData} />
       <AiResponseComponent />
-      <Heatmap data={allDataResponse} />
+      <Heatmap data={allDataResponse}/>
     </div>
   );
 };
