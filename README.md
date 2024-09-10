@@ -101,42 +101,42 @@
 - Heatmap
 - Other event tracking: OS/Browsers
 
-## Meet The Team
+## The team
 
-<div style="display: flex; justify-content: center;">
+<div align='center'>
 
 <table>
   <tr>
-    <td style="text-align: center; padding: 10px;">
-      <img src="https://drive.google.com/uc?export=view&id=1Kf6Uag0fScIaDLS84ocOE29oVLq1Lwhf" alt="Eric" width="100" style="border-radius: 50%;">
-      <br>Eric DiMarzio
-      <br><a href="https://github.com/EricDiMarzio">GitHub</a>
-      <br><a href="https://www.linkedin.com/in/ericdimarzio/">LinkedIn</a>
+    <td style="text-align: center; padding: 20px;">
+      <img src="https://drive.google.com/uc?export=view&id=1Kf6Uag0fScIaDLS84ocOE29oVLq1Lwhf" alt="Eric" width="120" style="border-radius: 50%;">
+      <h3>Eric DiMarzio</h3>
+      <a href="https://github.com/EricDiMarzio" style="text-decoration: none;">GitHub</a> |
+      <a href="https://www.linkedin.com/in/ericdimarzio/" style="text-decoration: none;">LinkedIn</a>
     </td>
 
-   <td style="text-align: center; padding: 10px;">
-      <img src="https://drive.google.com/uc?export=view&id=1LVf_oNtekR2RuN7rp3LshK1MpYt1ghzp" alt="Peter" width="100" style="border-radius: 50%;">
-      <br>Peter Larcheveque
-      <br><a href="https://github.com/plarchev">GitHub</a>
-      <br><a href="https://linkedin.com/in/peter-larcheveque/">LinkedIn</a>
+  <td style="text-align: center; padding: 20px;">
+      <img src="https://drive.google.com/uc?export=view&id=1LVf_oNtekR2RuN7rp3LshK1MpYt1ghzp" alt="Peter" width="120" style="border-radius: 50%;">
+      <h3>Peter Larcheveque</h3>
+      <a href="https://github.com/plarchev" style="text-decoration: none;">GitHub</a> |
+      <a href="https://linkedin.com/in/peter-larcheveque/" style="text-decoration: none;">LinkedIn</a>
     </td>
 
-   <td style="text-align: center; padding: 10px;">
-      <img src="https://drive.google.com/uc?export=view&id=1UVlPPUCFdOW-2dhitZutYzDzXTP-PXor" alt="David" width="100" style="border-radius: 50%;">
-      <br>David Naymon
-      <br><a href="https://github.com/DavidN22">GitHub</a>
-      <br><a href="https://www.linkedin.com/in/david-naymon-76520018a/">LinkedIn</a>
+  <td style="text-align: center; padding: 20px;">
+      <img src="https://drive.google.com/uc?export=view&id=1UVlPPUCFdOW-2dhitZutYzDzXTP-PXor" alt="David" width="120" style="border-radius: 50%;">
+      <h3>David Naymon</h3>
+      <a href="https://github.com/DavidN22" style="text-decoration: none;">GitHub</a> |
+      <a href="https://www.linkedin.com/in/david-naymon-76520018a/" style="text-decoration: none;">LinkedIn</a>
     </td>
 
-   <td style="text-align: center; padding: 10px;">
-      <img src="https://drive.google.com/uc?export=view&id=1ziFJVuFL8lGfprFXq5SxgDLyKwrSOxz6" alt="Saw" width="100" style="border-radius: 50%;">
-      <br>Saw Yan Naing
-      <br><a href="https://github.com/willsyn7">GitHub</a>
-      <br><a href="https://www.linkedin.com/in/saw-naing/">LinkedIn</a>
+  <td style="text-align: center; padding: 20px;">
+      <img src="https://drive.google.com/uc?export=view&id=1ziFJVuFL8lGfprFXq5SxgDLyKwrSOxz6" alt="Saw" width="120" style="border-radius: 50%;">
+      <h3>Saw Yan Naing</h3>
+      <a href="https://github.com/willsyn7" style="text-decoration: none;">GitHub</a> |
+      <a href="https://www.linkedin.com/in/saw-naing/" style="text-decoration: none;">LinkedIn</a>
     </td>
-
   </tr>
 </table>
+
 
 </div>
 
