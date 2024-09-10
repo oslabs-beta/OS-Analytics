@@ -7,11 +7,10 @@ import {
   ListItem,
   ListItemText,
 } from '@mui/material';
-import { timeFrameAtom, activeWebsiteAtom } from '../../../state/Atoms';
+import { timeFrameAtom, activeWebsiteAtom, backendUrl } from '../../../state/Atoms';
 import { useAtom } from 'jotai';
 import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { backendUrl } from '../../../state/Atoms';
 import styles from '../Charts.module.css';
 
 const AiResponseComponent = () => {
