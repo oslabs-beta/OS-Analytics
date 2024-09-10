@@ -172,7 +172,7 @@ const userController = {
       const user = res.locals.userId;
 
       const response = await pool.query(
-        'SELECT * FROM "userTable2" WHERE "cognito_id" = $1',
+        'SELECT * FROM "userTable" WHERE "cognito_id" = $1',
         [user]
       );
 
@@ -195,12 +195,12 @@ const userController = {
       const user = res.locals.userId;
 
       const response = await pool.query(
-        'SELECT * FROM "userTable2" WHERE "cognito_id" = $1',
+        'SELECT * FROM "userTable" WHERE "cognito_id" = $1',
         [user]
       );
       if (response.rows.length > 0) {
         await pool.query(
-          'UPDATE "userTable2" SET "api_key" = NULL WHERE "cognito_id" = $1',
+          'UPDATE "userTable" SET "api_key" = NULL WHERE "cognito_id" = $1',
           [user]
         );
         res.status(200).json({ message: "API key deleted successfully" });
@@ -221,13 +221,13 @@ const userController = {
       const user = res.locals.userId;
 
       const response = await pool.query(
-        'SELECT * FROM "userTable2" WHERE "cognito_id" = $1',
+        'SELECT * FROM "userTable" WHERE "cognito_id" = $1',
         [user]
       );
 
       if (response.rows.length > 0) {
         const newApiKeyResponse = await pool.query(
-          'UPDATE "userTable2" SET "api_key" = gen_random_uuid() WHERE "cognito_id" = $1 RETURNING "api_key"',
+          'UPDATE "userTable" SET "api_key" = gen_random_uuid() WHERE "cognito_id" = $1 RETURNING "api_key"',
           [user]
         );
         res.status(200).json({ apiKey: newApiKeyResponse.rows[0].api_key });
@@ -252,13 +252,13 @@ const userController = {
       const encryptedSecretKey = encrypt(awsSecretKey);
 
       const response = await pool.query(
-        'SELECT * FROM "userTable2" WHERE "cognito_id" = $1',
+        'SELECT * FROM "userTable" WHERE "cognito_id" = $1',
         [user]
       );
 
       if (response.rows.length > 0) {
         await pool.query(
-          'UPDATE "userTable2" SET "AWS_ACCESS_KEY" = $1, "AWS_SECRET_KEY" = $2, "AWS_REGION" = $3 WHERE "cognito_id" = $4 RETURNING "api_key"',
+          'UPDATE "userTable" SET "AWS_ACCESS_KEY" = $1, "AWS_SECRET_KEY" = $2, "AWS_REGION" = $3 WHERE "cognito_id" = $4 RETURNING "api_key"',
            [JSON.stringify(encryptedClientKey), JSON.stringify(encryptedSecretKey), awsRegion, user]
         );
         res.status(200).json({
@@ -299,7 +299,7 @@ const userController = {
         console.log("Cognito_id is oauth.");
       }
       const result = await pool.query(
-        `DELETE FROM "userTable2" WHERE "cognito_id" = $1 RETURNING *`,
+        `DELETE FROM "userTable" WHERE "cognito_id" = $1 RETURNING *`,
         [cognito_id]
       );
 

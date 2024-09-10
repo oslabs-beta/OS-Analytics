@@ -11,7 +11,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //search for a valid api key inside the usertable
     const result = await pool.query(
-      'SELECT * FROM "userTable2" WHERE "api_key" = $1',
+      'SELECT * FROM "userTable" WHERE "api_key" = $1',
       [apiKey]
     );
     if (result.rows.length === 0) {

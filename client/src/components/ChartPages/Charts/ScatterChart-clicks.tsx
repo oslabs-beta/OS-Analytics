@@ -42,40 +42,34 @@ const ScatterChart = ({ data }: NoKeywordChart) => {
   const options = {
     scales: {
       x: {
+        min: 0,
+        max: 1,
         title: {
           display: true,
-          text: 'X Coordinate',
+          text: 'X Coordinate (0-1)',
         },
       },
       y: {
+        min: 0,
+        max: 1, 
+        reverse: true, 
         title: {
           display: true,
-          text: 'Y Coordinate',
+          text: 'Y Coordinate (0-1)',
         },
-        reverse: true
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
       },
     },
   };
 
   return (
-   
-   <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
-      
-     
-      
+    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
       <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
         Click Scatter Plot
       </Typography>
       <Scatter ref={chartRef} data={scatterData} options={options} />
-     <div style={{ marginLeft: "620px" }}>
+      <div style={{ marginLeft: "620px" }}>
         <ChartDownload chartRef={chartRef} />
       </div>
-    
     </div>
   );
 };

@@ -18,6 +18,9 @@ const FlowDiagram = ({ selectedWebsite, selectedPage }: FrequencyProps) => {
   const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
 
+  const pageWidth = 1980;
+  const pageHeight = 1080;
+
   useEffect(() => {
     if (!selectedWebsite || !selectedPage) {
       setNodes([]);
@@ -54,8 +57,8 @@ const FlowDiagram = ({ selectedWebsite, selectedPage }: FrequencyProps) => {
       },
       position: { x: 0, y: 0 },
       style: {
-        width: "1980px",
-        height: "1080px",
+        width: `${pageWidth}px`,
+        height: `${pageHeight}px`,
         backgroundColor: "#ffffff",
         border: "2px solid #000",
         borderRadius: "10px",
@@ -72,14 +75,18 @@ const FlowDiagram = ({ selectedWebsite, selectedPage }: FrequencyProps) => {
     const initialNodes: Node[] = Object.keys(aggregatedData).map(
       (dataset_id) => {
         const { x_coord, y_coord, count } = aggregatedData[dataset_id];
+      console.log(x_coord)
+        const pixelX = x_coord * pageWidth;
+        const pixelY = y_coord * pageHeight;
+
         return {
           id: dataset_id,
           data: {
             label: `Button (${count} presses)`,
           },
           position: {
-            x: x_coord,
-            y: y_coord,
+            x: pixelX,
+            y: pixelY,
           },
           style: {
             backgroundColor: `rgba(255, 0, 0, ${Math.min(count / 10, 1)})`,
