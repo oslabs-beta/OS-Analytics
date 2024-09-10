@@ -42,12 +42,12 @@ const BarChart = ({ data }: referralBarChartProps) => {
   const counts = sortedReferrals.map(([, count]) => count);
 
   const colorPattern = [
-    "rgba(54, 162, 235, 0.2)",  
-    "rgba(255, 99, 132, 0.2)",  
+    "rgba(54, 162, 235, 0.8)",  
+    "rgba(255, 99, 132, 0.8)",  
   ];
 
   const backgroundColors = labels.map((_, index) => colorPattern[index % colorPattern.length]);
-  const borderColors = labels.map((_, index) => colorPattern[index % colorPattern.length].replace("0.2", "1"));
+  const borderColors = labels.map((_, index) => colorPattern[index % colorPattern.length].replace("0.8", "1"));
 
   const chartData = {
     labels: labels,
@@ -57,7 +57,8 @@ const BarChart = ({ data }: referralBarChartProps) => {
         data: counts,
         backgroundColor: backgroundColors,
         borderColor: borderColors,
-        borderWidth: 1,
+        borderWidth: 3,
+        borderRadius: 5,
       },
     ],
   };

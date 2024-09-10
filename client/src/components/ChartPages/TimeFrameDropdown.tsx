@@ -1,32 +1,17 @@
 import { useAtom } from 'jotai';
-import { Select, MenuItem, FormControl } from '@mui/material';
+import { Box, FormControl, Select, MenuItem} from "@mui/material";
+import styles from '../User/UserView.module.css'
 import { timeFrameAtom } from '../../state/Atoms';
 
 const TimeFrameDropdown = () => {
     const [timeFrame, setTimeFrame] = useAtom(timeFrameAtom);
   
     return (
-      <div>
-        <FormControl variant="outlined" style={{ minWidth: 120, marginBottom: '20px', height: '30px' }}>
+      <Box className={styles.timeframe} sx={{display: "flex", alignItems: "center", mb: 4 }}>
+        <FormControl fullWidth variant="outlined">
           <Select
             value={timeFrame}
             onChange={(e) => setTimeFrame(e.target.value)}
-            style={{
-              backgroundColor: 'rgba(50, 50, 50, 0.8)',
-              color: 'white',
-              borderRadius: '4px',
-              height: '30px',
-              padding: '5px 10px',
-              boxShadow: 'none',
-            }}
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  backgroundColor: 'rgba(50, 50, 50, 0.8)',
-                  color: 'white',
-                },
-              },
-            }}
           >
             <MenuItem value="1 day">Last 24 Hours</MenuItem>
             <MenuItem value="1 week">Last Week</MenuItem>
@@ -36,7 +21,7 @@ const TimeFrameDropdown = () => {
             <MenuItem value="allTime">All time</MenuItem>
           </Select>
         </FormControl>
-      </div>
+      </Box>
     );
 };
 

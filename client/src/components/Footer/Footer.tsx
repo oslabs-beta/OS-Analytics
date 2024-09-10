@@ -72,3 +72,7 @@ const Footer = () => {
 };
 
 export default Footer;
+
+{/* <a href="https://www.flaticon.com/free-icons/dashboard-icons" title="dashboard icons icons">Dashboard icons icons created by Kharisma - Flaticon</a> */}
+
+{/* <div> Icons made by <a href="https://www.flaticon.com/authors/prosymbols" title="Prosymbols"> Prosymbols </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div> */}
