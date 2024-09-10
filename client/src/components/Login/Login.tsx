@@ -17,8 +17,7 @@ export default function Login() {
     password: '',
   });
   const navigate = useNavigate();
-  const vantaRef = useRef(null); 
-  const [vantaEffect, setVantaEffect] = useState(null);  
+  const vantaRef = useRef(null);  
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -31,31 +30,26 @@ export default function Login() {
       navigate('/dashboard');
     }
 
-    // Initialize Vanta effect
-    if (!vantaEffect) {
-      setVantaEffect(
-      NET({
-          el: vantaRef.current,
-          mouseControls: false,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          scale: 1.00,
-          scaleMobile: 1.00,
-          color: 0x3fafff,
-          backgroundColor: 0x1c1a4a,
-          THREE: THREE, 
-        })
-      );
-    }
 
-    return () => {
-      // Clean up the Vanta effect
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, []);
+    const vantaEffect = NET({
+      el: vantaRef.current,
+      mouseControls: false,
+      touchControls: false,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x3fafff,
+      backgroundColor: 0x1c1a4a,
+      THREE: THREE, 
+   
+  });
 
+  return () => {
+    if (vantaEffect) vantaEffect.destroy(); 
+  };
+}, []);
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
@@ -76,7 +70,7 @@ export default function Login() {
   }
 
   return (
-    <div className="viewNoSide">
+    <div className="viewNoSide"> 
       <Navbar />
       <NavMobile />
       <section className={styles.loginPage}>
@@ -93,16 +87,15 @@ export default function Login() {
               Continue with GitHub
             </button>
           </div>
-          <form onSubmit={(e) => handleSubmit(e)} className={styles.loginCredentials}>
+          <BarAnimation />
+          <form onSubmit={handleSubmit} className={styles.loginCredentials}>
             <input
               className='input'
               type="email"
               placeholder="email"
               name="email"
               value={formData.email}
-              onChange={(e) => {
-                handleChange(e);
-              }}
+              onChange={handleChange}
               required
             />
             <input
@@ -112,22 +105,19 @@ export default function Login() {
               placeholder="password"
               value={formData.password}
               name="password"
-              onChange={(e) => {
-                handleChange(e);
-              }}
+              onChange={handleChange}
               required
             />
-            <button type="submit" className={` button btn-primary`}>
-              Sign in
-            </button>
+            <button type="submit" className="button btn-primary">Sign in</button>
           </form>
           <div className={styles.createAccountQuery}>
-            <p className="white-secondary">Don't have an account?</p>
+            <p className="black">Don't have an account?</p>
             <p>
-              <Link to="/signup">Sign up now</Link>
+            <Link to="/signup" style={{ color: "black" }}>Sign up now</Link>
+
             </p>
           </div>
-          <Link to="/forgot-password">Forgot Password?</Link>
+          <Link to="/forgot-password" style={{ color: "black" }} >Forgot Password?</Link>
         </div>
         <div className={styles.loginBackground} ref={vantaRef}>
         </div>
@@ -135,3 +125,4 @@ export default function Login() {
     </div>
   );
 }
+

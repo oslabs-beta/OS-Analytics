@@ -6,7 +6,6 @@ import Navbar from '../Navbar/Navbar';
 import * as THREE from 'three'; 
 import NET from 'vanta/dist/vanta.net.min'; 
 
-// Animation keyframes
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -15,10 +14,9 @@ const fadeIn = keyframes`
 export default function LoginPage() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Handle login logic here
+
   };
 
-  // Ref for Vanta.js background effect
   const vantaRef = useRef(null);
 
   useEffect(() => {

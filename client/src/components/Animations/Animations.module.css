@@ -1,12 +1,10 @@
 .barContainer {
-    width: 80px;
-    aspect-ratio: 1/.75;
+    width: 92px;
+    height: 70px;
     border-left: 3px solid white;
     border-bottom: 3px solid white;
     background: transparent;
-    z-index: 100;
     display: flex;
-    flex-wrap: nowrap;
     gap: 5%;
     justify-content: center;
     align-items: end;

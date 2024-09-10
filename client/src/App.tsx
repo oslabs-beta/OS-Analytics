@@ -7,7 +7,7 @@ import { activeUserAtom } from './state/Atoms';
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { handleSession } from "./services/authConfig";
-import Signup from './components/Login/SignupTest';
+import Signup from './components/Login/Signup';
 import Documentation from './components/Documentation/Documentation';
 import Settings from './components/Settings/Settings';
 import ForgotPassword from './components/User/ForgotPassword';
