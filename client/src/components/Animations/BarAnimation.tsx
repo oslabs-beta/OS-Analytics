@@ -4,7 +4,7 @@ export default function BarAnimation() {
 
 
 function getHeight() {
-  return Math.floor(Math.random()*70)+20;
+  return Math.floor(Math.random()*80)+20;
 }
 
 

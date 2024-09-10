@@ -1,5 +1,5 @@
 import styles from './WhyOSA.module.css';
-import icon from '../../assets/icons/chart.png';
+import icon from '../../assets/icons/graphs.png';
 
 export default function WhyOSA() {
   return (

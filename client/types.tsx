@@ -2,6 +2,21 @@ export type BarChartProps = {
   data: QueryData[];
   keyword: string;
 };
+export type ClickLogProps = {
+  item: {
+     element: string;
+      dataset_id: string;
+      x_coord: number;
+      y_coord: number;
+      time: string;
+      user_browser: string;
+      website: string;
+      user_os: string;
+      page_url: string;
+  }
+     
+}
+
 export type RadarChartProps = {
   data: QueryData[];
   keyword: string;

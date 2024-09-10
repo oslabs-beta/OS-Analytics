@@ -15,7 +15,6 @@
   color: var(--white);
 }
 
-
 .navContainer {
   display: flex;
   justify-content: space-between;
@@ -60,6 +59,12 @@
   height: 2.4rem;
   text-wrap: nowrap;
   font-size: 1rem;
+}
+.gitBox {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  height: 100%;
 }
 
 .logOutIcon {

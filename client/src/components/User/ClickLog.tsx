@@ -3,13 +3,13 @@ import styles from './ClickLog.module.css';
 
 import ClickLogItem from './ClickLogItem';
 import { userDataAtom } from '../../state/Atoms';
-import { useState } from 'react';
+import { mapUserData } from '../../services/extractData';
 
 function ClickLog() {
     const [userData] = useAtom(userDataAtom);
-    const mappedData = mapUserData(userData);
+    const mappedData:any = mapUserData(userData);
     // const [displayedItems, setDisplayedItems] = useState([])
-    let displayedItems = []
+    let displayedItems: any[] = []
 
     //date
     //time

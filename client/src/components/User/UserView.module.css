@@ -59,7 +59,7 @@
   justify-content: start;
   gap: 1rem;
   border-radius: 6px;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   width: 3rem;
   overflow: hidden;
   transition: width 0.25s ease;
@@ -89,6 +89,9 @@ a.active {
   text-align: left;
   /* border: 1px solid var(--blue-secondary); */
 }
+/* .timeframe:active {
+  border: 1px solid red;
+} */
 
 @media only screen and (max-width: 1000px) {
   .sidebar {

@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import { activeUserAtom, backendUrl } from "../../state/Atoms";
 import Navbar from "../Navbar/Navbar";
 import NavMobile from "../Navbar/NavMobile";
+import BarAnimation from "../Animations/BarAnimation";
 
 export default function Signup() {
   const [, setActiveUser] = useAtom(activeUserAtom);
@@ -56,6 +57,7 @@ export default function Signup() {
               Continue with GitHub
             </button>
           </div>
+          <BarAnimation/>
           <form
             onSubmit={(e) => handleSubmit(e)}
             className={styles.loginCredentials}

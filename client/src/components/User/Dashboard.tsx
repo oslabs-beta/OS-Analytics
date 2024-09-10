@@ -8,6 +8,7 @@ import SelectWebsiteDropDown from "../ChartPages/SelectWebsiteDropdown";
 import populateAtoms from "../../services/populateAtoms";
 import { useParams } from "react-router-dom";
 import ClickLog from "./ClickLog";
+import Footer from "../Footer/Footer";
 
 
 function Dashboard() {

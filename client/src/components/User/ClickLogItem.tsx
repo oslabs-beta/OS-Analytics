@@ -1,29 +1,30 @@
 import { useEffect, useState } from 'react';
 import styles from './ClickLog.module.css';
+import { ClickLogProps } from '../../../types';
 
-function ClickLogItem(item) {
+function ClickLogItem({item}:ClickLogProps) {
   const [date, setDate] = useState<string>('');
   const [time, setTime] = useState<string>('');
-  // console.log(item)
+
   useEffect(() => {
-    const date = new Date(item.item.created_at);
+    const date = new Date(item.time);
     const localDate = date.toLocaleString().split(' ');
     setDate(localDate[0].slice(0, -1));
     setTime(localDate[1] + ' ' + localDate[2]);
   }, []);
-//How did David get the browser name?
+
 
 
   return (
-    <tr>
-      <td>{date}</td>
-      <td>{time}</td>
-      <td>click</td>
-      <td className={styles.noWrap}>{item.item.element}</td>
-      <td className={styles.noWrap}>{item.item.user_browser.slice(0,7)}</td>
-      <td className={styles.textRight}>{item.item.user_os}</td>
-      <td>
-       {item.item.website_name}
+    <tr className={styles.ClickLogItem}>
+      <td className={styles.noWrap}>{date}</td>
+      <td className={styles.noWrap}>{time}</td>
+      <td className={styles.noWrap}>click</td>
+      <td className={styles.noWrap}>{item.element+' '+ item.dataset_id}</td>
+      <td className={styles.noWrap}>{item.user_browser.slice(0,7)}</td>
+      <td className={styles.noWrap}>{item.user_os}</td>
+      <td className={styles.noWrap}>
+       {item.website}
       </td>
     </tr>
   );

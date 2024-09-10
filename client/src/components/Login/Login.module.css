@@ -13,7 +13,7 @@
     align-items: center;
     padding: 4.8rem;
 
-    gap: 3.2rem;
+    gap: 2.4rem;
       background: var(--blue-secondary);
 }
 
@@ -48,7 +48,7 @@
     color: var(--black);
 }
 .google:hover,.github:hover {
-    border: 2px solid var(--blue-primary);
+    border: 2px solid var(--blue-tertiary);
 }
 .github {
     background: rgb(194, 194, 194);
@@ -71,7 +71,7 @@ width: 100%;
     line-height: .6rem;
     text-align: center;
     font-weight: 300;
-    color: var(--white-secondary);
+    color: var(--blue-gray);
 }
 
 .createAccountQuery a {
@@ -79,5 +79,5 @@ width: 100%;
 }
 
 .createAccountQuery a:hover {
-color: var(--green-primary);
+color: var(--blue-tertiary);
 }

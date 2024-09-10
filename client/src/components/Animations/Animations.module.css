@@ -1,6 +1,6 @@
 .barContainer {
-    width: 500px;
-    aspect-ratio: 1/.8;
+    width: 80px;
+    aspect-ratio: 1/.75;
     border-left: 3px solid white;
     border-bottom: 3px solid white;
     background: transparent;

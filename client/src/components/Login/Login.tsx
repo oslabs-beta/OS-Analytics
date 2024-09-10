@@ -77,6 +77,7 @@ export default function Login() {
               Continue with GitHub
             </button>
           </div>
+          <BarAnimation />
           <form
             onSubmit={(e) => handleSubmit(e)}
             className={styles.loginCredentials}
@@ -117,7 +118,6 @@ export default function Login() {
           <Link to="/forgot-password">Forgot Password?</Link>
         </div>
         <div className={styles.loginBackground}>
-        <BarAnimation />
         </div>
       </section>
     </div>
