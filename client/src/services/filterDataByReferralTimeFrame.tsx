@@ -1,5 +1,8 @@
 import { referralData } from "../../types";
-export const filterReferralDataByTimeFrame = (data: referralData[], timeFrame: string) => {
+export const filterReferralDataByTimeFrame = (
+  data: referralData[],
+  timeFrame: string
+) => {
   const filteredData = [];
   const now = new Date();
 
@@ -10,6 +13,11 @@ export const filterReferralDataByTimeFrame = (data: referralData[], timeFrame: s
     switch (timeFrame) {
       case "1 day":
         if (now.getTime() - clickTime.getTime() <= 24 * 60 * 60 * 1000) {
+          filteredData.push(item);
+        }
+        break;
+      case "1 week":
+        if (now.getTime() - clickTime.getTime() <= 7 * 24 * 60 * 60 * 1000) {
           filteredData.push(item);
         }
         break;

@@ -9,8 +9,9 @@ const dataController = {
       //user_id, element, element_name, dataset_id, x_coord, y_coord, user_browser, user_os, page_url
       const response = await pool.query(
         `SELECT *
-          FROM "clickTable2"
-          WHERE user_id = $1`,
+FROM "clickTable"
+WHERE user_id = $1
+ORDER BY created_at ASC;`,
         [id]
       );
 
@@ -24,7 +25,7 @@ const dataController = {
       return next({
         message: "Error in getAllUserData: " + error.message,
         log: err,
-      });
+      }); 
     }
   },
 
@@ -53,10 +54,10 @@ const dataController = {
   async deleteWebsite(req: Request, res: Response, next: NextFunction) {
     const { website_name } = req.body;
     const userId = res.locals.userId;
-console.log("hit")
+
     try {
       const deleteClicks = await pool.query(
-        `DELETE FROM "clickTable2" WHERE website_name = $1 AND user_id = $2`,
+        `DELETE FROM "clickTable" WHERE website_name = $1 AND user_id = $2`,
         [website_name, userId]
       );
       const deleteReferrals = await pool.query(
@@ -82,7 +83,7 @@ console.log("hit")
       const website: string = req.params.id;
       const id: string = res.locals.userId;
       const response = await pool.query(
-        `SELECT * FROM "clickTable2"
+        `SELECT * FROM "clickTable"
       WHERE user_id = $1
       AND website_name = $2
       `,
@@ -108,7 +109,7 @@ console.log("hit")
 
       const response = await pool.query(
         `SELECT DISTINCT website_name
-       FROM "clickTable2"
+       FROM "clickTable"
        WHERE user_id = $1`,
         [id]
       );

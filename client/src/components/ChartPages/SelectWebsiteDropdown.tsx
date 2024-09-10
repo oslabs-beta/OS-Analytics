@@ -1,17 +1,28 @@
 import { useAtom } from 'jotai';
-import { Select, MenuItem, FormControl } from '@mui/material';
+import { Select, MenuItem, FormControl, SelectChangeEvent} from '@mui/material';
 import { activeWebsiteAtom, websitesAtom } from '../../state/Atoms';
+import { useNavigate } from 'react-router-dom';
 
 const SelectWebsiteDropDown = () => {
   const [selectedWebsite, setSelectedWebsite] = useAtom(activeWebsiteAtom);
   const [websites] = useAtom(websitesAtom);
+  const navigate = useNavigate(); 
+
+  const handleWebsiteChange = (event: SelectChangeEvent<string>) => {
+    const newWebsite = event.target.value;
+    setSelectedWebsite(newWebsite); 
+    navigate(newWebsite === 'overview' ? '/dashboard/overview' : `/dashboard/${newWebsite}`);
+  };
 
   return (
     <div>
-      <FormControl variant="outlined" style={{ minWidth: 120, marginBottom: '20px', height: '30px' }}>
+      <FormControl
+        variant="outlined"
+        style={{ minWidth: 120, marginBottom: '20px', height: '30px' }}
+      >
         <Select
-          value={selectedWebsite}
-          onChange={(e) => setSelectedWebsite(e.target.value)}
+          value={selectedWebsite || "overview"} 
+          onChange={handleWebsiteChange} 
           style={{
             backgroundColor: 'rgba(50, 50, 50, 0.8)',
             color: 'white',
@@ -29,12 +40,11 @@ const SelectWebsiteDropDown = () => {
             },
           }}
         >
-        <MenuItem value="All Websites">All Websites</MenuItem>
+          <MenuItem value="overview">Overview</MenuItem>
           {websites.map((website, index) => (
             <MenuItem key={index} value={website}>
               {website}
             </MenuItem>
-            
           ))}
         </Select>
       </FormControl>

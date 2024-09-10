@@ -1,34 +1,32 @@
+.viewNoSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .sectionWrapper {
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  max-width: 1000px; 
+  width: 100%;
+  padding: 20px;
+  margin: 0 auto; 
+
 }
 
 .docs {
-    width: 100%;
-    max-width: 1380px;
-    padding: 5rem 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
-    color: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .docStep {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  margin-bottom: 20px;
+  width: 100%;
+  
 }
 
 .codeBlock {
-    width: 100%;
-    background: var(--black);
-    border-radius: 8px;
-    min-height: 5rem;
-    display: flex;
-    align-items: center;
-    padding-left: 2rem;
-    color: white;
-    overflow: auto;
+  width: 100%;
+  overflow-x: auto;
 }

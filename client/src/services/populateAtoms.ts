@@ -8,36 +8,44 @@ import { useAtom } from "jotai";
 import axios from "axios";
 import { useEffect } from "react";
 
-function populateAtoms() {
+async function populateAtoms() {
   const [, setUserData] = useAtom(userDataAtom);
   const [, setUserReferralData] = useAtom(userReferralDataAtom);
   const [, setWebsites] = useAtom(websitesAtom);
 
   const token = localStorage.getItem("token");
+
   useEffect(() => {
-    axios
-      .get(`${backendUrl}/api/data`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setUserData(res.data);
+    const fetchData = async () => {
+      try {
+        const userDataResponse = await axios.get(`${backendUrl}/api/data`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setUserData(userDataResponse.data);
+
         const websiteList: Set<string> = new Set(
-          res.data.map((el: { website_name: string }) => el.website_name)
+          userDataResponse.data.map((el: { website_name: string }) => el.website_name)
         );
         setWebsites(Array.from(websiteList));
-      });
-    axios
-      .get(`${backendUrl}/api/data/referral`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setUserReferralData(res.data);
-      })
-  }, []);
+
+        const userReferralDataResponse = await axios.get(`${backendUrl}/api/data/referral`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setUserReferralData(userReferralDataResponse.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [setUserData, setUserReferralData, setWebsites, token]);
+
 }
 
 export default populateAtoms;

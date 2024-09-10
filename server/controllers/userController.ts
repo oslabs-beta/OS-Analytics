@@ -9,6 +9,7 @@ import {
 } from "@aws-sdk/client-cognito-identity-provider";
 import * as crypto from "crypto";
 import createCognitoVerifier from "../middleware/verifier";
+import { encrypt } from "../middleware/awsEncryption";
 const client = new CognitoIdentityProviderClient({ region: "us-east-2" });
 import { pool } from "../models/db";
 const COGNITO_CLIENT_ID = process.env.COGNITO_CLIENT_ID;
@@ -42,7 +43,9 @@ const userController = {
       });
 
       await client.send(command);
-      res.status(200).json({ message: "Password reset code sent to your email." });
+      res
+        .status(200)
+        .json({ message: "Password reset code sent to your email." });
     } catch (err) {
       const error = err as Error;
       return next({
@@ -54,7 +57,11 @@ const userController = {
 
   // Confirm forgot password functionality
   async confirmPassword(req: Request, res: Response, next: NextFunction) {
-    const { email, code, newPassword }: { email: string; code: string; newPassword: string } = req.body;
+    const {
+      email,
+      code,
+      newPassword,
+    }: { email: string; code: string; newPassword: string } = req.body;
     try {
       const secretHash = computeSecretHash(
         COGNITO_CLIENT_ID!,
@@ -117,7 +124,7 @@ const userController = {
       const token = authResult.AuthenticationResult?.IdToken;
       const verifier = createCognitoVerifier();
       const payload = await verifier.verify(token!);
-      res.locals.cognito_Id = payload.sub;;
+      res.locals.cognito_Id = payload.sub;
       res.locals.email = payload.email;
       res.locals.token = token;
       return next();
@@ -150,7 +157,7 @@ const userController = {
       const token = authResult.AuthenticationResult?.IdToken;
       res.locals.token = token;
       //send token back
-      res.status(200).send({ email: email, token:token });
+      res.status(200).send({ email: email, token: token });
     } catch (err) {
       const error = err as Error;
       return next({
@@ -160,20 +167,17 @@ const userController = {
     }
   },
 
-
-
-
   async getApiKey(req: Request, res: Response, next: NextFunction) {
     try {
       const user = res.locals.userId;
-      
+
       const response = await pool.query(
-        'SELECT * FROM "userTable2" WHERE "cognito_id" = $1',
+        'SELECT * FROM "userTable" WHERE "cognito_id" = $1',
         [user]
       );
 
       if (response.rows.length > 0) {
-        res.status(200).json({apiKey:response.rows[0].api_key});
+        res.status(200).json({ apiKey: response.rows[0].api_key });
       } else {
         res.status(404).json({ message: "No data" });
       }
@@ -191,12 +195,12 @@ const userController = {
       const user = res.locals.userId;
 
       const response = await pool.query(
-        'SELECT * FROM "userTable2" WHERE "cognito_id" = $1',
+        'SELECT * FROM "userTable" WHERE "cognito_id" = $1',
         [user]
       );
       if (response.rows.length > 0) {
         await pool.query(
-          'UPDATE "userTable2" SET "api_key" = NULL WHERE "cognito_id" = $1',
+          'UPDATE "userTable" SET "api_key" = NULL WHERE "cognito_id" = $1',
           [user]
         );
         res.status(200).json({ message: "API key deleted successfully" });
@@ -211,19 +215,19 @@ const userController = {
       });
     }
   },
-  
+
   async refreshApiKey(req: Request, res: Response, next: NextFunction) {
     try {
       const user = res.locals.userId;
 
       const response = await pool.query(
-        'SELECT * FROM "userTable2" WHERE "cognito_id" = $1',
+        'SELECT * FROM "userTable" WHERE "cognito_id" = $1',
         [user]
       );
-  
+
       if (response.rows.length > 0) {
         const newApiKeyResponse = await pool.query(
-          'UPDATE "userTable2" SET "api_key" = gen_random_uuid() WHERE "cognito_id" = $1 RETURNING "api_key"',
+          'UPDATE "userTable" SET "api_key" = gen_random_uuid() WHERE "cognito_id" = $1 RETURNING "api_key"',
           [user]
         );
         res.status(200).json({ apiKey: newApiKeyResponse.rows[0].api_key });
@@ -238,14 +242,47 @@ const userController = {
       });
     }
   },
+
+  async addAwsCredentials(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user = res.locals.userId;
+      const { awsClientKey, awsSecretKey, awsRegion } = req.body;
+
+      const encryptedClientKey = encrypt(awsClientKey);
+      const encryptedSecretKey = encrypt(awsSecretKey);
+
+      const response = await pool.query(
+        'SELECT * FROM "userTable" WHERE "cognito_id" = $1',
+        [user]
+      );
+
+      if (response.rows.length > 0) {
+        await pool.query(
+          'UPDATE "userTable" SET "AWS_ACCESS_KEY" = $1, "AWS_SECRET_KEY" = $2, "AWS_REGION" = $3 WHERE "cognito_id" = $4 RETURNING "api_key"',
+           [JSON.stringify(encryptedClientKey), JSON.stringify(encryptedSecretKey), awsRegion, user]
+        );
+        res.status(200).json({
+          message: "AWS credentials updated successfully",
+        });
+      } else {
+        res.status(404).json({ message: "User not found" });
+      }
+    } catch (err) {
+      const error = err as Error;
+      return next({
+        message: "Error in addAwsCredentials: " + error.message,
+        log: err,
+      });
+    }
+  },
+
   async logout(req: Request, res: Response, next: NextFunction) {
     res.status(200).send("Logged out successfully");
   },
 
   async deleteAccount(req: Request, res: Response, next: NextFunction) {
     const cognito_id = res.locals.userId;
-    console.log("hit");
-  
+
     if (!cognito_id) {
       return res.status(400).json({ message: "cognito_id is required" });
     }
@@ -259,18 +296,22 @@ const userController = {
         });
         await client.send(deleteCommand);
       } else {
-        console.log("Skipping Cognito deletion, cognito_id is an email.");
+        console.log("Cognito_id is oauth.");
       }
       const result = await pool.query(
-        `DELETE FROM "userTable2" WHERE "cognito_id" = $1 RETURNING *`,
+        `DELETE FROM "userTable" WHERE "cognito_id" = $1 RETURNING *`,
         [cognito_id]
       );
-  
+
       if (result.rowCount === 0) {
         return res.status(404).json({ message: "User not found" });
       }
-  
-      res.status(200).json({ message: "User account and related data deleted successfully." });
+
+      res
+        .status(200)
+        .json({
+          message: "User account and related data deleted successfully.",
+        });
     } catch (err) {
       const error = err as Error;
       return next({
@@ -278,8 +319,7 @@ const userController = {
         log: err,
       });
     }
-  }
+  },
 };
-
 
 export default userController;

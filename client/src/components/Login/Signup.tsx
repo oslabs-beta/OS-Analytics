@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import styles from './Login.module.css';
-import axios from 'axios';
-import { useAtom } from 'jotai';
-import { activeUserAtom, backendUrl } from '../../state/Atoms';
-import Navbar from '../Navbar/Navbar';
-import NavMobile from '../Navbar/NavMobile';
+import React, { useState } from "react";
+import styles from "./Login.module.css";
+import axios from "axios";
+import { useAtom } from "jotai";
+import { activeUserAtom, backendUrl } from "../../state/Atoms";
+import Navbar from "../Navbar/Navbar";
+import NavMobile from "../Navbar/NavMobile";
 
 export default function Signup() {
   const [, setActiveUser] = useAtom(activeUserAtom);
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({
@@ -27,9 +27,9 @@ export default function Signup() {
         `${backendUrl}/api/auth/signup`,
         formData
       );
-      console.log(response.data);
+
       setActiveUser(response.data.email);
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem("token", response.data.token);
     } catch (err: unknown) {
       const error = err as Error;
       console.log(error.message);
@@ -45,14 +45,14 @@ export default function Signup() {
           <h2>Create Account</h2>
           <div className={styles.oathButtons}>
             <button
-              className={`${styles.loginBtn} ${styles.google}`}
+              className={`button ${styles.loginBtn} ${styles.google}`}
               onClick={() =>
                 (window.location.href = `${backendUrl}/api/google`)
               }
             >
               Continue with Google
             </button>
-            <button className={`${styles.loginBtn} ${styles.github}`}>
+            <button className={`button ${styles.loginBtn} ${styles.github}`}>
               Continue with GitHub
             </button>
           </div>
@@ -61,6 +61,7 @@ export default function Signup() {
             className={styles.loginCredentials}
           >
             <input
+              className="input"
               type="email"
               placeholder="email"
               name="email"
@@ -71,6 +72,7 @@ export default function Signup() {
               required
             ></input>
             <input
+              className="input"
               type="password"
               minLength={6}
               placeholder="password"
@@ -82,6 +84,7 @@ export default function Signup() {
               required
             ></input>
             <input
+              className="input"
               type="password"
               minLength={6}
               placeholder="confirm password"
@@ -92,13 +95,13 @@ export default function Signup() {
               }}
               required
             ></input>
-            <button type="submit" className={`btn-primary`}>
+            <button type="submit" className={`button btn-primary`}>
               Create account
             </button>
           </form>
           <div className={styles.createAccountQuery}></div>
         </div>
-        <div className={styles.loginBackground}></div>{' '}
+        <div className={styles.loginBackground}></div>{" "}
       </section>
     </div>
   );

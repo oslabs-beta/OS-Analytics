@@ -13,11 +13,15 @@ export const filterDataByTimeFrame = (data: QueryData[], timeFrame: string) => {
           filteredData.push(item);
         }
         break;
+      case "1 week":
+        if (now.getTime() - clickTime.getTime() <= 7 * 24 * 60 * 60 * 1000) {
+          filteredData.push(item);
+        }
+        break;
       case "1 month":
         if (now.getTime() - clickTime.getTime() <= 30 * 24 * 60 * 60 * 1000) {
           filteredData.push(item);
         }
-
         break;
       case "1 year":
         if (now.getFullYear() === clickTime.getFullYear()) {

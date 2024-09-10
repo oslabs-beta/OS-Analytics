@@ -7,7 +7,8 @@ import { userDataAtom } from "../../state/Atoms";
 import { useAtom } from "jotai";
 import styles from "./Charts.module.css";
 import { mapUserData } from "../../services/extractData";
-
+import RadarChart from "./Charts/RadarGraph-clicks";
+import StackedBarChart from "./Charts/StackedBarGraph-clicks";
 //to add graph in other components
 
 /*
@@ -36,6 +37,12 @@ const ClickDataVisualization = () => {
         keywordTwo={"user_os"}
       />
       <BarGraph data={mappedData} keyword={"website"} />
+      <RadarChart
+        data={mappedData}
+        keyword={"website"}
+        keywordTwo = {"user_browser"}
+      />
+      <StackedBarChart data ={mappedData} keyword={"user_browser"} keywordTwo={"user_os"}  />
       <AiResponseComponent />
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { Box, Typography, Button, Paper, TextField } from "@mui/material";
+import { Box, Typography, Button, Paper, TextField, Tabs, Tab } from "@mui/material";
 import Navbar from "../Navbar/Navbar";
 import { useApiKey } from "./UseApiKey";
 import { ApiKeyDialog } from "./Dialogs";
@@ -8,6 +8,7 @@ import { ApiKeySection } from "./ApiKeyDisplay";
 import { WebsiteSelector } from "./WebsiteSelection";
 import { deleteWebsite, deleteAccount } from "../../services/deleteDataApi";
 import { activeUserAtom, websitesAtom } from "../../state/Atoms";
+import AwsBedrockConfig from "./AwsBedrockConfig"
 
 const SettingsPage = () => {
   const [activeUser] = useAtom(activeUserAtom);
@@ -17,10 +18,12 @@ const SettingsPage = () => {
   const [openWebsiteDialog, setOpenWebsiteDialog] = useState(false);
   const [openAccountDialog, setOpenAccountDialog] = useState(false);
   const [openApiKeyDeleteDialog, setOpenApiKeyDeleteDialog] = useState(false);
-  const [openApiKeyRegenerateDialog, setOpenApiKeyRegenerateDialog] = useState(false);
+  const [openApiKeyRegenerateDialog, setOpenApiKeyRegenerateDialog] =
+    useState(false);
+  const [tabValue, setTabValue] = useState(0);
 
   const token = localStorage.getItem("token")!;
-  const { apiKey, setApiKey, deleteApiKey, regenerateApiKey } = useApiKey(token); // Use setApiKey
+  const { apiKey, setApiKey, deleteApiKey, regenerateApiKey } = useApiKey(token);
 
   const handleDeleteWebsite = async () => {
     if (!selectedWebsite) return;
@@ -28,7 +31,9 @@ const SettingsPage = () => {
     try {
       const isDeleted = await deleteWebsite(selectedWebsite, token);
       if (isDeleted) {
-        setWebsites((prevWebsites) => prevWebsites.filter((website) => website !== selectedWebsite));
+        setWebsites((prevWebsites) =>
+          prevWebsites.filter((website) => website !== selectedWebsite)
+        );
         setSelectedWebsite("");
       }
     } finally {
@@ -52,17 +57,20 @@ const SettingsPage = () => {
   };
 
   const handleDeleteApiKey = async () => {
-    await deleteApiKey(); 
-    setOpenApiKeyDeleteDialog(false); 
+    await deleteApiKey();
+    setOpenApiKeyDeleteDialog(false);
   };
 
   const handleRegenerateApiKey = async () => {
-    setOpenApiKeyRegenerateDialog(false);  
-    const newApiKey = await regenerateApiKey(); 
+    setOpenApiKeyRegenerateDialog(false);
+    const newApiKey = await regenerateApiKey();
     if (newApiKey) {
-      setApiKey(newApiKey); 
+      setApiKey(newApiKey);
     }
+  };
 
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    setTabValue(newValue);
   };
 
   return (
@@ -74,49 +82,83 @@ const SettingsPage = () => {
         alignItems: "center",
         padding: "2rem",
         minHeight: "100vh",
-        minWidth: "100vw",  
+        minWidth: "100vw",
       }}
     >
       <Navbar />
       <Box sx={{ width: "100%", maxWidth: "600px", margin: "0 auto" }}>
-        <Paper sx={{ padding: "2rem", backgroundColor: "#ffffff", borderRadius: "12px" }}>
+        <Paper
+          sx={{
+            padding: "2rem",
+            backgroundColor: "#ffffff",
+            borderRadius: "12px",
+          }}
+        >
           <Typography variant="h4" gutterBottom align="center">
             Settings
           </Typography>
-          
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="h6">Email</Typography>
-            <TextField
-              fullWidth
-              variant="outlined"
-              value={activeUser}
-              disabled
-              sx={{
-                "& .MuiInputBase-input.Mui-disabled": {
-                  WebkitTextFillColor: "#333333",
-                },
-              }}
-            />
-          </Box>
-          
-          <ApiKeySection 
-            apiKey={apiKey} 
-            onDelete={() => setOpenApiKeyDeleteDialog(true)} 
-            onRegenerate={() => setOpenApiKeyRegenerateDialog(true)} 
-          />
-          
-          <WebsiteSelector
-            websites={websites}
-            selectedWebsite={selectedWebsite}
-            loading={loading}
-            onSelectWebsite={setSelectedWebsite}
-            onDelete={() => setOpenWebsiteDialog(true)}
-          />
+          <Tabs
+            value={tabValue}
+            onChange={handleTabChange}
+            indicatorColor="primary"
+            textColor="primary"
+            centered
+          >
+            <Tab label="General Settings" />
+            <Tab label="AWS Configuration" />
+          </Tabs>
 
-          <Button variant="outlined" color="error" onClick={() => setOpenAccountDialog(true)} disabled={loading} fullWidth>
-            Delete Account
-          </Button>
+          {tabValue === 0 && (
+            <Box>
+              <Box sx={{ mb: 2 }}>
+                <Typography variant="h6">Email</Typography>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  value={activeUser}
+                  disabled
+                  sx={{
+                    "& .MuiInputBase-input.Mui-disabled": {
+                      WebkitTextFillColor: "#333333",
+                    },
+                  }}
+                />
+              </Box>
 
+              <ApiKeySection
+                apiKey={apiKey}
+                onDelete={() => setOpenApiKeyDeleteDialog(true)}
+                onRegenerate={() => setOpenApiKeyRegenerateDialog(true)}
+              />
+
+              <WebsiteSelector
+                websites={websites}
+                selectedWebsite={selectedWebsite}
+                loading={loading}
+                onSelectWebsite={setSelectedWebsite}
+                onDelete={() => setOpenWebsiteDialog(true)}
+              />
+
+              <Typography variant="h6" sx={{ color: "#d32f2f" }}>
+                D A N G E R
+              </Typography>
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => setOpenAccountDialog(true)}
+                disabled={loading}
+                fullWidth
+              >
+                Delete Account
+              </Button>
+            </Box>
+          )}
+
+          {tabValue === 1 && (
+            <Box>
+              <AwsBedrockConfig />
+            </Box>
+          )}
 
           <ApiKeyDialog
             open={openApiKeyDeleteDialog}
