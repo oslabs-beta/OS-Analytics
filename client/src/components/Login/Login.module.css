@@ -18,7 +18,6 @@
 }
 
 .loginBackground {
-    background-image: url("../../assets/backgrounds/blue-2.jpg");
     height: calc(100vw-4rem);
     width: 100%;
     display: grid;

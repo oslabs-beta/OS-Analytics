@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './Login.module.css';
 import axios from 'axios';
 import { useAtom } from 'jotai';
@@ -7,16 +7,18 @@ import Navbar from '../Navbar/Navbar';
 import NavMobile from '../Navbar/NavMobile';
 import { Link, useNavigate } from 'react-router-dom';
 import BarAnimation from '../Animations/BarAnimation';
+import * as THREE from 'three'; 
+import NET from 'vanta/dist/vanta.net.min'; 
 
 export default function Login() {
   const [, setActiveUser] = useAtom(activeUserAtom);
-  // const [loadingAtom,setloadingAtom] = useAtom(loadingAtom);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
   const navigate = useNavigate();
+  const vantaRef = useRef(null); 
+  const [vantaEffect, setVantaEffect] = useState(null);  
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -28,6 +30,30 @@ export default function Login() {
       setActiveUser(email);
       navigate('/dashboard');
     }
+
+    // Initialize Vanta effect
+    if (!vantaEffect) {
+      setVantaEffect(
+      NET({
+          el: vantaRef.current,
+          mouseControls: false,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          color: 0x3fafff,
+          backgroundColor: 0x1c1a4a,
+          THREE: THREE, 
+        })
+      );
+    }
+
+    return () => {
+      // Clean up the Vanta effect
+      if (vantaEffect) vantaEffect.destroy();
+    };
   }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -36,25 +62,17 @@ export default function Login() {
       [e.target.name]: e.target.value,
     });
   }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // setloadingAtom(true)
     try {
-      const response = await axios.post(
-        `${backendUrl}/api/auth/login`,
-        formData
-      );
-    
+      const response = await axios.post(`${backendUrl}/api/auth/login`, formData);
       setActiveUser(response.data.email);
       localStorage.setItem('token', response.data.token);
     } catch (err: unknown) {
       const error = err as Error;
       console.log(error.message);
-    } finally {
-      // setloadingAtom(false)
     }
-    // const content = formData;
-  
   }
 
   return (
@@ -66,10 +84,8 @@ export default function Login() {
           <h2>Welcome back</h2>
           <div className={styles.oathButtons}>
             <button
-              className={` ${styles.loginBtn} ${styles.google} button`}
-              onClick={() =>
-                (window.location.href = `${backendUrl}/api/google`)
-              }
+              className={`${styles.loginBtn} ${styles.google} button`}
+              onClick={() => (window.location.href = `${backendUrl}/api/google`)}
             >
               Continue with Google
             </button>
@@ -77,12 +93,9 @@ export default function Login() {
               Continue with GitHub
             </button>
           </div>
-          <form
-            onSubmit={(e) => handleSubmit(e)}
-            className={styles.loginCredentials}
-          >
+          <form onSubmit={(e) => handleSubmit(e)} className={styles.loginCredentials}>
             <input
-            className='input'
+              className='input'
               type="email"
               placeholder="email"
               name="email"
@@ -91,9 +104,9 @@ export default function Login() {
                 handleChange(e);
               }}
               required
-            ></input>
+            />
             <input
-            className='input'
+              className='input'
               type="password"
               minLength={6}
               placeholder="password"
@@ -103,7 +116,7 @@ export default function Login() {
                 handleChange(e);
               }}
               required
-            ></input>
+            />
             <button type="submit" className={` button btn-primary`}>
               Sign in
             </button>
@@ -116,8 +129,7 @@ export default function Login() {
           </div>
           <Link to="/forgot-password">Forgot Password?</Link>
         </div>
-        <div className={styles.loginBackground}>
-        <BarAnimation />
+        <div className={styles.loginBackground} ref={vantaRef}>
         </div>
       </section>
     </div>
