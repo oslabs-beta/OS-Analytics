@@ -10,6 +10,8 @@ import { useAtom } from "jotai";
 import { mapUserData } from "../../services/extractData";
 import RadarChart from "./Charts/RadarGraph-clicks";
 import StackedBarChart from "./Charts/StackedBarGraph-clicks";
+import Heatmap from "./Charts/Heatmap";
+
 const WebsiteData = () => {
   const [websiteData] = useAtom(websiteDataAtom);
   const allDataResponse = mapUserData(websiteData);
@@ -36,6 +38,7 @@ const WebsiteData = () => {
       />
       <BarGraph_referrer data={webstiteRefferalData} />
       <AiResponseComponent />
+      <Heatmap data={allDataResponse}/>
     </div>
   );
 };
