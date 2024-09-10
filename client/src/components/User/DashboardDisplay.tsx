@@ -13,7 +13,10 @@ function Final() {
         {data.length === 0 ? (
           <Documentation />
         ) : (
-          <Dashboard />
+        <>
+         <Dashboard />
+        </>
+         
         )}
       </div>
    

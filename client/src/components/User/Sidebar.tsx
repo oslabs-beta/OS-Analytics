@@ -1,6 +1,7 @@
 import styles from './UserView.module.css';
 import logo from '../../assets/icons/pie-chart.png';
-import chart from '../../assets/icons/chart.png';
+import dashboard from '../../assets/icons/dashboard.png';
+import globe from '../../assets/icons/globe.png'
 import { Link, NavLink } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { websitesAtom, activeWebsiteAtom } from '../../state/Atoms';
@@ -25,7 +26,7 @@ function Sidebar() {
               className={styles.sidebarLink}
               onClick={() => setSelectedWebsite('overview')}
             >
-              <img className={styles.sideIcon} src={chart} alt="overview" />
+              <img className={styles.sideIcon} src={dashboard} alt="overview" />
               <span className={styles.sidebarSpan}>{"Overview"}</span>
             </NavLink>
           </li>    
@@ -36,7 +37,7 @@ function Sidebar() {
                 className={styles.sidebarLink}
                 onClick={() => setSelectedWebsite(website)} 
               >
-                <img className={styles.sideIcon} src={chart} alt={website} />
+                <img className={styles.sideIcon} src={globe} alt={website} />
                 <span className={styles.sidebarSpan}>{website}</span>
               </NavLink>
             </li>

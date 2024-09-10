@@ -1,8 +1,33 @@
 .barContainer {
-    height: 400px;
-    aspect-ratio: 1/1;
+    width: 80px;
+    aspect-ratio: 1/.75;
     border-left: 3px solid white;
     border-bottom: 3px solid white;
-    background: gray;
+    background: transparent;
     z-index: 100;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5%;
+    justify-content: center;
+    align-items: end;
+}
+
+.bar {
+    width: 25%;
+    height: 20%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background: coral;
+    transition: all .5s ease-in-out;
+}
+
+#red {
+    background: #f67259;
+}
+#blue {
+    background: #3aabe0;
+}
+
+#yellow {
+    background: #fbdc65;
 }

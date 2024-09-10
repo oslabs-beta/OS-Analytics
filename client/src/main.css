@@ -14,7 +14,9 @@
   --gray-primary: #a1af9f;
   --blue-primary: #2444c4;
   --blue-white: #7bf4fc37;
+  --blue-gray: #7982a7;
   --blue-secondary: #031230;
+  --blue-tertiary: #3fafff;
 
   --white: rgba(255, 255, 255, 1);
   --white-secondary: rgba(255, 255, 255, 0.6);
@@ -51,7 +53,7 @@ a:visited {
 }
 
 a:hover {
-  color: var(--blue-primary);
+  color: var(--blue-tertiary);
 }
 
 /* Notice that this is the class 'active', not the pseudo-class a:active. This is accounting for NavLinks which add an 'active' class but does not natively integrate with modular css */
@@ -152,7 +154,7 @@ button:active {
   height: 100%;
   width: 100%;
   border-radius: inherit;
-  background-color: #ffffff71;
+  background-color: var(--blue-gray);
   z-index: -1;
   transition: all, 0.4s;
 }
@@ -183,7 +185,7 @@ input:not(:placeholder-shown):invalid {
 }
 
 input:not(:placeholder-shown):valid {
-  outline-color: var(--blue-primary);
+  outline-color: var(--blue-tertiary);
 }
 input:focus:invalid {
   outline-color: transparent;
@@ -228,6 +230,7 @@ input:focus:invalid {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
 
 /* Need to check if this works on firefox */

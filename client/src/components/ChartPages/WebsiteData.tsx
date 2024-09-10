@@ -10,7 +10,7 @@ import { useAtom } from "jotai";
 import { mapUserData } from "../../services/extractData";
 import RadarChart from "./Charts/RadarGraph-clicks";
 import StackedBarChart from "./Charts/StackedBarGraph-clicks";
-const ClickDataVisualization = () => {
+const WebsiteData = () => {
   const [websiteData] = useAtom(websiteDataAtom);
   const allDataResponse = mapUserData(websiteData);
   const [webstiteRefferalData] = useAtom(websiteReferralDataAtom);
@@ -40,4 +40,4 @@ const ClickDataVisualization = () => {
   );
 };
 
-export default ClickDataVisualization;
+export default WebsiteData;
