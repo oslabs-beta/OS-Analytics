@@ -16,12 +16,12 @@ passport.use(
      
         try {
        
-          const userQuery = await pool.query('SELECT * FROM "userTable2" WHERE email = $1', [email]);
+          const userQuery = await pool.query('SELECT * FROM "userTable" WHERE email = $1', [email]);
           let user:User;
           if (userQuery.rows.length === 0) {
          
             const newUser = await pool.query(
-              'INSERT INTO "userTable2" (cognito_id, email) VALUES ($1, $2) RETURNING *',
+              'INSERT INTO "userTable" (cognito_id, email) VALUES ($1, $2) RETURNING *',
               [email, email]
             );
             user = newUser.rows[0];

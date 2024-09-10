@@ -150,6 +150,19 @@ const AiResponseComponent = () => {
         </Button>
 
         <List sx={{ mt: 3 }}>
+          {displayedText.length === 0 && !loading && (
+            <ListItem sx={{ padding: 0 }}>
+              <ListItemText
+                primary="Enter your AWS credentials to begin."
+                sx={{
+                  padding: '5px 0',
+                  margin: 0,
+                  fontFamily: "'Roboto Mono', monospace !important",
+                  color: '#bfbfbf',
+                }}
+              />
+            </ListItem>
+          )}
           {displayedText.map((item, index) => (
             <ListItem key={index} sx={{ padding: 0 }}>
               <ListItemText

@@ -1,8 +1,10 @@
+import { Box, Typography } from "@mui/material";
 import styles from "./Documentation.module.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Sidebar from "../User/Sidebar";
 import NavbarDashboard from "../Navbar/NavbarDashboard";
+
 const Documentation = () => {
   return (
     <div className="viewWithSide">
@@ -10,13 +12,15 @@ const Documentation = () => {
       <Sidebar />
       <div className={styles.sectionWrapper}>
         <section className={styles.docs}>
-          <h1 className="fw-600">Getting Started</h1>
+          <Typography variant="h3" className="fw-600">Getting Started</Typography>
           <br />
-          <article className={styles.docStep}>
-            <h3 className="fw-600">Step 1: Installation</h3>
-            <p>
-              To begin, install <strong>os-analytics</strong> via the terminal:
-            </p>
+
+          <Box className={styles.docStep} mb={4} p={2} border={1} borderRadius={4}>
+            <Typography variant="h4" className="fw-600">Step 1: Installation</Typography>
+            <Typography variant="body1">
+            <br />
+              Install <strong>os-analytics</strong> via terminal:
+            </Typography>
 
             <SyntaxHighlighter
               language="bash"
@@ -25,14 +29,14 @@ const Documentation = () => {
             >
               npm install os-analytics
             </SyntaxHighlighter>
-          </article>
+          </Box>
 
-          <article className={styles.docStep}>
-            <h3 className="fw-600">Step 2: Integrate the Custom Hook</h3>
-            <p>
-              Add the <strong>clickTracker</strong> hook at the top level of
-              your React app:
-            </p>
+          <Box className={styles.docStep} mb={4} p={2} border={1} borderRadius={4}>
+            <Typography variant="h4" className="fw-600">Step 2: Integrate the Custom Hook</Typography>
+            <Typography variant="body1">
+            <br />
+              At the top level of your React app, add the <strong>clickTracker</strong> hook:
+            </Typography>
 
             <SyntaxHighlighter
               language="javascript"
@@ -43,16 +47,17 @@ const Documentation = () => {
   import clickTracker from 'os-analytics';
 
   const apiKey = '2e0397b7-6cda-4806-8762-136d4a4591af'; // Example API key
-  const website = 'test.com'; // Example website
+  const website = 'test.com';
 
   clickTracker(apiKey, website); // Initialize tracking
-                `}
+              `}
             </SyntaxHighlighter>
-          </article>
+          </Box>
 
-          <article className={styles.docStep}>
-            <h3 className="fw-600">Step 3: Example Integration</h3>
-            <p>Here's how you can use this hook in a typical React project:</p>
+          <Box className={styles.docStep} mb={4} p={2} border={1} borderRadius={4}>
+            <Typography variant="h4" className="fw-600">Step 3: Example Integration</Typography>
+            <br />
+            <Typography variant="body1">Here's a typical React integration:</Typography>
 
             <SyntaxHighlighter
               language="javascript"
@@ -81,25 +86,22 @@ const Documentation = () => {
   }
 
   export default App;
-                `}
+              `}
             </SyntaxHighlighter>
-          </article>
+          </Box>
 
-          <article className={styles.docStep}>
-            <h3 className="fw-600">Step 4: Testing Your Integration</h3>
-            <p>
-              After adding the hook, interact with your website during
-              development to trigger click events. Once you’ve engaged with the
-              site, log in to the <strong>OS Analytics</strong> dashboard to
-              verify that your data is being collected.
-            </p>
-            <p>
-              After confirming that the tracking works, you're ready to deploy!
-              Your click data will continue to be collected in real-time, even
-              in production. Use the dashboard’s filters to analyze your data,
-              or export it for sharing and reporting purposes.
-            </p>
-          </article>
+          <Box className={styles.docStep} mb={4} p={2} border={1} borderRadius={4}>
+            <Typography variant="h4" className="fw-600">Step 4: Testing Your Integration</Typography>
+            <Typography variant="body1">
+              <br />
+              After adding the hook, interact with your website to trigger click events. 
+              Verify your data in the <strong>OS Analytics</strong> dashboard.
+            </Typography>
+            <Typography variant="body1">
+              Once confirmed, you're ready to deploy! Your data will be collected in real-time, even in production. 
+              Use the dashboard’s filters to analyze or export your data for reporting.
+            </Typography>
+          </Box>
         </section>
       </div>
     </div>
