@@ -23,10 +23,10 @@ const aiController = {
         SELECT 
           "page_url",
           COUNT(*) AS total_clicks,
-          AVG(CAST("x_coord" AS INTEGER)) AS avg_x_coord,
-          AVG(CAST("y_coord" AS INTEGER)) AS avg_y_coord
+          AVG(CAST("x_coord" AS FLOAT)) AS avg_x_coord,
+          AVG(CAST("y_coord" AS FLOAT)) AS avg_y_coord
         FROM 
-          "clickTable2"
+          "clickTable"
         WHERE
           "user_id" = $1
           AND "website_name" = $2
@@ -47,7 +47,7 @@ const aiController = {
           "website_name",
           COUNT(*) AS total_clicks
         FROM 
-          "clickTable2"
+          "clickTable"
         WHERE
           "user_id" = $1
           ${
@@ -64,22 +64,26 @@ const aiController = {
     try {
       const awsCredsQuery = `
         SELECT "AWS_ACCESS_KEY", "AWS_SECRET_KEY", "AWS_REGION"
-        FROM "userTable2" 
+        FROM "userTable" 
         WHERE "cognito_id" = $1
       `;
       const awsCredsResponse = await pool.query(awsCredsQuery, [id]);
-      
+
       if (awsCredsResponse.rows.length === 0) {
         throw new Error("AWS credentials not found for the given cognito_id");
       }
-    
-      const encryptedClientKey = JSON.parse(awsCredsResponse.rows[0].AWS_ACCESS_KEY);
-      const encryptedSecretKey = JSON.parse(awsCredsResponse.rows[0].AWS_SECRET_KEY);
+
+      const encryptedClientKey = JSON.parse(
+        awsCredsResponse.rows[0].AWS_ACCESS_KEY
+      );
+      const encryptedSecretKey = JSON.parse(
+        awsCredsResponse.rows[0].AWS_SECRET_KEY
+      );
       const AWS_REGION = awsCredsResponse.rows[0].AWS_REGION;
-    
+
       const AWS_ACCESS_KEY = decrypt(encryptedClientKey);
       const AWS_SECRET_KEY = decrypt(encryptedSecretKey);
-    
+
       const client = new BedrockRuntimeClient({
         region: AWS_REGION,
         credentials: {
@@ -113,13 +117,15 @@ const aiController = {
       let promptText = "";
 
       if (website) {
-        promptText = `
-          Here is the summarized data of user interactions with the website:
-          - Page URLs and the total number of clicks.
-          - The average x and y coordinates.
-          Please provide an overall report and summary of this data.
-          Also, analyze the x and y coordinates to summarize where the majority of user interactions occurred on the screen based on screen size.
-          Please keep this in numbered list format.
+        promptText = `Provide a summary of user interactions with the website, including:
+
+Page URLs and their total number of clicks.
+The average x and y coordinates of clicks, normalized between 0 and 1 to account for screen size dynamically.
+Based on this data, generate:
+
+An overall report of the user interactions.
+An analysis of the x and y coordinates, detailing where the majority of clicks occurred on the screen relative to screen size.
+Please present the findings in a numbered list format.
           `;
       } else {
         promptText = `

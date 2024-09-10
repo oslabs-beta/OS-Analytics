@@ -18,12 +18,15 @@ export const extractBrowserAndOS = (userAgent: string) => {
       os = "Windows 10";
     } else if (userAgent.includes("Windows NT 6.1")) {
       os = "Windows 7";
-    } else if (userAgent.includes("Mac OS X")) {
+    } else if (userAgent.includes("Mac OS X") && !userAgent.includes("Mobile")) {
       os = "macOS";
-    } else if (userAgent.includes("Linux")) {
+    } else if (userAgent.includes("iPhone") || userAgent.includes("iPad")) {
+      os = "iOS";
+    } else if (userAgent.includes("Android")) {
+      os = "Android";
+    } else if (userAgent.includes("Linux") && !userAgent.includes("Android")) {
       os = "Linux";
     }
-  
     return { browser, os };
   };
   
