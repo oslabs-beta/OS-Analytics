@@ -11,13 +11,15 @@ import { timeFrameAtom, activeWebsiteAtom, backendUrl } from '../../../state/Ato
 import { useAtom } from 'jotai';
 import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { backendUrl } from '../../../state/Atoms';
+import styles from '../Charts.module.css';
 
 const AiResponseComponent = () => {
   const [loading, setLoading] = useState(false);
   const [aiResponse, setAiResponse] = useState<boolean>(false);
   const [response, setResponse] = useState<string[]>([]);
   const [displayedText, setDisplayedText] = useState<string[]>([]);
-  const [typewriterFinished, setTypewriterFinished] = useState<boolean>(false); 
+  const [typewriterFinished, setTypewriterFinished] = useState<boolean>(false);
   const [timeFrame] = useAtom(timeFrameAtom);
   const [website] = useAtom(activeWebsiteAtom);
   const token = localStorage.getItem('token');
@@ -101,16 +103,16 @@ const AiResponseComponent = () => {
   return (
     <ThemeProvider theme={theme}>
       <Box
+        className={styles.chartBox}
         sx={{
-          backgroundColor: 'rgba(255, 255, 255, 0.044)',
-          color: '#bfbfbf',
-          padding: '20px',
-          width: '700px',
-          aspectRatio: '7/5',
+          color: 'red',
           overflowY: 'auto',
-          maxWidth: '92vw',
-          border: '1px solid var(--gray-border)',
-          borderRadius: '8px',
+          minHeight: '400px',
+          width: '100%',
+          placeContent: 'start',
+          border: '1px solid var(--blue-secondary)',
+          padding: '20px',
+          background: 'transparent',
         }}
       >
         <Button
@@ -120,26 +122,28 @@ const AiResponseComponent = () => {
           disabled={loading}
           style={
             loading
-              ? { backgroundColor: 'var(--green-secondary' }
-              : { backgroundColor: `${aiResponse ? 'var(--orange-primary' : 'var(--green-secondary)'}` }
+              ? { backgroundColor: 'var(--blue-primary', width: '100%' }
+              : {
+                  backgroundColor: `${
+                    aiResponse ? 'var(--blue-primary' : 'var(--blue-primary)'
+                  }`,
+                  width: '100%',
+                }
           }
           sx={{
             textTransform: 'none',
             fontSize: '16px',
             padding: '1rem 2rem',
-            width: '100%',
+
             height: '3.2rem',
             display: 'flex',
             borderRadius: '8px',
             color: 'var(--white)',
-            '&:hover': {
-              backgroundColor: 'var(--orange-primary)',
-            },
             fontFamily: "'Roboto Mono', monospace",
           }}
         >
           {loading ? (
-            <CircularProgress size={24} color="inherit" />
+            <CircularProgress size={24} color="primary" />
           ) : (
             `${aiResponse ? 'AI Response' : 'Get AI Response'}`
           )}
@@ -167,36 +171,36 @@ const AiResponseComponent = () => {
                   padding: '5px 0',
                   margin: 0,
                   fontFamily: "'Roboto Mono', monospace !important",
-                  color: '#bfbfbf',
+                  color: 'black',
                 }}
               />
             </ListItem>
           ))}
         </List>
         {typewriterFinished && aiResponse && (
-  <Button
-    variant="contained"
-    onClick={handleSaveLog}
-    sx={{
-      marginTop: '20px',
-      textTransform: 'none',
-      fontSize: '16px',
-      padding: '1rem 2rem',
-      width: '100%',
-      height: '3.2rem',
-      display: 'flex',
-      borderRadius: '8px',
-      backgroundColor: 'var(--orange-primary)',
-      color: 'var(--white)',
-      '&:hover': {
-        backgroundColor: 'var(--orange-primary)',
-      },
-      fontFamily: "'Roboto Mono', monospace",
-    }}
-  >
-    Save Log
-  </Button>
-)}
+          <Button
+            variant="contained"
+            onClick={handleSaveLog}
+            sx={{
+              marginTop: '20px',
+              textTransform: 'none',
+              fontSize: '16px',
+              padding: '1rem 2rem',
+              width: '100%',
+              height: '3.2rem',
+              display: 'flex',
+              borderRadius: '8px',
+              backgroundColor: 'var(--orange-primary)',
+              color: 'var(--white)',
+              '&:hover': {
+                backgroundColor: 'var(--orange-primary)',
+              },
+              fontFamily: "'Roboto Mono', monospace",
+            }}
+          >
+            Save Log
+          </Button>
+        )}
       </Box>
     </ThemeProvider>
   );

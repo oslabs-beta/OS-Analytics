@@ -8,13 +8,12 @@
   left: 0;
   display: grid;
   place-content: center;
-  box-shadow: 0 1px 50px 16px rgb(30, 29, 37);
+  box-shadow: 0 1px 4px 3px rgb(30, 29, 37);
   z-index: 10;
 }
 .navbar h3{
   color: var(--white);
 }
-
 
 .navContainer {
   display: flex;
@@ -60,6 +59,12 @@
   height: 2.4rem;
   text-wrap: nowrap;
   font-size: 1rem;
+}
+.gitBox {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  height: 100%;
 }
 
 .logOutIcon {
