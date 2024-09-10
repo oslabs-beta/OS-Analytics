@@ -37,7 +37,6 @@ const ClickDataVisualization = () => {
       />
       <BarGraph data={mappedData} keyword={"website"} />
       <AiResponseComponent />
-      <Heatmap data={mappedData}/>
     </div>
   );
 };
