@@ -28,6 +28,32 @@ const clickDataController = {
       res.status(500).json({ error: "Failed to store click data" });
     }
   },
+
+  async storeVisitData(req: Request, res: Response) {
+    console.log("hit visit");
+    const { websiteName, referrer } = req.body;
+    const userId = res.locals.user;
+
+    if (!userId) {
+      res
+        .status(400)
+        .json({ error: "User information is missing from the request" });
+      return;
+    }
+    try {
+      await pool.query(
+        `
+        INSERT INTO "referrerTable" (user_id, website_name, referrer)
+        VALUES ($1, $2, $3)`,
+        [userId, websiteName, referrer]
+      );
+
+      res.status(201).json({ message: "Visit data stored successfully" });
+    } catch (error) {
+      console.error("Error storing visit data:", error);
+      res.status(500).json({ error: "Failed to store visit data" });
+    }
+  },
 };
 
 export default clickDataController;

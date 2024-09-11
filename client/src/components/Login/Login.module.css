@@ -1,24 +1,28 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+.loginPage {
+    display: flex;
+    height: calc(100vh - 4rem);
+    
+}
+
 .login {
     display: flex;
     flex-direction: column;
     max-width: 100vw;
-    width: 600px;
+    width: 40rem;
     justify-content: center;
     align-items: center;
     padding: 4.8rem;
-    /* border: 1px solid white; */
+
     gap: 3.2rem;
-    /* background: linear-gradient(
-        to bottom,
-        var(--black-green),
-        var(--black-green-secondary)
-      ); */
-      background: transparent;
+      background: var(--blue-secondary);
+}
+
+.loginBackground {
+    background-image: url("../../assets/backgrounds/blue-2.jpg");
+    height: calc(100vw-4rem);
+    width: 100%;
+    display: grid;
+    place-content: center;
 }
 
 .login h2 {
@@ -37,12 +41,14 @@ html, body {
 
 .google {
     background: rgb(243, 243, 243);
+    color: var(--black);
 }
 .google:hover,.github:hover {
-    border: 2px solid var(--green-secondary);
+    border: 2px solid var(--blue-primary);
 }
 .github {
     background: rgb(194, 194, 194);
+    color: var(--black);
 }
 
 .loginCredentials {

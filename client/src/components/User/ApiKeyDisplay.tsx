@@ -1,31 +1,13 @@
-import { useState, useEffect } from 'react';
-import { IconButton, InputAdornment, TextField, Box } from '@mui/material';
+import { useState } from 'react';
+import { IconButton, TextField, Box } from '@mui/material';
 import { Visibility, VisibilityOff, FileCopy, Check } from '@mui/icons-material';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import axios from 'axios';
 
-const ApiKeyDisplay = () => {
-    const [apiKey, setApiKey] = useState('');
+
+const ApiKeyDisplay = ({ data }: { data: string }) => {
+    const [apiKey] = useState('');
     const [showKey, setShowKey] = useState(false);
     const [copied, setCopied] = useState(false);
-    const token = localStorage.getItem('token');
-
-    useEffect(() => {
-        const fetchApiKey = async () => {
-            try {
-                const response = await axios.get('/api/auth/getApiKey', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                setApiKey(response.data.apiKey);
-            } catch (error) {
-                console.error('Error fetching API key:', error);
-            }
-        };
-
-        fetchApiKey();
-    }, [token]);
 
     const handleToggleVisibility = () => {
         setShowKey(!showKey);
@@ -39,60 +21,58 @@ const ApiKeyDisplay = () => {
     };
 
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Box sx={{ position: 'relative', width: '450px' }}>
             <TextField
                 type={showKey ? 'text' : 'password'}
-                value={showKey ? apiKey : '*************************************************'}
+                value={ data ? (showKey ? data : '*************************************************') : ''}
                 InputProps={{
                     readOnly: true,
                     sx: {
-                        width: '400px',
                         background: 'none',
-                        color: '#bfbfbf',
+                        color: '#333333',
                         '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#bfbfbf',
+                            borderColor: '#333333',
                         },
                         '&:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#bfbfbf',
+                            borderColor: '#333333',
                         },
                         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#bfbfbf',
+                            borderColor: '#333333',
                         },
                     },
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton
-                                onClick={handleToggleVisibility}
-                                sx={{
-                                    color: 'white',
-                                    '&:focus': {
-                                        outline: 'none',
-                                        boxShadow: 'none',
-                                    }
-                                }}
-                            >
-                                {showKey ? <VisibilityOff fontSize="small" sx={{ color: '#bfbfbf' }} /> : <Visibility fontSize="small" sx={{ color: '#bfbfbf' }} />}
-                            </IconButton>
-                            <CopyToClipboard text={apiKey} onCopy={handleCopy}>
-                                <IconButton
-                                    size="small"
-                                    sx={{ 
-                                        color: 'white',
-                                        '&:focus': {
-                                            outline: 'none',
-                                            boxShadow: 'none',
-                                        }
-                                    }}
-                                >
-                                    {copied ? <Check fontSize="small" sx={{ color: 'white' }} /> : <FileCopy fontSize="small" sx={{ color: '#bfbfbf' }} />}
-                                </IconButton>
-                            </CopyToClipboard>
-                        </InputAdornment>
-                    ),
                 }}
                 variant="outlined"
                 size="small"
+                fullWidth
             />
+            <Box sx={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', display: 'flex', gap: 1, pr: 1 }}>
+                <IconButton
+                    onClick={handleToggleVisibility}
+                    sx={{
+                        color: 'black',
+                        '&:focus': {
+                            outline: 'none',
+                            boxShadow: 'none',
+                        }
+                    }}
+                >
+                    {showKey ? <VisibilityOff fontSize="small" sx={{ color: '#333333' }} /> : <Visibility fontSize="small" sx={{ color: '#333333' }} />}
+                </IconButton>
+                <CopyToClipboard text={apiKey} onCopy={handleCopy}>
+                    <IconButton
+                        size="small"
+                        sx={{ 
+                            color: 'white',
+                            '&:focus': {
+                                outline: 'none',
+                                boxShadow: 'none',
+                            }
+                        }}
+                    >
+                        {copied ? <Check fontSize="small" sx={{ color: 'black' }} /> : <FileCopy fontSize="small" sx={{ color: '#333333' }} />}
+                    </IconButton>
+                </CopyToClipboard>
+            </Box>
         </Box>
     );
 };

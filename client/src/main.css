@@ -6,27 +6,23 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   --green-primary: #66bb6a;
   --green-secondary: #43a047;
-  --orange-primary: #ffa500;
-  --error-color: #af4242; 
-  --error-bg: white; 
-  -- #f67259; 
-  -- #fbdc65;
+  --orange-primary: #e46a14;
+  --gray-primary: #a1af9f;
+  --blue-primary: #2444c4;
+  --blue-white: #7bf4fc37;
+  --blue-secondary: #031230;
 
-
-  --white: rgba(255, 255, 255, 0.87);
+  --white: rgba(255, 255, 255, 1);
   --white-secondary: rgba(255, 255, 255, 0.6);
   --gray-border: #ffffff26;
+  --gray-text: rgb(71, 71, 71);
   --black-green: #1d251e;
   --black-green-secondary: rgb(14, 32, 15);
-  --black: rgba(0, 0, 0, 1);
-  --blue-secondary: #031230;
-  --blue-primary: #2444c4;
-
-
+  --black: #2b2f33;
 
   --gradient: linear-gradient(
     45deg,
@@ -40,7 +36,6 @@
   );
 
   color-scheme: light dark;
-  color: var(--white);
   /* background-color: var(--black-green); */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -56,7 +51,7 @@ a:visited {
 }
 
 a:hover {
-  color: var(--green-primary);
+  color: var(--blue-primary);
 }
 
 /* Notice that this is the class 'active', not the pseudo-class a:active. This is accounting for NavLinks which add an 'active' class but does not natively integrate with modular css */
@@ -64,17 +59,15 @@ a.active {
   background: rgba(255, 255, 255, 0.1);
 }
 
+
 body {
   margin: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: linear-gradient(
-    to bottom,
-    var(--black-green),
-    var(--black-green-secondary)
-  );
+  background: var(--white);
   overflow-x: hidden;
+  color: var(--black);
 }
 
 code {
@@ -82,36 +75,38 @@ code {
 }
 
 h1 {
-  font-size: 4.8em;
-  font-size: clamp(2.4rem, 5vw + 10px, 4.8rem);
+  font-size: 2.8em;
+  font-size: clamp(1.4rem, 2.4vw + 10px, 2.4rem);
   line-height: 1.1;
   letter-spacing: 0.2rem;
+  font-weight: 300;
 }
 
 h2 {
   font-size: 3.2rem;
-  font-size: clamp(2.4rem, 3.6vw + 10px, 3.2rem);
-  font-weight: 400;
+  font-size: clamp(1.2rem, 2vw + 10px, 1.6rem);
+  font-weight: 300;
   letter-spacing: 0.2rem;
 }
 
 h3 {
   font-size: 1.6rem;
-  font-size: clamp(1.2rem, 2vw + 10px, 1.6rem);
-  font-weight: 600;
+  font-size: clamp(1.2rem, 0.8vw + 10px, 1.2rem);
+  font-weight: 300;
 }
 
 h4 {
   font-size: 1.2rem;
   font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);
+  font-weight: 300;
 }
 
 p {
   font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);
 }
 
-.white-secondary {
-  color: var(--white-secondary);
+.fw-600 {
+  font-weight: 600;
 }
 
 button {
@@ -122,7 +117,8 @@ button {
   font-size: clamp(0.8rem, 0.8vw + 10px, 1.2rem);
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--green-secondary);
+  color: var(--white);
+  background-color: var(--blue-primary);
   cursor: pointer;
   transition: border-color 0.25s;
   height: 3.2rem;
@@ -161,16 +157,14 @@ button:active {
   transition: all, 0.4s;
 }
 
-.btn-primary {
+.btn-secondary {
   color: var(--white);
-  background: var(var(--green-primary));
+  background: transparent;
+  border: none;
 }
 
-.btn-secondary {
-  color: var(--green-primary);
-  color: var(--white);
-  background: #fcb023;
-  border: none;
+.btn-secondary:hover {
+ background: #ffffff71;
 }
 
 input {
@@ -189,7 +183,7 @@ input:not(:placeholder-shown):invalid {
 }
 
 input:not(:placeholder-shown):valid {
-  outline-color: var(--green-primary);
+  outline-color: var(--blue-primary);
 }
 input:focus:invalid {
   outline-color: transparent;
@@ -200,10 +194,6 @@ input:focus:invalid {
     color: #213547;
     background-color: #ffffff;
   } */
-
-.primary {
-  color: var(--green-primary);
-}
 
 .social-icon {
   color: var(--white);
