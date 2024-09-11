@@ -2,7 +2,6 @@ import ClickGraph from "./Charts/LineGraph-clicks";
 import DuelPieGraphs from "./Charts/DuelPieChart-clicks";
 import BarGraph from "./Charts/BarGraph-clicks";
 import AiResponseComponent from "./Charts/aiResponse";
-import Heatmap from "./Charts/Heatmap"
 import { userDataAtom } from "../../state/Atoms";
 import { useAtom } from "jotai";
 import styles from "./Charts.module.css";
@@ -11,19 +10,6 @@ import RadarChart from "./Charts/RadarGraph-clicks";
 import StackedBarChart from "./Charts/StackedBarGraph-clicks";
 //to add graph in other components
 
-/*
-*Imports from jotai to get global state and map hook*
-import { userDataAtom,websiteDataAtom } from "../../state/Atoms"; <------ grab global state hooks
-import { useAtom } from "jotai"; <------ needed import to use global state as variables
-import { mapUserData } from '../../services/extractData';  <------ map hook to parse the extracted global state data
-
-
-  const [userData] = useAtom(userDataAtom);<------ grabing the gobal state data from the hook
-  const mappedData = mapUserData(userData) <------ parsing it before ending it to graphs algorith is found in /services/extractData
-
- <BarGraph data={mappedData} keyword={"website"} /><---- using the graph anywhere and giving it data and a keyword on which data to display (clicks per "website")
-
-*/
 const AllUserData = () => {
   const [userData] = useAtom(userDataAtom);
   const mappedData = mapUserData(userData);
