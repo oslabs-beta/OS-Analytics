@@ -1,0 +1,1 @@
+var p=h,v=/[#.]/g;function h(n,c){for(var l=n||"",i=c||"div",a={},r=0,e,t,s;r<l.length;)v.lastIndex=r,s=v.exec(l),e=l.slice(r,s?s.index:l.length),e&&(t?t==="#"?a.id=e:a.className?a.className.push(e):a.className=[e]:i=e,r+=e.length),s&&(t=s[0],r++);return{type:"element",tagName:i,properties:a,children:[]}}export{p as h};
