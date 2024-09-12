@@ -60,37 +60,31 @@ Please read the [README](README_AWS.md) for detailed instructions on incorporati
 
 ## Key Features
 
-### Login and API Key Management
-This gif shows the user logging in, navigating to documentation, and accessing settings to view and manage their API key for the platform.
-
-![Login Page](https://drive.google.com/file/d/1R1alsJFyokXpydnvxN5CmzIoGNsVS4QN/view?usp=sharing)
-
 ### Dashboard Overview
 The dashboard provides a clear and intuitive layout for monitoring click analysis data, with charts and metrics that track user interactions and website performance over time.
 
-![dashboard-one](https://drive.google.com/file/d/1rhJ-WiMAFrf2x6v6UILNVuQVP8yEv5LZ/view?usp=sharing)
+![dashboard-one](https://github.com/user-attachments/assets/369f8d06-1ad9-4008-9d0f-2b7f730ef8e8)
 
 
 ### AI-Generated Reports
 This feature allows users to generate and save AI-driven reports that provide detailed insights and actionable recommendations based on the collected click data.
 
-![dashboard-Ai](https://drive.google.com/file/d/1Dqizdvj08h85XiPpiHDP3cnrLc7pH9w8/view?usp=sharing)
+![dashboard-Ai](https://github.com/user-attachments/assets/adbcfff2-96e8-43e5-a6f0-4445c46ea403)
 
 
 ### Heatmap Visualization
 This heatmap visualizes click data by overlaying signatures on a website, highlighting areas of high activity and helping identify key user behavior patterns.
 
-![Heatmap](https://drive.google.com/file/d/1xVLydgJSSULXh0UA8UvoJkH4cIUW4HU3/view?usp=sharing)
+![Heatmap](https://github.com/user-attachments/assets/676dcb5e-fd77-4218-a228-de4fbebbbff4)
 
 ### Click Data Playground
 The React Flow playground provides a tree diagram and frequency chart to visualize click data, allowing users to easily identify where clicks occurred most frequently on their site.
 
-![Playground](https://drive.google.com/file/d/1b7wHFgL-SSb_t2_CQc2cia4gcsoD9pi4/view?usp=sharing)
+![Playground](https://github.com/user-attachments/assets/3493efe0-b04d-430a-ac27-bf0d8247de9e)
+
 
 ### Securing Your Credentials
 Your AWS credentials are securely stored in our database using encryption, ensuring they remain protected and accessible only to you.
-
-
 
 
 ## Getting Started
