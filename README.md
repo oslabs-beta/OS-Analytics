@@ -7,6 +7,9 @@
 
 **OS Analytics** is a powerful and easy-to-use tool designed to monitor user interactions on websites. By integrating a custom `clickTracker` hook, developers can capture and visualize user activity data in real-time. This data helps developers better understand user behavior, optimize their apps, and make informed decisions based on analytics. With a robust dashboard that filters and exports data, you can track, manage, and visualize user interactions effectively.
 
+## ReadME For Incorporating AI
+Please read the [README](README_AWS.md) for detailed instructions on incorporating AWS Bedrock into your dashboard.
+
 ## 🛠️ Tech Stack
 
 <div align='center'>
@@ -36,6 +39,8 @@
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
 ![Puppeteer](https://img.shields.io/badge/Puppeteer-40B5A4?style=for-the-badge&logo=puppeteer&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer--Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+
 </div>
 
 # What we offer
@@ -51,15 +56,46 @@
 | Ability to configure multiple websites for tracking in the dashboard                                                                    | ✅        |
 | Implemented AWS Bedrock for generating user activity reports                                                                            | ✅        |
 | Fully documented API for developers to integrate and manage the tracking tool                                                           | ✅        |
-
-
-
-
 </div> 
+
+## Key Features
+
+### Login and API Key Management
+This gif shows the user logging in, navigating to documentation, and accessing settings to view and manage their API key for the platform.
+
+![Login Page](client\src\assets\gifs\realhomepage.gif)
+
+### Dashboard Overview
+The dashboard provides a clear and intuitive layout for monitoring click analysis data, with charts and metrics that track user interactions and website performance over time.
+
+![dashboard-one](client\src\assets\gifs\Animation.gif)
+
+
+### AI-Generated Reports
+This feature allows users to generate and save AI-driven reports that provide detailed insights and actionable recommendations based on the collected click data.
+
+![dashboard-Ai](client\src\assets\gifs\Animation2.gif)
+
+
+### Heatmap Visualization
+This heatmap visualizes click data by overlaying signatures on a website, highlighting areas of high activity and helping identify key user behavior patterns.
+
+![Heatmap](client\src\assets\gifs\heatmap1.gif)
+
+### Click Data Playground
+The React Flow playground provides a tree diagram and frequency chart to visualize click data, allowing users to easily identify where clicks occurred most frequently on their site.
+
+![Playground](client\src\assets\gifs\playground1.gif)
+
+### Securing Your Credentials
+Your AWS credentials are securely stored in our database using encryption, ensuring they remain protected and accessible only to you.
+
+
+
 
 ## Getting Started
 
-1. To get started, visit [os-analytics.com](https://os-analytics.com) and create an account. After account creation, you will be directed to an onboarding page which will guide you through the steps below.
+1. To get started, visit [os-analytics](http://os-analytics.com.s3-website-us-west-1.amazonaws.com/) and create an account. After account creation, you will be directed to an onboarding page which will guide you through the steps below.
 
 2. Install the OS Analytics package in your React application:
 
