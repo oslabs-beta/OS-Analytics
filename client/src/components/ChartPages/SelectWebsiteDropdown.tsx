@@ -1,8 +1,6 @@
 import { useAtom } from 'jotai';
 import { Box, FormControl, Select, MenuItem } from "@mui/material";
 import styles from '../User/UserView.module.css';
-import { timeFrameAtom } from '../../state/Atoms';
-import {Navigate, NavLink } from 'react-router-dom';
 import { websitesAtom, activeWebsiteAtom } from '../../state/Atoms';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -10,7 +8,7 @@ import { useState } from 'react';
 const TimeFrameDropdown = () => {
   const navigate = useNavigate();
   const [websites] = useAtom(websitesAtom); 
-  const [selectedWebsite, setSelectedWebsite] = useAtom(activeWebsiteAtom);
+  const [, setSelectedWebsite] = useAtom(activeWebsiteAtom);
   const [displayedData, setDisplayedData] = useState('Overview')
 
     return  (
