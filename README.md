@@ -63,29 +63,29 @@ Please read the [README](README_AWS.md) for detailed instructions on incorporati
 ### Login and API Key Management
 This gif shows the user logging in, navigating to documentation, and accessing settings to view and manage their API key for the platform.
 
-![Login Page](client\src\assets\gifs\realhomepage.gif)
+![Login Page](https://drive.google.com/file/d/1R1alsJFyokXpydnvxN5CmzIoGNsVS4QN/view?usp=sharing)
 
 ### Dashboard Overview
 The dashboard provides a clear and intuitive layout for monitoring click analysis data, with charts and metrics that track user interactions and website performance over time.
 
-![dashboard-one](client\src\assets\gifs\Animation.gif)
+![dashboard-one](https://drive.google.com/file/d/1rhJ-WiMAFrf2x6v6UILNVuQVP8yEv5LZ/view?usp=sharing)
 
 
 ### AI-Generated Reports
 This feature allows users to generate and save AI-driven reports that provide detailed insights and actionable recommendations based on the collected click data.
 
-![dashboard-Ai](client\src\assets\gifs\Animation2.gif)
+![dashboard-Ai](https://drive.google.com/file/d/1Dqizdvj08h85XiPpiHDP3cnrLc7pH9w8/view?usp=sharing)
 
 
 ### Heatmap Visualization
 This heatmap visualizes click data by overlaying signatures on a website, highlighting areas of high activity and helping identify key user behavior patterns.
 
-![Heatmap](client\src\assets\gifs\heatmap1.gif)
+![Heatmap](https://drive.google.com/file/d/1xVLydgJSSULXh0UA8UvoJkH4cIUW4HU3/view?usp=sharing)
 
 ### Click Data Playground
 The React Flow playground provides a tree diagram and frequency chart to visualize click data, allowing users to easily identify where clicks occurred most frequently on their site.
 
-![Playground](client\src\assets\gifs\playground1.gif)
+![Playground](https://drive.google.com/file/d/1b7wHFgL-SSb_t2_CQc2cia4gcsoD9pi4/view?usp=sharing)
 
 ### Securing Your Credentials
 Your AWS credentials are securely stored in our database using encryption, ensuring they remain protected and accessible only to you.
