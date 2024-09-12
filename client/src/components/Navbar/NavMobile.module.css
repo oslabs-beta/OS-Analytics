@@ -2,7 +2,7 @@
   display: none;
   height: calc(100vh - 4rem);
   width: 100vw;
-  z-index: 100;
+  z-index: 1300;
   background: var(--black);
   background: linear-gradient(
     to left, var(--blue-primary),

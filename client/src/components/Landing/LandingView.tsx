@@ -14,16 +14,12 @@ export default function Landing() {
       <Navbar />
       <NavMobile />
       <Hero />
-
       <WhyOSA />
- 
       <TeamSection />
-         <DashboardPreview />  
+      <DashboardPreview />
       <FAQSection />
-
       <GettingStarted />
       <Footer />
-      
     </div>
   );
 }

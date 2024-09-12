@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { activeUserAtom, activeNavAtom } from '../../state/Atoms';
 import { handleLogout } from '../../services/authConfig';
+import TimeFrameDropdown from '../ChartPages/TimeFrameDropdown';
+import SelectWebsiteDropdown from '../ChartPages/SelectWebsiteDropdown';
 export default function NavbarDashboard() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom);
   const [activeNav, setActiveNav] = useAtom(activeNavAtom);
@@ -16,7 +18,10 @@ export default function NavbarDashboard() {
   return (
     <div className={styles.navbar}>
       <div className={styles.navContainer}>
+
         <div className={styles.navLeftDash}>
+        <TimeFrameDropdown />
+        <SelectWebsiteDropdown />
           {activeUser ? (
             <div className={styles.navLinks}>
               <Link to="/dashboard">

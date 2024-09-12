@@ -3,7 +3,6 @@ import { activeWebsiteAtom } from "../../state/Atoms";
 import { useAtom } from "jotai";
 import ClickDataVisualization from "../ChartPages/AllUserData";
 import ClickDataVisualizationWebsite from "../ChartPages/WebsiteData";
-import TimeFrameDropdown from "../ChartPages/TimeFrameDropdown";
 import { useParams } from "react-router-dom";
 import ClickLog from "./ClickLog";
 
@@ -17,8 +16,6 @@ function Dashboard() {
   return (
     <section id="dashboard-section" className={styles.dashboard}>
 
-      
-        <TimeFrameDropdown />
         <ClickLog />
       <div>
         {activeWebsite === "overview"? (

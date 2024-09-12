@@ -9,6 +9,7 @@ import { WebsiteSelector } from "./WebsiteSelection";
 import { deleteWebsite, deleteAccount } from "../../services/deleteDataApi";
 import { activeUserAtom, websitesAtom } from "../../state/Atoms";
 import AwsBedrockConfig from "./AwsBedrockConfig"
+import NavMobile from "../Navbar/NavMobile";
 
 const SettingsPage = () => {
   const [activeUser] = useAtom(activeUserAtom);
@@ -87,6 +88,7 @@ const SettingsPage = () => {
       }}
     >
       <Navbar />
+      <NavMobile />
       <Box sx={{ width: "100%", maxWidth: "600px", margin: "0 auto" }}>
         <Paper
           sx={{
