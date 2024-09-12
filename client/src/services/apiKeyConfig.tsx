@@ -2,7 +2,6 @@ import axios from 'axios';
 import {backendUrl} from '../state/Atoms';
 
 export const fetchApiKey = async (token: string) => {
-
   try {
     const response = await axios.get(`${backendUrl}/api/auth/getApiKey`, {
       headers: {
@@ -11,11 +10,10 @@ export const fetchApiKey = async (token: string) => {
     });
     return response.data.apiKey;
   } catch (error) {
-    console.error('Error fetching API key:', error);
+    console.error("Error fetching API key:", error);
     throw error;
   }
 };
-
 
 export const handleDeleteApiKey = async (token: string) => {
 
@@ -51,12 +49,11 @@ export const handleDeleteApiKey = async (token: string) => {
       if (response.status === 200) {
         const {apiKey}  = response.data;
 
-        return apiKey;
-      } else {
-        console.error("Failed to regenerate API key");
-      }
-    } catch (error) {
-      console.error("Error regenerating API key: ", error);
+      return apiKey;
+    } else {
+      console.error("Failed to regenerate API key");
     }
-  };
-  
+  } catch (error) {
+    console.error("Error regenerating API key: ", error);
+  }
+};

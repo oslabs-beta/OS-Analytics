@@ -30,3 +30,18 @@
   width: 100%;
   overflow-x: auto;
 }
+.codeBlockWrapper {
+  position: relative;
+}
+
+.copyButton {
+  position: flex;
+  top: 10px;
+  left: 880px;
+}
+
+.copiedText {
+  margin-left: 8px;
+  color: #4caf50;
+  font-size: 12px;
+}

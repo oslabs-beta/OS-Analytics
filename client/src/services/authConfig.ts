@@ -2,8 +2,11 @@ import axios from "axios";
 import {backendUrl} from '../state/Atoms';
  
 export const handleLogout = async () => {
-      localStorage.removeItem('token');
-      return true;
+  window.location.href = 'http://os-analytics.com.s3-website-us-west-1.amazonaws.com/';
+  
+  
+    localStorage.removeItem('token');
+
 };
 
 export const handleSession = async () => {

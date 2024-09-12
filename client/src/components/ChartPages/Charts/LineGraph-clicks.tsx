@@ -1,7 +1,5 @@
 import { Line } from "react-chartjs-2";
-import { Typography } from "@mui/material";
 import { useAtom } from "jotai";
-import styles from "../Charts.module.css";
 import { timeFrameAtom } from "../../../state/Atoms";
 import {
   Chart as ChartJS,
@@ -91,7 +89,7 @@ const ClickGraph = ({ data }: NoKeywordChart) => {
   };
 
   const chartOptions = {
-    responsive: true,
+   
     scales: {
       x: {
         ticks: {
@@ -107,14 +105,11 @@ const ClickGraph = ({ data }: NoKeywordChart) => {
 
   return (
     <div
-      className={styles.chartBox}
-      style={{ padding: "20px", margin: "auto", textAlign: "center" }}
+      style={{ padding: "20px", textAlign: "center"}}
     >
-      <Typography variant="h4" gutterBottom style={{ textAlign: "center" }}>
-        Click Data Overview
-      </Typography>
+    <h3 style={{ color: 'black', textAlign: 'center', marginBottom: '20px' }}>Click data overview</h3>
       <Line ref={chartRef} data={chartData} options={chartOptions} />
-      <div style={{ marginLeft: "620px" }}>
+      <div style={{ justifyContent: 'center' }}>
         <ChartDownload chartRef={chartRef} />
       </div>
     </div>

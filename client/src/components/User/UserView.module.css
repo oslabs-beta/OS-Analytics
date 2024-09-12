@@ -5,6 +5,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  background: linear-gradient(135deg, #f7f7f7, #e0e0e0);
 }
 
 .sidebar {
@@ -87,6 +88,7 @@ a.active {
   left: 4rem;
   width: 10.5rem;
   text-align: left;
+  z-index: 10;
   /* border: 1px solid var(--blue-secondary); */
 }
 /* .timeframe:active {

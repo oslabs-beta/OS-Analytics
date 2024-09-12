@@ -1,6 +1,6 @@
 .whyOSA {
     width: 100%;
-    background: var(--blue-white);
+    background: #f4f4f4;
     display: flex;
     justify-content: center;
     flex-direction: column;

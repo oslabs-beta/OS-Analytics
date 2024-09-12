@@ -13,6 +13,7 @@ import Settings from './components/Settings/Settings';
 import ForgotPassword from './components/User/ForgotPassword';
 import PlaygroundDisplay from './components/Playground/playgroundDisplay';
 
+
 function App() {
   const [activeUser, setActiveUser] = useAtom(activeUserAtom); //email of active user || null
   const [loading, setLoading] = useState(true);
@@ -26,7 +27,7 @@ function App() {
       setLoading(false);
     };
 
-    fetchUser();
+    fetchUser(); 
   }, []);
 
   if (loading) return;

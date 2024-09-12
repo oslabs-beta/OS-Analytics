@@ -19,10 +19,11 @@ function ClickLog() {
     //os
     //website name
     function newItems() {
-        for (let i = 0; i <10; i++)
+        for (let i = userData.length-1; i >=userData.length-10; i--)
             displayedItems.push(<ClickLogItem item={mappedData[i]} key={i} />)
     }
     newItems();
+    
   return (
     <div className={styles.ClickLog}>
       <div className="admin-header">
