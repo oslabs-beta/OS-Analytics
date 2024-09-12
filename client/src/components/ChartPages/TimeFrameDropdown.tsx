@@ -10,14 +10,10 @@ const TimeFrameDropdown = () => {
       <Box
         className={styles.timeframe}
         sx={{
-          position: 'absolute',
-          top: '10px', 
-          right: '10px', 
-          marginLeft:'10px',
           display: "flex",
           alignItems: "center",
           justifyContent: 'center',
-          width: "250px",
+          width: "150px",
           backgroundColor: "#686868",
           padding: "4px", 
           borderRadius: '5px'

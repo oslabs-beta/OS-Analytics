@@ -1,9 +1,9 @@
 import { atom } from "jotai";
 import { QueryData, referralData } from "../../types";
 
-// const userStore = createStore();
-
-export const backendUrl: string = "http://ec2-54-193-194-208.us-west-1.compute.amazonaws.com:8080"; // backend URI
+// IF RUNNING ON LOCAL HOST, REPLACE backendURL value with empty string.
+//http://ec2-18-144-89-57.us-west-1.compute.amazonaws.com
+export const backendUrl: string = "http://ec2-18-144-89-57.us-west-1.compute.amazonaws.com"; // backend URI
 export const activeUserAtom = atom<string>("");
 export const activeNavAtom = atom<boolean>(false);
 
