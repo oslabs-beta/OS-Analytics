@@ -9,7 +9,7 @@ const puppeteerController = {
             const homepage_url:any = req.query.url // URL is given by the "user" (your client-side application)
         
             // launch headless browser, navigate to webpage, and take screenshot
-            const browser = await puppeteer.launch({headless: true}); 
+            const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox']}); 
             const page:any = await browser.newPage();
 
             // Set the viewport (width, height, and optional device scale factor)

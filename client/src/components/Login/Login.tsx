@@ -142,7 +142,7 @@ export default function Login() {
             transition={{ delay: 1, duration: 0.6 }}
           >
             <Button
-              onClick={() => (window.location.href = "/api/google")}
+              onClick={() => (window.location.href = `${backendUrl}/api/google`)}
               variant="contained"
               color="primary"
               startIcon={<GoogleIcon />}
