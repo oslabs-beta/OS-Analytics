@@ -2,11 +2,11 @@ import { Box, Typography, IconButton } from "@mui/material";
 import styles from "./Documentation.module.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import Sidebar from "../User/Sidebar";
-import NavbarDashboard from "../Navbar/NavbarDashboard";
 import { useState } from "react";
 import { FileCopy, Check } from '@mui/icons-material';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import NavMobile from "../Navbar/NavMobile";
+import Navbar from "../Navbar/Navbar";
 
 const CopyButton = ({ text }: {text:string}) => {
   const [copied, setCopied] = useState(false);
@@ -29,9 +29,9 @@ const CopyButton = ({ text }: {text:string}) => {
 
 const Documentation = () => {
   return (
-    <div className="viewWithSide">
-      <NavbarDashboard />
-      <Sidebar />
+    <div className="viewNoSide">
+      <Navbar />
+      <NavMobile />
       <div className={styles.sectionWrapper}>
         <section className={styles.docs}>
           <Typography variant="h3" className="fw-600">Getting Started</Typography>
