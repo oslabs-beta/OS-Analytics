@@ -9,9 +9,14 @@ import BarAnimation from "../Animations/BarAnimation";
 import * as THREE from 'three'; 
 import GLOBE from 'vanta/dist/vanta.globe.min'; 
 import { Link, useNavigate } from "react-router-dom";
+import Alert from '@mui/material/Alert';
+import { Button } from "@mui/material";
+import GoogleIcon from "@mui/icons-material/Google";
+import { motion } from "framer-motion";
 
 export default function Signup() {
   const [, setActiveUser] = useAtom(activeUserAtom);
+  const [errorMessage, setErrorMessage] = useState('')
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -59,9 +64,8 @@ export default function Signup() {
       setActiveUser(response.data.email);
       localStorage.setItem("token", response.data.token);
       navigate('/dashboard');
-    } catch (err: unknown) {
-      const error = err as Error;
-      console.log(error.message);
+    } catch (err: any) {
+      setErrorMessage(err.response.data)
     }
   }
 
@@ -69,25 +73,27 @@ export default function Signup() {
     <div className="viewNoSide">
       <Navbar />
       <NavMobile />
-      <section className={styles.loginPage}>
-        <div className={styles.login}>
+      <motion.section
+        className={styles.loginPage}
+        initial={{ opacity: 0, y: 0 }}
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.8 }} 
+      >
+        <motion.div
+          className={styles.login}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
           <h2>Create Account</h2>
-          <div className={styles.oathButtons}>
-            <button
-              className={`button ${styles.loginBtn} ${styles.google}`}
-              onClick={() =>
-                (window.location.href = `${backendUrl}/api/google`)
-              }
-            >
-              Continue with Google
-            </button>
-            <button className={`button ${styles.loginBtn} ${styles.github}`}>
-              Continue with GitHub
-            </button>
-          </div>
+          {errorMessage && (
+            <Alert severity="error" style={{ marginBottom: '1rem' }}>
+              {errorMessage}
+            </Alert>
+          )}
           <BarAnimation />
           <form onSubmit={handleSubmit} className={styles.loginCredentials}>
-            <input
+            <motion.input
               className="input"
               type="email"
               placeholder="email"
@@ -95,8 +101,11 @@ export default function Signup() {
               value={formData.email}
               onChange={handleChange}
               required
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
             />
-            <input
+            <motion.input
               className="input"
               type="password"
               minLength={6}
@@ -105,8 +114,11 @@ export default function Signup() {
               value={formData.password}
               onChange={handleChange}
               required
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
             />
-            <input
+            <motion.input
               className="input"
               type="password"
               minLength={6}
@@ -115,20 +127,49 @@ export default function Signup() {
               value={formData.confirmPassword}
               onChange={handleChange}
               required
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
             />
-            <button type="submit" className="button btn-primary">
+            <motion.button
+              type="submit"
+              className="button btn-primary"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.1, duration: 0.6 }}
+            >
               Create account
-            </button>
+            </motion.button>
           </form>
+
+          <motion.div
+            className={styles.oathButtons}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.6 }}
+          >
+            <Button
+              onClick={() => (window.location.href = "/api/google")}
+              variant="contained"
+              color="primary"
+              startIcon={<GoogleIcon />}
+              fullWidth
+            >
+              Continue with Google
+            </Button>
+          </motion.div>
+
+
           <div className={styles.createAccountQuery}>
             <p className="black">Already have an account?</p>
             <p>
               <Link to="/login" style={{ color: "black" }}>Sign in here</Link>
             </p>
           </div>
-        </div>
+        </motion.div>
+
         <div className={styles.loginBackground} ref={vantaRef}></div>
-      </section>
+      </motion.section>
     </div>
   );
 }

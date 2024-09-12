@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { Scatter } from 'react-chartjs-2';
-import { Typography } from '@mui/material';
 import { useAtom } from 'jotai';
 import { timeFrameAtom } from '../../../state/Atoms';
 import {
@@ -63,11 +62,9 @@ const ScatterChart = ({ data }: NoKeywordChart) => {
 
   return (
     <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
-      <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
-        Click Scatter Plot
-      </Typography>
+    <h3 style={{ color: 'black', textAlign: 'center', marginBottom: '20px' }}>Scatter heatmap</h3>
       <Scatter ref={chartRef} data={scatterData} options={options} />
-      <div style={{ marginLeft: "620px" }}>
+      <div>
         <ChartDownload chartRef={chartRef} />
       </div>
     </div>

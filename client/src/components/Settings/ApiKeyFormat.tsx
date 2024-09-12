@@ -68,7 +68,7 @@ const ApiKeyDisplay = ({ data }: { data: string }) => {
                             }
                         }}
                     >
-                        {copied ? <Check fontSize="small" sx={{ color: 'black' }} /> : <FileCopy fontSize="small" sx={{ color: '#333333' }} />}
+                        {copied ? <Check fontSize="small" color="success" /> : <FileCopy fontSize="small" sx={{ color: '#333333' }} />}
                     </IconButton>
                 </CopyToClipboard>
             </Box>

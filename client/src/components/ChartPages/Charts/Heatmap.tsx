@@ -43,7 +43,7 @@ const Heatmap = ({ data }: NoKeywordChart) => {
 
     return (
         <div>
-            <h1 style = {{display: 'flex', justifyContent: 'center', marginBottom: '5px'}}> Website Heatmap </h1>
+            <h1 style = {{display: 'flex', justifyContent: 'center', marginBottom: '5px', padding:'20px'}}> Website Heatmap </h1>
             <div className="heatmapContainer" style = {{height:`${screenHeight}px`, width: `${screenWidth}px`}}>
                 <ScreenshotComponent pageUrl = {pageUrl}/>
             </div>

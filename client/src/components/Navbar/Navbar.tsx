@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const onLogoutClick = async () => {
     const success = await handleLogout();
-    if (success) {
+    if (success!) {
       setActiveUser('');
     }
   };
@@ -48,9 +48,6 @@ export default function Navbar() {
               </NavLink>
               <Link to = "/signup">
               <span>Getting Started</span>
-              </Link>
-              <Link to = "/team">
-              <span>Team</span>
               </Link>
             </div>
           )}

@@ -1,11 +1,11 @@
 import Navbar from "../Navbar/Navbar";
 import Hero from "./Hero";
-import Footer from "../Footer/Footer";
 import NavMobile from "../Navbar/NavMobile";
 import WhyOSA from "./WhyOSA";
 import TeamSection from "./githubProfiles";
 import FAQSection from "./FAQSection";
-// import Loading from '../Loading/Loading'
+import GettingStarted from "./GettingStarted";
+import Footer from "./Footer";
 
 export default function Landing() {
   return (
@@ -16,6 +16,7 @@ export default function Landing() {
       <WhyOSA />
       <TeamSection />
       <FAQSection />
+      <GettingStarted />
       <Footer />
       
     </div>

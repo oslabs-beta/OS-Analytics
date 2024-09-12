@@ -1,7 +1,7 @@
 .loginPage {
     display: flex;
     height: calc(100vh - 4rem);
-    
+    overflow: hidden; 
 }
 
 .login {
@@ -13,7 +13,6 @@
     justify-content: center;
     align-items: center;
     padding: 4.8rem;
-
     gap: 1.2rem;
     background: #ffffff;
 }
@@ -21,10 +20,44 @@
 .loginBackground {
     height: calc(100vw-4rem);
     width: 100%;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     place-content: center;
-}
 
+}
+.typewriter h1 {
+    overflow: hidden; 
+    border-right: .15em solid rgb(243, 243, 242);
+    color: #fff; 
+    white-space: nowrap; 
+    margin: 0 auto; 
+    letter-spacing: .10em; 
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: rgb(245, 244, 242); }
+  }
+
+.imageWrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .demoImg {
+    max-width: 90%;
+    border-radius: 10px;
+  }
 .login h2 {
     font-weight: 300;
 }

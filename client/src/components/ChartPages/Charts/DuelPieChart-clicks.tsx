@@ -82,28 +82,29 @@ const PieCharts = ({ data, keyword, keywordTwo }: PieChartsProps) => {
         display: "flex",
         justifyContent: "space-around",
         padding: "20px",
+  
       }}
     >
       <div style={{ width: "45%" }}>
         <h3
-          style={{ color: "white", textAlign: "center", marginBottom: "20px" }}
+          style={{ color: "black", textAlign: "center", marginBottom: "20px" }}
         >
           User Browsers
         </h3>
         <Pie ref={osChartRef} data={osChartData} />
-        <div style={{ marginLeft: "120px" }}>
+        <div style={{justifyContent:'center', display:'flex' }}>
           <ChartDownload chartRef={osChartRef} />
         </div>
       </div>
 
       <div style={{ width: "45%" }}>
         <h3
-          style={{ color: "white", textAlign: "center", marginBottom: "20px" }}
+          style={{ color: "black", textAlign: "center", marginBottom: "20px" }}
         >
           User Operating Systems
         </h3>
         <Doughnut ref={browserChartRef} data={browserChartData} />
-        <div style={{ marginLeft: "140px" }}>
+        <div style={{justifyContent:'center', display:'flex' }}>
           <ChartDownload chartRef={browserChartRef} />
         </div>
       </div>

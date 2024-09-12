@@ -56,9 +56,9 @@ const RadarChart = ({ data, keyword, keywordTwo }: RadarChartProps) => {
   return (
     <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
    
-        <h3 style={{ color: 'white', textAlign: 'center', marginBottom: '20px' }}>Website Clicks by Browser</h3>
+        <h3 style={{ color: 'black', textAlign: 'center', marginBottom: '20px' }}>Website Clicks by Browser</h3>
         <Radar ref={chartRef} data={radarChartData} />
-        <div style={{ marginLeft: "620px" }}>
+        <div style={{ justifyContent: 'center' }}>
         <ChartDownload chartRef={chartRef} />
    
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, ChangeEventHandler } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   ReactFlow,
   useNodesState,
@@ -178,10 +178,6 @@ const FlowDiagram = () => {
     }
   };
 
-  const onChange: ChangeEventHandler<HTMLSelectElement> = (evt) => {
-    setColorMode(evt.target.value as "dark" | "light" | "system");
-  };
-
   return (
     <div
       ref={diagramRef}
@@ -206,7 +202,7 @@ const FlowDiagram = () => {
         <Background color="#aaa" gap={16} />
         <Panel
           position="top-left"
-          style={{ marginTop: "70px", marginLeft: "220px" }}
+          style={{ marginTop: "90px", marginLeft: "220px" }}
         >
           <Button
             variant="outlined"
