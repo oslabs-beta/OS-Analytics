@@ -109,7 +109,6 @@ const AiResponseComponent = () => {
           minHeight: '400px',
           width: '100%',
           placeContent: 'start',
-          border: '1px solid var(--blue-secondary)',
           padding: '20px',
           background: 'transparent',
         }}

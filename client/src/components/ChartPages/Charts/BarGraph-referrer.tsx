@@ -92,10 +92,10 @@ const BarChart = ({ data }: referralBarChartProps) => {
     <div>
       
  
-    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
-
+      <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
+      <h3 style={{ color: 'black', textAlign: 'center', marginBottom: '20px' }}>Referred by</h3>
         <Bar ref={chartRef} data={chartData} options={options} />
-        <div style={{ marginLeft: "620px" }}>
+        <div>
         <ChartDownload chartRef={chartRef} />
       </div>
           </div> 

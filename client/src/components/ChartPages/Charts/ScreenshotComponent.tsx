@@ -48,7 +48,7 @@ const ScreenshotComponent = ({pageUrl}:any) => {
         <div>
             {imageSrc ? (
                 <img src={imageSrc} alt="Screenshot" style = {{height:'720px', width: '1280px',
-                    margin: 0, padding: 0, 
+                     padding: '20px', 
                 }}/>
             ) : (
                 <p>Loading image...</p>

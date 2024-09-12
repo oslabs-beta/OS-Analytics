@@ -72,11 +72,11 @@ const StackedBarChart = ({ data, keyword, keywordTwo }: PieChartsProps) => {
   };
 
   return (
-    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
+    <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center'}}>
 
-        <h3 style={{ color: 'white', textAlign: 'center', marginBottom: '20px' }}>Browser Usage by Operating System</h3>
+        <h3 style={{ color: 'black', textAlign: 'center', marginBottom: '20px' }}>Browser Usage by Operating System</h3>
         <Bar ref={chartRef} data={stackedBarChartData} options={options} />
-        <div style={{ marginLeft: "620px" }}>
+        <div style={{ justifyContent: 'center' }}>
         <ChartDownload chartRef={chartRef} />
    
       </div>

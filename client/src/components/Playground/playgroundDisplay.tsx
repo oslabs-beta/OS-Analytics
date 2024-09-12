@@ -12,7 +12,7 @@ const PlaygroundDisplay = () => {
   const [selectedPage, setSelectedPage] = useState("");
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
       <Navbar />
       <PermanentDrawerLeft
         onSelectView={setSelectedView}

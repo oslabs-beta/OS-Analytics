@@ -71,22 +71,14 @@ const BarChart = ({ data, keyword }: BarChartProps) => {
       legend: {
         display: false,
       },
-      title: {
-        display: true,
-        text: `Clicks Per ${keyword ==="page_url"? "Page URLS": "Website"}`,
-        color: 'black',
-        font: {
-          weight: 400,
-          size: 20
-        }
-      },
     },
   };
 
   return (
     <div className={styles.chartBox} style={{ padding: '20px', margin: 'auto', textAlign: 'center' }}>
+       <h3 style={{ color: 'black', textAlign: 'center', marginBottom: '20px' }}>Clicks per website</h3>
       <Bar ref={chartRef} data={chartData} options={options} />
-      <div style={{ marginLeft: "620px" }}>
+      <div >
         <ChartDownload chartRef={chartRef} />
       </div>
     </div>
