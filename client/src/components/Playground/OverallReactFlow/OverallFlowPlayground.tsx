@@ -178,11 +178,6 @@ const FlowDiagram = () => {
     }
   };
 
-  const onChange: ChangeEventHandler<HTMLSelectElement> = (evt) => {
-    setColorMode(evt.target.value as "dark" | "light" | "system");
-  };
-  onChange;
-
   return (
     <div
       ref={diagramRef}

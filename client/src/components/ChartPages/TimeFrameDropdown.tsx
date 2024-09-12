@@ -20,6 +20,7 @@ const TimeFrameDropdown = () => {
           width: "250px",
           backgroundColor: "#686868",
           padding: "4px", 
+          borderRadius: '5px'
         }}
       >
         <FormControl fullWidth variant="outlined">
