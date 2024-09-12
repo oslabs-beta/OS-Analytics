@@ -1,1 +1,0 @@
-var c={};c.parse=d;c.stringify=g;var v=",",p=" ",i="";function d(r){for(var n=[],a=String(r||i),t=a.indexOf(v),e=0,f=!1,s;!f;)t===-1&&(t=a.length,f=!0),s=a.slice(e,t).trim(),(s||!f)&&n.push(s),e=t+1,t=a.indexOf(v,e);return n}function g(r,n){var a=n||{},t=a.padLeft===!1?i:p,e=a.padRight?p:i;return r[r.length-1]===i&&(r=r.concat(i)),r.join(e+v+t).trim()}export{c};

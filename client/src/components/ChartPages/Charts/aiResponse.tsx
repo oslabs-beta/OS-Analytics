@@ -105,12 +105,13 @@ const AiResponseComponent = () => {
         className={styles.chartBox}
         sx={{
           color: 'red',
-          overflowY: 'auto',
           minHeight: '400px',
           width: '100%',
           placeContent: 'start',
           padding: '20px',
           background: 'transparent',
+          overflowY: 'auto', 
+          maxHeight: '300px',
         }}
       >
         <Button
@@ -132,7 +133,9 @@ const AiResponseComponent = () => {
             textTransform: 'none',
             fontSize: '16px',
             padding: '1rem 2rem',
-
+            position: 'sticky', 
+            top: 0,           
+            zIndex: 1,      
             height: '3.2rem',
             display: 'flex',
             borderRadius: '8px',
@@ -151,7 +154,7 @@ const AiResponseComponent = () => {
           {displayedText.length === 0 && !loading && (
             <ListItem sx={{ padding: 0 }}>
               <ListItemText
-                primary="Enter your AWS credentials to begin."
+                primary="Have your AWS credentials set up in the settings, if your do you're good to go!."
                 sx={{
                   padding: '5px 0',
                   margin: 0,

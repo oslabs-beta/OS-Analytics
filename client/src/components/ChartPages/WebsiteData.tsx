@@ -153,7 +153,7 @@ const WebsiteData = () => {
           </Paper>
         </Grid>
         <Grid container justifyContent="right">
-          <Grid item xs={12} md={8.5} sx={{ mt: -18,  }}>
+          <Grid item xs={12} md={8.6} sx={{ mt: -18,  }}>
             <Paper
               elevation={3}
               sx={{
