@@ -2,7 +2,7 @@ import axios from "axios";
 import {backendUrl} from '../state/Atoms';
  
 export const handleLogout = async () => {
-  window.location.href = 'http://localhost:3000/';
+  window.location.href = 'http://os-analytics.com.s3-website-us-west-1.amazonaws.com/';
   
   
     localStorage.removeItem('token');
