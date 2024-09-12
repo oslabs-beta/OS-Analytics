@@ -3,9 +3,7 @@ import { QueryData, referralData } from "../../types";
 
 // const userStore = createStore();
 
-// dev backend URI
-// http://ec2-13-52-215-70.us-west-1.compute.amazonaws.com:8080
-export const backendUrl: string = "";
+export const backendUrl: string = "http://ec2-54-193-194-208.us-west-1.compute.amazonaws.com:8080"; // backend URI
 export const activeUserAtom = atom<string>("");
 export const activeNavAtom = atom<boolean>(false);
 

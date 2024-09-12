@@ -71,6 +71,7 @@ const SettingsPage = () => {
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
+    event;
   };
 
   return (
