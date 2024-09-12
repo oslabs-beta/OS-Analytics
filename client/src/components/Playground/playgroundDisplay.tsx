@@ -4,6 +4,7 @@ import OverallFlowPlayground from "./OverallReactFlow/OverallFlowPlayground.tsx"
 import PermanentDrawerLeft from "./ViewDrawer";
 import Navbar from "../Navbar/Navbar";
 import populateAtoms from "../../services/populateAtoms";
+import NavMobile from "../Navbar/NavMobile.tsx";
 
 const PlaygroundDisplay = () => {
   populateAtoms();
@@ -14,6 +15,7 @@ const PlaygroundDisplay = () => {
   return (
     <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
       <Navbar />
+      <NavMobile />
       <PermanentDrawerLeft
         onSelectView={setSelectedView}
         onSelectWebsite={setSelectedWebsite}

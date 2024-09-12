@@ -1,55 +1,63 @@
 import { useAtom } from 'jotai';
-import { Select, MenuItem, FormControl, SelectChangeEvent} from '@mui/material';
-import { activeWebsiteAtom, websitesAtom } from '../../state/Atoms';
+import { Box, FormControl, Select, MenuItem } from "@mui/material";
+import styles from '../User/UserView.module.css';
+import { timeFrameAtom } from '../../state/Atoms';
+import {Navigate, NavLink } from 'react-router-dom';
+import { websitesAtom, activeWebsiteAtom } from '../../state/Atoms';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-const SelectWebsiteDropDown = () => {
+const TimeFrameDropdown = () => {
+  const navigate = useNavigate();
+  const [websites] = useAtom(websitesAtom); 
   const [selectedWebsite, setSelectedWebsite] = useAtom(activeWebsiteAtom);
-  const [websites] = useAtom(websitesAtom);
-  const navigate = useNavigate(); 
+  const [displayedData, setDisplayedData] = useState('Overview')
 
-  const handleWebsiteChange = (event: SelectChangeEvent<string>) => {
-    const newWebsite = event.target.value;
-    setSelectedWebsite(newWebsite); 
-    navigate(newWebsite === 'overview' ? '/dashboard/overview' : `/dashboard/${newWebsite}`);
-  };
-
-  return (
-    <div>
-      <FormControl
-        variant="outlined"
-        style={{ minWidth: 120, marginBottom: '20px', height: '30px' }}
+    return  (
+      <Box
+        className={styles.websiteDropdown}
+        sx={{
+          alignItems: "center",
+          justifyContent: 'center',
+          width: "150px",
+          backgroundColor: "#686868",
+          padding: "4px", 
+          borderRadius: '5px'
+        }}
       >
-        <Select
-          value={selectedWebsite || "overview"} 
-          onChange={handleWebsiteChange} 
-          style={{
-            backgroundColor: 'rgba(50, 50, 50, 0.8)',
-            color: 'white',
-            borderRadius: '4px',
-            height: '30px',
-            padding: '5px 10px',
-            boxShadow: 'none',
-          }}
-          MenuProps={{
-            PaperProps: {
-              style: {
-                backgroundColor: 'rgba(50, 50, 50, 0.8)',
-                color: 'white',
+        <FormControl fullWidth variant="outlined">
+          <Select
+            value={displayedData}
+            onChange={(e) => {setSelectedWebsite(e.target.value)
+              setDisplayedData(e.target.value)
+            }}
+            sx={{
+              color: "#FFFFFF", 
+              ".MuiOutlinedInput-notchedOutline": {
+                borderColor: "transparent", 
               },
-            },
-          }}
-        >
-          <MenuItem value="overview">Overview</MenuItem>
-          {websites.map((website, index) => (
-            <MenuItem key={index} value={website}>
-              {website}
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "686868", 
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#686868", 
+              },
+              ".MuiSelect-select": {
+                padding: "8px", 
+              },
+            }}
+          >
+            <MenuItem value="Overview" onClick={()=>{navigate("/dashboard/overview")
+            }}>
+            Overview
             </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
-  );
+            {websites.map((website, index) => (
+            <MenuItem value={website} key={index} onClick={()=>{navigate(`/dashboard/${website}`)}}>{website}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+    );
 };
 
-export default SelectWebsiteDropDown;
+export default TimeFrameDropdown;
