@@ -1,8 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
+import {backendUrl} from '../state/Atoms';
 
 export const fetchApiKey = async (token: string) => {
   try {
-    const response = await axios.get("/api/auth/getApiKey", {
+    const response = await axios.get(`${backendUrl}/api/auth/getApiKey`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -15,40 +16,38 @@ export const fetchApiKey = async (token: string) => {
 };
 
 export const handleDeleteApiKey = async (token: string) => {
-  try {
-    const response = await axios.delete("/api/auth/apiKey", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
 
-    if (response.status === 200) {
-      return response.status === 200;
-    } else {
-      console.error("Failed to delete API key");
-    }
-  } catch (error) {
-    console.error("Error deleting API key: ", error);
-  }
-};
-
-export const handleRegenerateApiKey = async (token: string) => {
-  try {
-    console.log("Token in handleRegenerateApiKey:", token);
-
-    const response = await axios.put(
-      "/api/auth/apiKey",
-      {},
-      {
+    try {
+      const response = await axios.delete(`${backendUrl}/api/auth/apiKey`, {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
+      });
+  
+      if (response.status === 200) {
+        return response.status === 200
+  
+      } else {
+        console.error("Failed to delete API key");
       }
-    );
-    if (response.status === 200) {
-      const { apiKey } = response.data;
+    } catch (error) {
+      console.error("Error deleting API key: ", error);
+    }
+  };
+  
+  export const handleRegenerateApiKey = async (token: string) => {
+    try {
+      const response = await axios.put(`${backendUrl}/api/auth/apiKey`, {}, 
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const {apiKey}  = response.data;
 
       return apiKey;
     } else {

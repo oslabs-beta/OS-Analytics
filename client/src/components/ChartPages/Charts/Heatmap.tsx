@@ -1,4 +1,3 @@
-// import { HeatmapProps } from "../../../../types";
 import h337 from "heatmap.js";
 import { useState, useEffect } from "react";
 import { NoKeywordChart } from "../../../../types";
