@@ -1,9 +1,10 @@
 import axios from 'axios';
+import {backendUrl} from '../state/Atoms';
 
 export const fetchApiKey = async (token: string) => {
 
   try {
-    const response = await axios.get('/api/auth/getApiKey', {
+    const response = await axios.get(`${backendUrl}/api/auth/getApiKey`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -19,7 +20,7 @@ export const fetchApiKey = async (token: string) => {
 export const handleDeleteApiKey = async (token: string) => {
 
     try {
-      const response = await axios.delete('/api/auth/apiKey', {
+      const response = await axios.delete(`${backendUrl}/api/auth/apiKey`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
@@ -39,12 +40,14 @@ export const handleDeleteApiKey = async (token: string) => {
   
   export const handleRegenerateApiKey = async (token: string) => {
     try {
-      const response = await axios.put('/api/auth/apiKey', {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      });
+      const response = await axios.put(`${backendUrl}/api/auth/apiKey`, {}, 
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        }
+      );
       if (response.status === 200) {
         const {apiKey}  = response.data;
 

@@ -1,18 +1,14 @@
 import styles from "./UserView.module.css";
-import { activeUserAtom, activeWebsiteAtom } from "../../state/Atoms";
+import { activeWebsiteAtom } from "../../state/Atoms";
 import { useAtom } from "jotai";
 import ClickDataVisualization from "../ChartPages/AllUserData";
 import ClickDataVisualizationWebsite from "../ChartPages/WebsiteData";
 import TimeFrameDropdown from "../ChartPages/TimeFrameDropdown";
-import SelectWebsiteDropDown from "../ChartPages/SelectWebsiteDropdown";
-import populateAtoms from "../../services/populateAtoms";
 import { useParams } from "react-router-dom";
 import ClickLog from "./ClickLog";
-import Footer from "../Footer/Footer";
 
 
 function Dashboard() {
-  const [activeUser] = useAtom(activeUserAtom);
   const [activeWebsite,setActiveWebsite] = useAtom(activeWebsiteAtom);
   const { id } = useParams();
   setActiveWebsite(id!)
