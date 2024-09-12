@@ -7,8 +7,7 @@ import {
   IconButton,
   Link,
 } from "@mui/material";
-import { GitHub, LinkedIn } from "@mui/icons-material";
-import XIcon from "@mui/icons-material/X";
+import { GitHub, LinkedIn, Article } from "@mui/icons-material";
 import { motion } from "framer-motion";
 
 export default function Footer() {
@@ -108,7 +107,7 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/company/104969092/admin/dashboard/"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
@@ -122,13 +121,13 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://www.twitter.com"
+                href="https://medium.com/@dimarzio.eric/introducing-os-analytics-an-open-source-website-analytics-toolkit-for-developers-68c0906f8669"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: "none" }}
               >
-                <IconButton aria-label="X (Twitter)" sx={{ color: "#333", mx: 1 }}>
-                  <XIcon />
+                <IconButton aria-label="Medium" sx={{ color: "#333", mx: 1 }}>
+                  <Article />
                 </IconButton>
               </a>
             </Grid>
